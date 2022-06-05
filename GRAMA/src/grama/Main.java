@@ -26,13 +26,14 @@ public class Main {
         
         /* === Afficher tous les noeuds et tous les liens === */
         //grama.afficherListeNoeud();
-        grama.afficherListeLien();
+        //grama.afficherListeLien();
         
+        System.out.print(grama.recherche("Parc de la tête d'Or"));
         /* === Lister les éléments du graphes par catégorie === */
-        grama.listerCategorie("D");
+        //grama.listerCategorie("D");
         
         /* === Affichage du nombre de liens et de liens === */
-        grama.afficherNombre();
+        //grama.afficherNombre();
         
         /* === Test sur un noeud === */
         Noeud testNoeud = grama.recherche("Villeurbanne");

@@ -15,10 +15,10 @@ public class GraphLien{
     
     private Lien lien;
     
-    private int posXDeb;
-    private int posYDeb;
-    private int posXFin;
-    private int posYFin;
+    private final int posXDeb;
+    private final int posYDeb;
+    private final int posXFin;
+    private final int posYFin;
 
     public GraphLien(Lien lien, int posXDeb, int posYDeb, int posXFin, int posYFin) {
         this.lien = lien;

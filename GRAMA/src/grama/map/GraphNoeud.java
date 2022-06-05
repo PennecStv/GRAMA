@@ -5,6 +5,7 @@
 package grama.map;
 
 import grama.Noeud;
+import java.awt.Color;
 
 /**
  *
@@ -16,24 +17,30 @@ public class GraphNoeud extends Noeud{
     
     public int posX;
     public int posY;
+    public Color couleur;
 
     public GraphNoeud( String typeLieu, String nomLieu, int posX, int posY) {
         super(typeLieu, nomLieu);
         this.posX = posX;
         this.posY = posY;
+        
+        switch(typeLieu){
+            case "V":
+                couleur = Color.RED;
+                break;
+                    
+            case "R":
+                couleur = Color.GREEN;
+                break;
+                    
+            case "L":
+                couleur = Color.YELLOW;
+                break;
+                    
+            default:
+                break;
+        }
     }
-
-    
-    
-//    public GraphNoeud(int posX, int posY) {
-//        this.noeud = noeud;
-//        this.posX = posX;
-//        this.posY = posY;
-//    }
-
-//    public Noeud getNoeud() {
-//        return noeud;
-//    }
 
     public int getPosX() {
         return posX;
@@ -42,6 +49,19 @@ public class GraphNoeud extends Noeud{
     public int getPosY() {
         return posY;
     }
+
+    public Color getCouleur() {
+        return couleur;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
     
     
     

@@ -204,42 +204,46 @@ public class Graph {
     
     /* === Analyser les éléments du graphe (0-distances) === */
     
-    public void listerCategorie(String type){
+    public String listerCategorie(String type){
+        String texteListe = "";
+        
         switch(type){
             case "V":
-                System.out.println("\nCatégorie: Ville");
+                texteListe += "\nCatégorie: Ville";
                 afficherListe(listeVilles);
                 break;
                 
             case "R":
-                System.out.println("\nCatégorie: Restaurant");
+                texteListe += "\nCatégorie: Restaurant";
                 afficherListe(listeRestaurants);
                 break;
                 
             case "L":
-                System.out.println("\nCatégorie: Lieu de loisir");
+                texteListe += "\nCatégorie: Lieu de loisir";
                 afficherListe(listeLoisirs);
                 break;
                 
             case "A":
-                System.out.println("\nCatégorie: Autoroute");
+                texteListe += "\nCatégorie: Autoroute";
                 afficherListe(listeAutoroutes);
                 break;
                 
             case "N":
-                System.out.println("\nCatégorie: Route nationale");
+                texteListe += "\nCatégorie: Route nationale";
                 afficherListe(listeRouteNat);
                 break;
                 
             case "D":
-                System.out.println("\nCatégorie: Route départementale");
+                texteListe += "\nCatégorie: Route départementale";
                 afficherListe(listeRouteDep);
                 break;
                 
             default:
-                System.out.println("Type non reconnu...");
+                texteListe += "Type non reconnu...";
                 break;
         }
+        
+        return texteListe;
     }
     
     public void afficherListe(ArrayList<?> liste){

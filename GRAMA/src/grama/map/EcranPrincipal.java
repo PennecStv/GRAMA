@@ -4,8 +4,17 @@
  */
 package grama.map;
 
+import grama.Graph;
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import type.typeLien;
+import type.typeNoeud;
 
 /**
  *
@@ -13,13 +22,35 @@ import javax.swing.JPanel;
  */
 public class EcranPrincipal extends javax.swing.JFrame {
 
+    Graph grama = new Graph();
+    
+    
     /**
      * Creates new form EcranPrincipale
      */
-    public EcranPrincipal() {
+    public EcranPrincipal() throws IOException {
         initComponents();
+        initGraph();
+        initMap();
+        setLocationRelativeTo(null);
     }
 
+    
+    
+    private void initGraph() throws IOException{
+        String fichierGraphe = grama.ouvrirGraphe();
+        grama.creationListe(fichierGraphe);
+        grama.creationListeTypee();
+    }
+    
+    private void initMap(){
+        map1.generateGraphNoeud(grama.getListeNoeud());
+        map1.generateGraphLien(grama.getListeLien());
+        
+        //map1.repaint();
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,15 +60,44 @@ public class EcranPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        titre = new javax.swing.JLabel();
+        menuPanel = new javax.swing.JPanel();
+        principalPanel = new javax.swing.JPanel();
         ecran0Bouton = new javax.swing.JButton();
         ecran1Bouton = new javax.swing.JButton();
         ecran2Bouton = new javax.swing.JButton();
         ecran3Bouton = new javax.swing.JButton();
         ecran4Bouton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        map2 = new grama.map.Map();
+        titreEcranPrincipal = new javax.swing.JLabel();
+        ecran0Panel = new javax.swing.JPanel();
+        retour0Bouton = new javax.swing.JButton();
+        villesCheckBox = new javax.swing.JCheckBox();
+        restoCheckBox = new javax.swing.JCheckBox();
+        loisirCheckBox = new javax.swing.JCheckBox();
+        autoroutesCheckBox = new javax.swing.JCheckBox();
+        natioCheckBox = new javax.swing.JCheckBox();
+        depCheckBox = new javax.swing.JCheckBox();
+        titreNoeudEcran0 = new javax.swing.JLabel();
+        titreLienEcran0 = new javax.swing.JLabel();
+        listerBouton = new javax.swing.JButton();
+        titreNombreEcran0 = new javax.swing.JLabel();
+        nombreComboBox = new javax.swing.JComboBox<>();
+        nombreEcran0 = new javax.swing.JLabel();
+        titreEcran0 = new javax.swing.JLabel();
+        ecran1Panel = new javax.swing.JPanel();
+        retour1Bouton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        ecran2Panel = new javax.swing.JPanel();
+        retour2Bouton = new javax.swing.JButton();
+        ecran3Panel = new javax.swing.JPanel();
+        retour3Bouton = new javax.swing.JButton();
+        ecran4Panel = new javax.swing.JPanel();
+        retour4Bouton = new javax.swing.JButton();
+        mapPanel = new javax.swing.JPanel();
+        map1 = new grama.map.Map();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         ouvrirMenuItem = new javax.swing.JMenuItem();
@@ -49,83 +109,414 @@ public class EcranPrincipal extends javax.swing.JFrame {
         AProposMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Graph Map Analysis");
+        setPreferredSize(new java.awt.Dimension(1300, 1000));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        menuPanel.setLayout(new java.awt.CardLayout());
 
-        titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titre.setText("GRAMA");
-
-        ecran0Bouton.setText("0 - distance");
+        ecran0Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        ecran0Bouton.setText("0 - Distance");
         ecran0Bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ecran0BoutonActionPerformed(evt);
             }
         });
 
-        ecran1Bouton.setText("1 - distance");
+        ecran1Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        ecran1Bouton.setText("1 - Distance");
+        ecran1Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ecran1BoutonActionPerformed(evt);
+            }
+        });
 
-        ecran2Bouton.setText("2 - distance");
+        ecran2Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        ecran2Bouton.setText("2 - Distance");
+        ecran2Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ecran2BoutonActionPerformed(evt);
+            }
+        });
 
-        ecran3Bouton.setText("2 >= distance");
+        ecran3Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        ecran3Bouton.setText(">= 2 - Distance");
+        ecran3Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ecran3BoutonActionPerformed(evt);
+            }
+        });
 
-        ecran4Bouton.setText("p - distance");
+        ecran4Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        ecran4Bouton.setText("P - Distance");
+        ecran4Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ecran4BoutonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        titreEcranPrincipal.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        titreEcranPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titreEcranPrincipal.setText("Graph Map Analysis");
+
+        javax.swing.GroupLayout principalPanelLayout = new javax.swing.GroupLayout(principalPanel);
+        principalPanel.setLayout(principalPanelLayout);
+        principalPanelLayout.setHorizontalGroup(
+            principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(principalPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titreEcranPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran0Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran1Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ecran4Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ecran2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran3Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ecran2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ecran4Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(titre)
-                .addGap(18, 18, 18)
-                .addComponent(ecran0Bouton)
-                .addGap(18, 18, 18)
-                .addComponent(ecran1Bouton)
-                .addGap(18, 18, 18)
-                .addComponent(ecran2Bouton)
-                .addGap(18, 18, 18)
-                .addComponent(ecran3Bouton)
-                .addGap(18, 18, 18)
-                .addComponent(ecran4Bouton)
-                .addGap(0, 312, Short.MAX_VALUE))
+        principalPanelLayout.setVerticalGroup(
+            principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(principalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titreEcranPrincipal)
+                .addGap(51, 51, 51)
+                .addComponent(ecran0Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(ecran1Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(ecran2Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(ecran3Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(ecran4Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout map2Layout = new javax.swing.GroupLayout(map2);
-        map2.setLayout(map2Layout);
-        map2Layout.setHorizontalGroup(
-            map2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
+        menuPanel.add(principalPanel, "cardPrincipal");
+
+        ecran0Panel.setPreferredSize(new java.awt.Dimension(195, 976));
+
+        retour0Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        retour0Bouton.setText("Retour");
+        retour0Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retour0BoutonActionPerformed(evt);
+            }
+        });
+
+        villesCheckBox.setText("Villes");
+        villesCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        villesCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                villesCheckBoxActionPerformed(evt);
+            }
+        });
+
+        restoCheckBox.setText("Restaurants");
+        restoCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        restoCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restoCheckBoxActionPerformed(evt);
+            }
+        });
+
+        loisirCheckBox.setText("Centres de loisir");
+        loisirCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        loisirCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loisirCheckBoxActionPerformed(evt);
+            }
+        });
+
+        autoroutesCheckBox.setText("Autoroutes");
+        autoroutesCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        autoroutesCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoroutesCheckBoxActionPerformed(evt);
+            }
+        });
+
+        natioCheckBox.setText("Routes nationales");
+        natioCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        natioCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                natioCheckBoxActionPerformed(evt);
+            }
+        });
+
+        depCheckBox.setText("Routes départementales");
+        depCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        depCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depCheckBoxActionPerformed(evt);
+            }
+        });
+
+        titreNoeudEcran0.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        titreNoeudEcran0.setText("NOEUDS");
+
+        titreLienEcran0.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        titreLienEcran0.setText("LIENS");
+
+        listerBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        listerBouton.setText("Liste des éléments");
+        listerBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listerBoutonActionPerformed(evt);
+            }
+        });
+
+        titreNombreEcran0.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        titreNombreEcran0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titreNombreEcran0.setText("Nombres d'éléments:");
+        titreNombreEcran0.setFocusable(false);
+        titreNombreEcran0.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        nombreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Villes", "Restaurants", "Centre de loisirs", "Autoroutes", "Routes nationales", "Routes départementales" }));
+        nombreComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreComboBoxActionPerformed(evt);
+            }
+        });
+
+        nombreEcran0.setText("Nombres: ");
+
+        titreEcran0.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        titreEcran0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titreEcran0.setText("0 - Distance");
+
+        javax.swing.GroupLayout ecran0PanelLayout = new javax.swing.GroupLayout(ecran0Panel);
+        ecran0Panel.setLayout(ecran0PanelLayout);
+        ecran0PanelLayout.setHorizontalGroup(
+            ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ecran0PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombreComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(retour0Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titreNoeudEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listerBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(ecran0PanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(titreLienEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(titreNombreEcran0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombreEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(ecran0PanelLayout.createSequentialGroup()
+                        .addComponent(titreEcran0, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 35, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran0PanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(depCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(natioCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loisirCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(restoCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(villesCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(autoroutesCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
-        map2Layout.setVerticalGroup(
-            map2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ecran0PanelLayout.setVerticalGroup(
+            ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran0PanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(titreEcran0)
+                .addGap(40, 40, 40)
+                .addComponent(titreNoeudEcran0)
+                .addGap(10, 10, 10)
+                .addComponent(villesCheckBox)
+                .addGap(20, 20, 20)
+                .addComponent(restoCheckBox)
+                .addGap(20, 20, 20)
+                .addComponent(loisirCheckBox)
+                .addGap(40, 40, 40)
+                .addComponent(titreLienEcran0)
+                .addGap(10, 10, 10)
+                .addComponent(autoroutesCheckBox)
+                .addGap(20, 20, 20)
+                .addComponent(natioCheckBox)
+                .addGap(20, 20, 20)
+                .addComponent(depCheckBox)
+                .addGap(40, 40, 40)
+                .addComponent(listerBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(titreNombreEcran0)
+                .addGap(20, 20, 20)
+                .addComponent(nombreComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(nombreEcran0)
+                .addGap(40, 40, 40)
+                .addComponent(retour0Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuPanel.add(ecran0Panel, "card0");
+
+        ecran1Panel.setPreferredSize(new java.awt.Dimension(221, 775));
+
+        retour1Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        retour1Bouton.setText("Retour");
+        retour1Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retour1BoutonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("jLabel1");
+
+        jLabel3.setText("jLabel1");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout ecran1PanelLayout = new javax.swing.GroupLayout(ecran1Panel);
+        ecran1Panel.setLayout(ecran1PanelLayout);
+        ecran1PanelLayout.setHorizontalGroup(
+            ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ecran1PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(retour1Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        ecran1PanelLayout.setVerticalGroup(
+            ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran1PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(537, 537, 537)
+                .addComponent(retour1Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuPanel.add(ecran1Panel, "card1");
+
+        ecran2Panel.setPreferredSize(new java.awt.Dimension(221, 775));
+
+        retour2Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        retour2Bouton.setText("Retour");
+        retour2Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retour2BoutonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ecran2PanelLayout = new javax.swing.GroupLayout(ecran2Panel);
+        ecran2Panel.setLayout(ecran2PanelLayout);
+        ecran2PanelLayout.setHorizontalGroup(
+            ecran2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ecran2PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(retour2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        ecran2PanelLayout.setVerticalGroup(
+            ecran2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran2PanelLayout.createSequentialGroup()
+                .addGap(650, 650, 650)
+                .addComponent(retour2Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuPanel.add(ecran2Panel, "card2");
+
+        ecran3Panel.setPreferredSize(new java.awt.Dimension(221, 775));
+
+        retour3Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        retour3Bouton.setText("Retour");
+        retour3Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retour3BoutonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ecran3PanelLayout = new javax.swing.GroupLayout(ecran3Panel);
+        ecran3Panel.setLayout(ecran3PanelLayout);
+        ecran3PanelLayout.setHorizontalGroup(
+            ecran3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ecran3PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(retour3Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        ecran3PanelLayout.setVerticalGroup(
+            ecran3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran3PanelLayout.createSequentialGroup()
+                .addGap(650, 650, 650)
+                .addComponent(retour3Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuPanel.add(ecran3Panel, "card3");
+
+        ecran4Panel.setPreferredSize(new java.awt.Dimension(221, 775));
+
+        retour4Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        retour4Bouton.setText("Retour");
+        retour4Bouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retour4BoutonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ecran4PanelLayout = new javax.swing.GroupLayout(ecran4Panel);
+        ecran4Panel.setLayout(ecran4PanelLayout);
+        ecran4PanelLayout.setHorizontalGroup(
+            ecran4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ecran4PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(retour4Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        ecran4PanelLayout.setVerticalGroup(
+            ecran4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran4PanelLayout.createSequentialGroup()
+                .addGap(650, 650, 650)
+                .addComponent(retour4Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuPanel.add(ecran4Panel, "card4");
+
+        javax.swing.GroupLayout map1Layout = new javax.swing.GroupLayout(map1);
+        map1.setLayout(map1Layout);
+        map1Layout.setHorizontalGroup(
+            map1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1186, Short.MAX_VALUE)
+        );
+        map1Layout.setVerticalGroup(
+            map1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
+        mapPanel.setLayout(mapPanelLayout);
+        mapPanelLayout.setHorizontalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mapPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(map2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        mapPanelLayout.setVerticalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mapPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(map2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         fichierMenu.setText("Fichier");
@@ -163,29 +554,125 @@ public class EcranPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ecran0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran0BoutonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ecran0BoutonActionPerformed
-
     private void AProposMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AProposMenuItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AProposMenuItemActionPerformed
+
+    private void ecran0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran0BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "card0");
+    }//GEN-LAST:event_ecran0BoutonActionPerformed
+
+    private void retour0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour0BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "cardPrincipal");
+    }//GEN-LAST:event_retour0BoutonActionPerformed
+
+    private void ecran1BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran1BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "card1");
+    }//GEN-LAST:event_ecran1BoutonActionPerformed
+
+    private void retour1BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour1BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "cardPrincipal");
+    }//GEN-LAST:event_retour1BoutonActionPerformed
+
+    private void ecran2BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran2BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "card2");
+    }//GEN-LAST:event_ecran2BoutonActionPerformed
+
+    private void retour2BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour2BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "cardPrincipal");
+    }//GEN-LAST:event_retour2BoutonActionPerformed
+
+    private void ecran3BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran3BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "card3");
+    }//GEN-LAST:event_ecran3BoutonActionPerformed
+
+    private void retour3BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour3BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "cardPrincipal");
+    }//GEN-LAST:event_retour3BoutonActionPerformed
+
+    private void ecran4BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran4BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "card4");
+    }//GEN-LAST:event_ecran4BoutonActionPerformed
+
+    private void retour4BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour4BoutonActionPerformed
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "cardPrincipal");
+    }//GEN-LAST:event_retour4BoutonActionPerformed
+
+    private void loisirCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loisirCheckBoxActionPerformed
+        if (loisirCheckBox.isSelected()){
+            
+        }
+    }//GEN-LAST:event_loisirCheckBoxActionPerformed
+
+    private void villesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_villesCheckBoxActionPerformed
+        if (villesCheckBox.isSelected()){
+            mapPanel.repaint();
+        }
+    }//GEN-LAST:event_villesCheckBoxActionPerformed
+
+    private void restoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoCheckBoxActionPerformed
+        if (restoCheckBox.isSelected()){
+            
+        }
+    }//GEN-LAST:event_restoCheckBoxActionPerformed
+
+    private void nombreComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreComboBoxActionPerformed
+
+    }//GEN-LAST:event_nombreComboBoxActionPerformed
+
+    private void listerBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerBoutonActionPerformed
+        String string = "";
+        
+        for (typeNoeud type : typeNoeud.values()){
+            
+        }
+        JOptionPane.showMessageDialog(ecran0Panel, grama.listerCategorie("V"), "Liste des éléments", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_listerBoutonActionPerformed
+
+    private void autoroutesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesCheckBoxActionPerformed
+        if (autoroutesCheckBox.isSelected()){
+            
+        }
+    }//GEN-LAST:event_autoroutesCheckBoxActionPerformed
+
+    private void natioCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natioCheckBoxActionPerformed
+        if (natioCheckBox.isSelected()){
+            
+        }
+    }//GEN-LAST:event_natioCheckBoxActionPerformed
+
+    private void depCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depCheckBoxActionPerformed
+        if (depCheckBox.isSelected()){
+            
+        }
+    }//GEN-LAST:event_depCheckBoxActionPerformed
  
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -217,8 +704,12 @@ public class EcranPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EcranPrincipal().setVisible(true);
-            }
+                try {
+                    new EcranPrincipal().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(EcranPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }
         });
     }
 
@@ -226,20 +717,49 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem AProposMenuItem;
     private javax.swing.JMenu aideMenu;
     private javax.swing.JMenuItem aideMenuItem;
+    private javax.swing.JCheckBox autoroutesCheckBox;
+    private javax.swing.JCheckBox depCheckBox;
     private javax.swing.JButton ecran0Bouton;
+    private javax.swing.JPanel ecran0Panel;
     private javax.swing.JButton ecran1Bouton;
+    private javax.swing.JPanel ecran1Panel;
     private javax.swing.JButton ecran2Bouton;
+    private javax.swing.JPanel ecran2Panel;
     private javax.swing.JButton ecran3Bouton;
+    private javax.swing.JPanel ecran3Panel;
     private javax.swing.JButton ecran4Bouton;
+    private javax.swing.JPanel ecran4Panel;
     private javax.swing.JMenu fichierMenu;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private grama.map.Map map2;
+    private javax.swing.JButton listerBouton;
+    private javax.swing.JCheckBox loisirCheckBox;
+    private grama.map.Map map1;
+    private javax.swing.JPanel mapPanel;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JCheckBox natioCheckBox;
+    private javax.swing.JComboBox<String> nombreComboBox;
+    private javax.swing.JLabel nombreEcran0;
     private javax.swing.JMenuItem ouvrirMenuItem;
+    private javax.swing.JPanel principalPanel;
     private javax.swing.JMenuItem quitterMenuItem;
-    private javax.swing.JLabel titre;
+    private javax.swing.JCheckBox restoCheckBox;
+    private javax.swing.JButton retour0Bouton;
+    private javax.swing.JButton retour1Bouton;
+    private javax.swing.JButton retour2Bouton;
+    private javax.swing.JButton retour3Bouton;
+    private javax.swing.JButton retour4Bouton;
+    private javax.swing.JLabel titreEcran0;
+    private javax.swing.JLabel titreEcranPrincipal;
+    private javax.swing.JLabel titreLienEcran0;
+    private javax.swing.JLabel titreNoeudEcran0;
+    private javax.swing.JLabel titreNombreEcran0;
+    private javax.swing.JCheckBox villesCheckBox;
     // End of variables declaration//GEN-END:variables
 }
