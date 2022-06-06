@@ -7,6 +7,7 @@ package grama.map;
 import grama.Lien;
 import grama.Noeud;
 import grama.Graph;
+import grama.interfaces.MapDesigner;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -35,6 +36,15 @@ public class Map extends JPanel{
     private static final int DIAMETER_NOEUD = 30;
     private static final int RAYON_NOEUD    = DIAMETER_NOEUD / 2;
     boolean isClicked = false;
+    
+    private static ArrayList<String> listeSelectedTypeNoeud = new ArrayList<>();
+    private static ArrayList<String> listeSelectedTypeLien = new ArrayList<>();
+    
+    private java.awt.event.MouseAdapter mouseListener;
+    
+
+    private MapDesigner designerListener;
+    
     
 //    private ArrayList<Noeud> listeNoeud = new ArrayList<>();
 //    private ArrayList<Lien> listeLien   = new ArrayList<>();
@@ -73,7 +83,24 @@ public class Map extends JPanel{
 //        addMouseListener(mh);
 //        addMouseMotionListener(mh);
     }
+
+    public void addTypeNoeud(String type) {
+        Map.listeSelectedTypeNoeud.add(type);
+    }
     
+    
+    public void removeTypeNoeud(String type){
+        Map.listeSelectedTypeNoeud.remove(type);
+    }
+    
+    public void addTypeLien(String type) {
+        Map.listeSelectedTypeLien.add(type);
+    }
+    
+    
+    public void removeTypeLien(String type){
+        Map.listeSelectedTypeLien.remove(type);
+    }
     
     
     @Override
@@ -87,82 +114,135 @@ public class Map extends JPanel{
                 java.awt.RenderingHints.KEY_TEXT_ANTIALIASING,
                 java.awt.RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
-        paintLien(g2d);
-        paintNoeud(g2d);
-        
-        
+        if (listeSelectedTypeNoeud.isEmpty() && listeSelectedTypeLien.isEmpty()){
+            paintLiens(g2d);
+            paintNoeuds(g2d);
+        } else {
+            paintLiensTypee(g2d);
+            paintNoeudsTypee(g2d);
+        }
     }
     
+    public void paintGraphe(){
+        //Graphics2D g2d = new Graphics2D g();
+    }
     
-    private void paintLien(Graphics2D g2d){
+        public final void reset(){
+        this.designerListener = null;
+        this.mouseListener = null;
+        repaint();
+    }
+    
+    private void paintLiens(Graphics2D g2d){
+        for (GraphLien lien : listeGraphLien){
+            paintLien(g2d, lien);
+        }
+    }
+    
+    private void paintLiensTypee(Graphics2D g2d){
         for (GraphLien lien : listeGraphLien){
             GraphNoeud noeudDep = rechercheGraphNoeud(lien.getLien().getDepartNoeud());
             GraphNoeud noeudArr = rechercheGraphNoeud(lien.getLien().getArriveNoeud());
-            
-            GradientPaint gradient = new GradientPaint(lien.getPosXDeb(), lien.getPosYDeb(), noeudDep.couleur, 
+            if (listeSelectedTypeLien.contains(String.valueOf(lien.getLien().getTypeRoute())) && !listeSelectedTypeNoeud.isEmpty()){
+
+                if (listeSelectedTypeNoeud.contains(noeudDep.getTypeLieu()) && listeSelectedTypeNoeud.contains(noeudArr.getTypeLieu())){
+                    paintNoeud(g2d, noeudDep);
+                    paintNoeud(g2d, noeudArr);
+                    paintLien(g2d, lien);
+                }
+            } else if (listeSelectedTypeLien.contains(String.valueOf(lien.getLien().getTypeRoute())) && listeSelectedTypeNoeud.isEmpty()){
+                paintNoeud(g2d, noeudDep);
+                paintNoeud(g2d, noeudArr);
+                paintLien(g2d, lien);
+            }
+//            } else if (!listeSelectedTypeNoeud.isEmpty() && listeSelectedTypeLien.isEmpty()){
+//                if (listeSelectedTypeNoeud.contains(noeudDep.getTypeLieu()) && listeSelectedTypeNoeud.contains(noeudArr.getTypeLieu())){
+//                    paintNoeud(g2d, noeudDep);
+//                    paintNoeud(g2d, noeudArr);
+//                    paintLien(g2d, lien);
+//                }
+//            }
+        }
+    }
+    
+    
+    private void paintLien(Graphics2D g2d, GraphLien lien){
+        GraphNoeud noeudDep = rechercheGraphNoeud(lien.getLien().getDepartNoeud());
+        GraphNoeud noeudArr = rechercheGraphNoeud(lien.getLien().getArriveNoeud());
+        
+        GradientPaint gradient = new GradientPaint(lien.getPosXDeb(), lien.getPosYDeb(), noeudDep.couleur, 
                                                         lien.getPosXFin(), lien.getPosYFin(), noeudArr.couleur);
-            g2d.setPaint(gradient);
-            
-            g2d.drawLine(lien.getPosXDeb(), lien.getPosYDeb(), lien.getPosXFin(), lien.getPosYFin());
+        g2d.setPaint(gradient);
+
+        g2d.drawLine(lien.getPosXDeb(), lien.getPosYDeb(), lien.getPosXFin(), lien.getPosYFin());
+        paintLabel(g2d, lien, noeudDep, noeudArr);
+    }
+    
+    
+    private void paintNoeuds(Graphics2D g2d){
+        for (GraphNoeud noeud : listeGraphNoeud){
+            paintNoeud(g2d, noeud);
         }
     }
     
     
-    private void paintNoeud(Graphics2D g2d){
+    private void paintNoeudsTypee(Graphics2D g2d){
         for (GraphNoeud noeud : listeGraphNoeud){
             
-            g2d.setColor(noeud.getCouleur());
-            g2d.fillOval(noeud.posX, noeud.posY, 30, 30);
-            
-            g2d.setColor(Color.DARK_GRAY);
-            g2d.drawOval(noeud.posX, noeud.posY, 30, 30);
-            
-            g2d.setColor(Color.BLACK); 
-            
-            java.awt.FontMetrics metrics = g2d.getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
-            int w = metrics.stringWidth(noeud.getNomLieu());
-            int h = metrics.getHeight();
-            g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
-            g2d.drawString(noeud.getNomLieu(), noeud.posX + RAYON_NOEUD - w/2, noeud.posY - h/2);
-            
-            w = metrics.stringWidth(noeud.getTypeLieu());
-            g2d.drawString(noeud.getTypeLieu(), noeud.posX + RAYON_NOEUD - w/2, 
-                                                   noeud.posY + RAYON_NOEUD + h/4);
-        }
-    }
-    
-    
-    private void paintNoeud(Graphics2D g2d, String typeLieu){
-        for (GraphNoeud noeud : listeGraphNoeud){
-            
-            if (noeud.getTypeLieu().equals(typeLieu)){
-                g2d.setColor(noeud.getCouleur());
-                g2d.fillOval(noeud.posX, noeud.posY, 30, 30);
-
-                g2d.setColor(Color.DARK_GRAY);
-                g2d.drawOval(noeud.posX, noeud.posY, 30, 30);
-
-                g2d.setColor(Color.BLACK); 
-
-                java.awt.FontMetrics metrics = g2d.getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
-                int w = metrics.stringWidth(noeud.getNomLieu());
-                int h = metrics.getHeight();
-                g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
-                g2d.drawString(noeud.getNomLieu(), noeud.posX + RAYON_NOEUD - w/2, noeud.posY - h/2);
-
-                w = metrics.stringWidth(noeud.getTypeLieu());
-                g2d.drawString(noeud.getTypeLieu(), noeud.posX + RAYON_NOEUD - w/2, 
-                                                       noeud.posY + RAYON_NOEUD + h/4);
+            if (listeSelectedTypeNoeud.contains(noeud.getTypeLieu())){
+                paintNoeud(g2d, noeud);
             }
         }
     }
     
     
-    private void paintLabel(){
-        
+    private void paintNoeud(Graphics2D g2d, GraphNoeud noeud){
+        g2d.setColor(noeud.getCouleur());
+        g2d.fillOval(noeud.posX, noeud.posY, 30, 30);
+
+        g2d.setColor(Color.DARK_GRAY);
+        g2d.drawOval(noeud.posX, noeud.posY, 30, 30);
+
+        g2d.setColor(Color.BLACK); 
+
+        java.awt.FontMetrics metrics = g2d.getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
+        int w = metrics.stringWidth(noeud.getNomLieu());
+        int h = metrics.getHeight();
+        g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
+        g2d.drawString(noeud.getNomLieu(), noeud.posX + RAYON_NOEUD - w/2, noeud.posY - h/2);
+
+        w = metrics.stringWidth(noeud.getTypeLieu());
+        g2d.drawString(noeud.getTypeLieu(), noeud.posX + RAYON_NOEUD - w/2, 
+                                               noeud.posY + RAYON_NOEUD + h/4);
     }
     
     
+    private void paintLabel(Graphics2D g2d, GraphLien lien, GraphNoeud noeudDep, GraphNoeud noeudArr){
+        String label = lien.getDonnees();
+        
+        java.awt.FontMetrics metrics = g2d.getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
+        int w = metrics.stringWidth(label);
+        int h = metrics.getHeight();
+        
+        
+        int labelX = (lien.getPosXDeb() + lien.getPosXFin())/2;
+        int labelY = (lien.getPosYDeb() + lien.getPosYFin())/2;
+        
+        GradientPaint gradient = new GradientPaint(labelX, labelY + h/2, noeudDep.couleur, 
+                                                        labelX + w/2, labelY + h/2, noeudArr.couleur);
+        g2d.setPaint(gradient);
+            
+        g2d.fillRoundRect(labelX - w/2, labelY - h/2, w + 5, h + 5, 15, 15);
+        
+        g2d.setColor(Color.DARK_GRAY);
+        g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
+        g2d.drawString(label, labelX - w/2 + 2, labelY + h/2 - 2);
+    }
+    
+    
+    private void paintNoeudSelected(){
+        
+    }
     
     
     
@@ -194,7 +274,6 @@ public class Map extends JPanel{
         for (Noeud noeud : listeNoeud){
             
             while (!verifCoord(x, y)){
-                System.out.println("x: " + x + " et y: " + y);
                 x = posX.nextInt(WIDTH_MAP - PADDING) + PADDING;
                 y = posY.nextInt(HEIGHT_MAP - PADDING) + PADDING;
             }

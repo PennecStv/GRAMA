@@ -33,6 +33,8 @@ public class EcranPrincipal extends javax.swing.JFrame {
         initGraph();
         initMap();
         setLocationRelativeTo(null);
+        
+        
     }
 
     
@@ -60,6 +62,24 @@ public class EcranPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ListeFrame = new javax.swing.JFrame();
+        listePanel = new javax.swing.JPanel();
+        titreListePanel = new javax.swing.JLabel();
+        titreListeNoeud = new javax.swing.JLabel();
+        titreListeLien = new javax.swing.JLabel();
+        villesRadioBouton = new javax.swing.JRadioButton();
+        resRadioBouton = new javax.swing.JRadioButton();
+        loisirRadioBouton = new javax.swing.JRadioButton();
+        autoroutesRadioBouton = new javax.swing.JRadioButton();
+        natioRadioBouton = new javax.swing.JRadioButton();
+        depRadioBouton = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        noeudsTextArea = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        liensTextArea = new javax.swing.JTextArea();
+        jSeparator3 = new javax.swing.JSeparator();
+        noeudButtonGroup = new javax.swing.ButtonGroup();
+        lienButtonGroup = new javax.swing.ButtonGroup();
         menuPanel = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
         ecran0Bouton = new javax.swing.JButton();
@@ -81,8 +101,9 @@ public class EcranPrincipal extends javax.swing.JFrame {
         listerBouton = new javax.swing.JButton();
         titreNombreEcran0 = new javax.swing.JLabel();
         nombreComboBox = new javax.swing.JComboBox<>();
-        nombreEcran0 = new javax.swing.JLabel();
+        infoNombreEcran0 = new javax.swing.JLabel();
         titreEcran0 = new javax.swing.JLabel();
+        nombreEcran0 = new javax.swing.JLabel();
         ecran1Panel = new javax.swing.JPanel();
         retour1Bouton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -107,6 +128,166 @@ public class EcranPrincipal extends javax.swing.JFrame {
         aideMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         AProposMenuItem = new javax.swing.JMenuItem();
+
+        ListeFrame.setTitle("Liste des éléments du Graphe");
+        ListeFrame.setPreferredSize(new java.awt.Dimension(800, 1000));
+        ListeFrame.setResizable(false);
+
+        titreListePanel.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        titreListePanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titreListePanel.setText("Liste des éléments du Graph Map Analysis");
+
+        titreListeNoeud.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        titreListeNoeud.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titreListeNoeud.setText("NOEUDS");
+
+        titreListeLien.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        titreListeLien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titreListeLien.setText("LIENS");
+
+        villesRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        villesRadioBouton.setText("Villes");
+        villesRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                villesRadioBoutonActionPerformed(evt);
+            }
+        });
+
+        resRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        resRadioBouton.setText("Restaurants");
+        resRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resRadioBoutonActionPerformed(evt);
+            }
+        });
+
+        loisirRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        loisirRadioBouton.setText("Centres de loisir");
+        loisirRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loisirRadioBoutonActionPerformed(evt);
+            }
+        });
+
+        autoroutesRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        autoroutesRadioBouton.setText("Routes départementales");
+        autoroutesRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoroutesRadioBoutonActionPerformed(evt);
+            }
+        });
+
+        natioRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        natioRadioBouton.setText("Routes nationales");
+        natioRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                natioRadioBoutonActionPerformed(evt);
+            }
+        });
+
+        depRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        depRadioBouton.setText("Autoroutes");
+        depRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depRadioBoutonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(600, 103));
+
+        noeudsTextArea.setEditable(false);
+        noeudsTextArea.setColumns(20);
+        noeudsTextArea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
+        noeudsTextArea.setRows(5);
+        noeudsTextArea.setMinimumSize(new java.awt.Dimension(500, 500));
+        jScrollPane2.setViewportView(noeudsTextArea);
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(600, 103));
+        jScrollPane3.setWheelScrollingEnabled(false);
+
+        liensTextArea.setEditable(false);
+        liensTextArea.setColumns(20);
+        liensTextArea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
+        liensTextArea.setRows(5);
+        liensTextArea.setMinimumSize(new java.awt.Dimension(500, 500));
+        jScrollPane3.setViewportView(liensTextArea);
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout listePanelLayout = new javax.swing.GroupLayout(listePanel);
+        listePanel.setLayout(listePanelLayout);
+        listePanelLayout.setHorizontalGroup(
+            listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(listePanelLayout.createSequentialGroup()
+                        .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titreListePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(listePanelLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(villesRadioBouton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(resRadioBouton)
+                                .addGap(78, 78, 78)
+                                .addComponent(loisirRadioBouton)
+                                .addGap(165, 165, 165)
+                                .addComponent(depRadioBouton)
+                                .addGap(18, 18, 18)
+                                .addComponent(natioRadioBouton)
+                                .addGap(18, 18, 18)
+                                .addComponent(autoroutesRadioBouton))
+                            .addGroup(listePanelLayout.createSequentialGroup()
+                                .addGap(182, 182, 182)
+                                .addComponent(titreListeNoeud, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(titreListeLien, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(227, 227, 227)))
+                        .addContainerGap())
+                    .addGroup(listePanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        listePanelLayout.setVerticalGroup(
+            listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titreListePanel)
+                .addGap(18, 18, 18)
+                .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titreListeNoeud)
+                    .addComponent(titreListeLien))
+                .addGap(35, 35, 35)
+                .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(villesRadioBouton)
+                    .addComponent(resRadioBouton)
+                    .addComponent(loisirRadioBouton)
+                    .addComponent(autoroutesRadioBouton)
+                    .addComponent(natioRadioBouton)
+                    .addComponent(depRadioBouton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout ListeFrameLayout = new javax.swing.GroupLayout(ListeFrame.getContentPane());
+        ListeFrame.getContentPane().setLayout(ListeFrameLayout);
+        ListeFrameLayout.setHorizontalGroup(
+            ListeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListeFrameLayout.createSequentialGroup()
+                .addComponent(listePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        ListeFrameLayout.setVerticalGroup(
+            ListeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(listePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph Map Analysis");
@@ -204,6 +385,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
             }
         });
 
+        villesCheckBox.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         villesCheckBox.setText("Villes");
         villesCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         villesCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +394,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
             }
         });
 
+        restoCheckBox.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         restoCheckBox.setText("Restaurants");
         restoCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         restoCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -220,6 +403,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
             }
         });
 
+        loisirCheckBox.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         loisirCheckBox.setText("Centres de loisir");
         loisirCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         loisirCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +412,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
             }
         });
 
+        autoroutesCheckBox.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         autoroutesCheckBox.setText("Autoroutes");
         autoroutesCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         autoroutesCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +421,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
             }
         });
 
+        natioCheckBox.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         natioCheckBox.setText("Routes nationales");
         natioCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         natioCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +430,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
             }
         });
 
+        depCheckBox.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         depCheckBox.setText("Routes départementales");
         depCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         depCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -272,18 +459,22 @@ public class EcranPrincipal extends javax.swing.JFrame {
         titreNombreEcran0.setFocusable(false);
         titreNombreEcran0.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        nombreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Villes", "Restaurants", "Centre de loisirs", "Autoroutes", "Routes nationales", "Routes départementales" }));
+        nombreComboBox.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nombreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aucun", "Villes", "Restaurants", "Centres de loisir", "Tous les lieux", "Autoroutes", "Routes nationales", "Routes départementales", "Toutes les routes" }));
         nombreComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreComboBoxActionPerformed(evt);
             }
         });
 
-        nombreEcran0.setText("Nombres: ");
+        infoNombreEcran0.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        infoNombreEcran0.setText("Nombres: ");
 
         titreEcran0.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         titreEcran0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titreEcran0.setText("0 - Distance");
+
+        nombreEcran0.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout ecran0PanelLayout = new javax.swing.GroupLayout(ecran0Panel);
         ecran0Panel.setLayout(ecran0PanelLayout);
@@ -300,19 +491,22 @@ public class EcranPrincipal extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(titreLienEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(titreNombreEcran0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nombreEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(ecran0PanelLayout.createSequentialGroup()
-                        .addComponent(titreEcran0, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 35, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran0PanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 16, Short.MAX_VALUE)
                         .addGroup(ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(depCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(natioCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(loisirCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(restoCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(villesCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(autoroutesCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(autoroutesCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(ecran0PanelLayout.createSequentialGroup()
+                        .addComponent(titreEcran0, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(ecran0PanelLayout.createSequentialGroup()
+                        .addComponent(infoNombreEcran0)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ecran0PanelLayout.setVerticalGroup(
@@ -320,7 +514,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran0PanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(titreEcran0)
-                .addGap(40, 40, 40)
+                .addGap(30, 30, 30)
                 .addComponent(titreNoeudEcran0)
                 .addGap(10, 10, 10)
                 .addComponent(villesCheckBox)
@@ -328,7 +522,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
                 .addComponent(restoCheckBox)
                 .addGap(20, 20, 20)
                 .addComponent(loisirCheckBox)
-                .addGap(40, 40, 40)
+                .addGap(20, 20, 20)
                 .addComponent(titreLienEcran0)
                 .addGap(10, 10, 10)
                 .addComponent(autoroutesCheckBox)
@@ -336,15 +530,17 @@ public class EcranPrincipal extends javax.swing.JFrame {
                 .addComponent(natioCheckBox)
                 .addGap(20, 20, 20)
                 .addComponent(depCheckBox)
-                .addGap(40, 40, 40)
+                .addGap(30, 30, 30)
                 .addComponent(listerBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(30, 30, 30)
                 .addComponent(titreNombreEcran0)
                 .addGap(20, 20, 20)
                 .addComponent(nombreComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(nombreEcran0)
-                .addGap(40, 40, 40)
+                .addGroup(ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(infoNombreEcran0)
+                    .addComponent(nombreEcran0))
+                .addGap(30, 30, 30)
                 .addComponent(retour0Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -497,7 +693,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
         map1.setLayout(map1Layout);
         map1Layout.setHorizontalGroup(
             map1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1186, Short.MAX_VALUE)
+            .addGap(0, 1039, Short.MAX_VALUE)
         );
         map1Layout.setVerticalGroup(
             map1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,13 +706,13 @@ public class EcranPrincipal extends javax.swing.JFrame {
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mapPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE))
         );
         mapPanelLayout.setVerticalGroup(
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mapPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE))
         );
 
         fichierMenu.setText("Fichier");
@@ -577,6 +773,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private void ecran0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran0BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "card0");
+        
     }//GEN-LAST:event_ecran0BoutonActionPerformed
 
     private void retour0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour0BoutonActionPerformed
@@ -626,53 +823,132 @@ public class EcranPrincipal extends javax.swing.JFrame {
 
     private void loisirCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loisirCheckBoxActionPerformed
         if (loisirCheckBox.isSelected()){
-            
+            map1.addTypeNoeud("L");
+            mapPanel.repaint();
+        }else{
+            map1.removeTypeNoeud("L");
+            mapPanel.repaint();
         }
     }//GEN-LAST:event_loisirCheckBoxActionPerformed
 
     private void villesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_villesCheckBoxActionPerformed
         if (villesCheckBox.isSelected()){
+            map1.addTypeNoeud("V");
+            mapPanel.repaint();
+        }else{
+            map1.removeTypeNoeud("V");
             mapPanel.repaint();
         }
     }//GEN-LAST:event_villesCheckBoxActionPerformed
 
     private void restoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoCheckBoxActionPerformed
         if (restoCheckBox.isSelected()){
-            
+            map1.addTypeNoeud("R");
+            mapPanel.repaint();
+        }else{
+            map1.removeTypeNoeud("R");
+            mapPanel.repaint();
         }
     }//GEN-LAST:event_restoCheckBoxActionPerformed
 
     private void nombreComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreComboBoxActionPerformed
-
+        String item = (String) nombreComboBox.getSelectedItem();
+        nombreEcran0.setText(grama.afficherNombre(item));
     }//GEN-LAST:event_nombreComboBoxActionPerformed
 
     private void listerBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerBoutonActionPerformed
-        String string = "";
-        
-        for (typeNoeud type : typeNoeud.values()){
-            
-        }
-        JOptionPane.showMessageDialog(ecran0Panel, grama.listerCategorie("V"), "Liste des éléments", JOptionPane.PLAIN_MESSAGE);
+        generateListeFrame();
     }//GEN-LAST:event_listerBoutonActionPerformed
 
     private void autoroutesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesCheckBoxActionPerformed
         if (autoroutesCheckBox.isSelected()){
-            
+            map1.addTypeLien("A");
+            mapPanel.repaint();
+        }else{
+            map1.removeTypeLien("A");
+            mapPanel.repaint();
         }
     }//GEN-LAST:event_autoroutesCheckBoxActionPerformed
 
     private void natioCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natioCheckBoxActionPerformed
         if (natioCheckBox.isSelected()){
-            
+            map1.addTypeLien("N");
+            mapPanel.repaint();
+        }else{
+            map1.removeTypeLien("N");
+            mapPanel.repaint();
         }
     }//GEN-LAST:event_natioCheckBoxActionPerformed
 
     private void depCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depCheckBoxActionPerformed
         if (depCheckBox.isSelected()){
-            
+            map1.addTypeLien("D");
+            mapPanel.repaint();
+        }else{
+            map1.removeTypeLien("D");
+            mapPanel.repaint();
         }
     }//GEN-LAST:event_depCheckBoxActionPerformed
+
+    private void depRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depRadioBoutonActionPerformed
+        if (depRadioBouton.isSelected()){
+            liensTextArea.setText("");
+            liensTextArea.setText(grama.listerCategorie("D"));
+        }
+    }//GEN-LAST:event_depRadioBoutonActionPerformed
+
+    private void natioRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natioRadioBoutonActionPerformed
+        if (natioRadioBouton.isSelected()){
+            liensTextArea.setText("");
+            liensTextArea.setText(grama.listerCategorie("N"));
+        }
+    }//GEN-LAST:event_natioRadioBoutonActionPerformed
+
+    private void autoroutesRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesRadioBoutonActionPerformed
+        if (autoroutesRadioBouton.isSelected()){
+            liensTextArea.setText("");
+            liensTextArea.setText(grama.listerCategorie("A"));
+        }
+    }//GEN-LAST:event_autoroutesRadioBoutonActionPerformed
+
+    private void loisirRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loisirRadioBoutonActionPerformed
+        if (loisirRadioBouton.isSelected()){
+            noeudsTextArea.setText("");
+            noeudsTextArea.setText(grama.listerCategorie("L"));
+        }
+    }//GEN-LAST:event_loisirRadioBoutonActionPerformed
+
+    private void resRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resRadioBoutonActionPerformed
+        if (resRadioBouton.isSelected()){
+            noeudsTextArea.setText("");
+            noeudsTextArea.setText(grama.listerCategorie("R"));
+        }
+    }//GEN-LAST:event_resRadioBoutonActionPerformed
+
+    private void villesRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_villesRadioBoutonActionPerformed
+        if (villesRadioBouton.isSelected()){
+            noeudsTextArea.setText("");
+            noeudsTextArea.setText(grama.listerCategorie("V"));
+        }
+    }//GEN-LAST:event_villesRadioBoutonActionPerformed
  
+    
+    private void generateListeFrame(){
+        ListeFrame.setSize(1138, 800);
+        ListeFrame.setLocationRelativeTo(null);
+        ListeFrame.setVisible(true);
+        
+        noeudButtonGroup.add(villesRadioBouton);
+        noeudButtonGroup.add(resRadioBouton);
+        noeudButtonGroup.add(loisirRadioBouton);
+        
+        lienButtonGroup.add(autoroutesRadioBouton);
+        lienButtonGroup.add(natioRadioBouton);
+        lienButtonGroup.add(depRadioBouton);
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -715,10 +991,13 @@ public class EcranPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AProposMenuItem;
+    private javax.swing.JFrame ListeFrame;
     private javax.swing.JMenu aideMenu;
     private javax.swing.JMenuItem aideMenuItem;
     private javax.swing.JCheckBox autoroutesCheckBox;
+    private javax.swing.JRadioButton autoroutesRadioBouton;
     private javax.swing.JCheckBox depCheckBox;
+    private javax.swing.JRadioButton depRadioBouton;
     private javax.swing.JButton ecran0Bouton;
     private javax.swing.JPanel ecran0Panel;
     private javax.swing.JButton ecran1Bouton;
@@ -730,25 +1009,37 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ecran4Bouton;
     private javax.swing.JPanel ecran4Panel;
     private javax.swing.JMenu fichierMenu;
+    private javax.swing.JLabel infoNombreEcran0;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.ButtonGroup lienButtonGroup;
+    private javax.swing.JTextArea liensTextArea;
+    private javax.swing.JPanel listePanel;
     private javax.swing.JButton listerBouton;
     private javax.swing.JCheckBox loisirCheckBox;
+    private javax.swing.JRadioButton loisirRadioBouton;
     private grama.map.Map map1;
     private javax.swing.JPanel mapPanel;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JCheckBox natioCheckBox;
+    private javax.swing.JRadioButton natioRadioBouton;
+    private javax.swing.ButtonGroup noeudButtonGroup;
+    private javax.swing.JTextArea noeudsTextArea;
     private javax.swing.JComboBox<String> nombreComboBox;
     private javax.swing.JLabel nombreEcran0;
     private javax.swing.JMenuItem ouvrirMenuItem;
     private javax.swing.JPanel principalPanel;
     private javax.swing.JMenuItem quitterMenuItem;
+    private javax.swing.JRadioButton resRadioBouton;
     private javax.swing.JCheckBox restoCheckBox;
     private javax.swing.JButton retour0Bouton;
     private javax.swing.JButton retour1Bouton;
@@ -758,8 +1049,12 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel titreEcran0;
     private javax.swing.JLabel titreEcranPrincipal;
     private javax.swing.JLabel titreLienEcran0;
+    private javax.swing.JLabel titreListeLien;
+    private javax.swing.JLabel titreListeNoeud;
+    private javax.swing.JLabel titreListePanel;
     private javax.swing.JLabel titreNoeudEcran0;
     private javax.swing.JLabel titreNombreEcran0;
     private javax.swing.JCheckBox villesCheckBox;
+    private javax.swing.JRadioButton villesRadioBouton;
     // End of variables declaration//GEN-END:variables
 }

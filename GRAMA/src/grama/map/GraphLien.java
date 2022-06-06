@@ -49,7 +49,7 @@ public class GraphLien{
     }
     
     
-    public boolean compareCoord(){
-        return true;
+    public String getDonnees(){
+        return this.lien.getTypeRoute() + ", " + this.lien.getPonderation();
     }
 }

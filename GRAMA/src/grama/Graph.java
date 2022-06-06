@@ -209,33 +209,27 @@ public class Graph {
         
         switch(type){
             case "V":
-                texteListe += "\nCatégorie: Ville";
-                afficherListe(listeVilles);
+                texteListe += "\nCatégorie: Ville \n" + afficherListe(listeVilles, texteListe);
                 break;
                 
             case "R":
-                texteListe += "\nCatégorie: Restaurant";
-                afficherListe(listeRestaurants);
+                texteListe += "\nCatégorie: Restaurant \n" + afficherListe(listeRestaurants, texteListe);
                 break;
                 
             case "L":
-                texteListe += "\nCatégorie: Lieu de loisir";
-                afficherListe(listeLoisirs);
+                texteListe += "\nCatégorie: Lieu de loisir \n" + afficherListe(listeLoisirs, texteListe);
                 break;
                 
             case "A":
-                texteListe += "\nCatégorie: Autoroute";
-                afficherListe(listeAutoroutes);
+                texteListe += "\nCatégorie: Autoroute \n" + afficherListe(listeAutoroutes, texteListe);
                 break;
                 
             case "N":
-                texteListe += "\nCatégorie: Route nationale";
-                afficherListe(listeRouteNat);
+                texteListe += "\nCatégorie: Route nationale \n" + afficherListe(listeRouteNat, texteListe);
                 break;
                 
             case "D":
-                texteListe += "\nCatégorie: Route départementale";
-                afficherListe(listeRouteDep);
+                texteListe += "\nCatégorie: Route départementale \n" + afficherListe(listeRouteDep, texteListe);
                 break;
                 
             default:
@@ -246,19 +240,48 @@ public class Graph {
         return texteListe;
     }
     
-    public void afficherListe(ArrayList<?> liste){
+    public String afficherListe(ArrayList<?> liste, String texte){
         for (int i = 0; i < liste.size(); i++){
-            System.out.println(liste.get(i));
+            texte += liste.get(i) + "\n";
         }
+        return texte;
     }
     
-    public void afficherNombre(){
-        System.out.println("Nombre de villes : " + listeVilles.size());
-        System.out.println("\nNombre de restaurants : " + listeRestaurants.size());
-        System.out.println("\nNombre de centres de loisir : " + listeLoisirs.size());
-        System.out.println("\nNombre d'autoroutes : " + listeAutoroutes.size() / 2);
-        System.out.println("\nNombre de routes nationales : " + listeRouteNat.size() / 2);
-        System.out.println("\nNombre de routes départementales : " + listeRouteDep.size() / 2);
+    public String afficherNombre(String categorie){
+        switch(categorie){
+            case "Villes":
+                return String.valueOf(listeVilles.size());
+                
+            case "Restaurants":
+                return String.valueOf(listeRestaurants.size());
+                
+            case "Centres de loisir":
+                return String.valueOf(listeLoisirs.size());
+            
+            case "Tous les lieux":
+                return String.valueOf(listeVilles.size() + listeRestaurants.size() + listeLoisirs.size());
+                
+            case "Autoroutes":
+                return String.valueOf(listeAutoroutes.size() / 2);
+                
+            case "Routes nationales":
+                return String.valueOf(listeRouteNat.size() / 2);
+                
+            case "Routes départementales":
+                return String.valueOf(listeRouteDep.size() / 2);
+            
+            case "Toutes les routes":
+                return String.valueOf((listeAutoroutes.size() + listeRouteNat.size() + listeRouteDep.size()) / 2);
+                
+            default:
+                return "";
+        }
+//        System.out.println("Nombre de villes : " + listeVilles.size());
+//        System.out.println("\nNombre de restaurants : " + listeRestaurants.size());
+//        System.out.println("\nNombre de centres de loisir : " + listeLoisirs.size());
+//        System.out.println("\nNombre d'autoroutes : " + listeAutoroutes.size() / 2);
+//        System.out.println("\nNombre de routes nationales : " + listeRouteNat.size() / 2);
+//        System.out.println("\nNombre de routes départementales : " + listeRouteDep.size() / 2);
     }
     
     
