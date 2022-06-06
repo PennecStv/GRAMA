@@ -25,13 +25,9 @@ public class Graph {
     private final ArrayList<Lien> listeRouteNat     = new ArrayList<>();
     private final ArrayList<Lien> listeRouteDep     = new ArrayList<>();
     
-    private final String[] typeNoeud = {"V", "R", "L"};
-    private final char[] typeLien    = {'A', 'N', 'D'};
-    
     //Constructeur
-    public Graph(/*ArrayList<Noeud> listeNoeud*/) {
+    public Graph() {
         super();
-        //this.listeNoeud = listeNoeud;
     }
     
     
@@ -142,6 +138,7 @@ public class Graph {
     }
     
     
+    /* === Création des listes des noeuds et des liens typés === */
     public void creationListeTypee(){
         String typeSommets;
         char typeRoute;
@@ -197,13 +194,16 @@ public class Graph {
     }
     
     
+    
     /* ================================================== */
     /* ======= Interroger le graphe-MAP: Méthodes ======= */
     /* ================================================== */
 
+    /*---------------------------------------------------------*/
+    /* === Analyser les éléments du graphe (0 - distances) === */
+    /*---------------------------------------------------------*/
     
-    /* === Analyser les éléments du graphe (0-distances) === */
-    
+    /* === Retourne un String contenant la liste de noeuds ou de liens selon la catégorie === */
     public String listerCategorie(String type){
         String texteListe = "";
         
@@ -240,6 +240,8 @@ public class Graph {
         return texteListe;
     }
     
+    
+    /* === Parcours de la liste la renvoie sous format String === */
     public String afficherListe(ArrayList<?> liste, String texte){
         for (int i = 0; i < liste.size(); i++){
             texte += liste.get(i) + "\n";
@@ -247,6 +249,8 @@ public class Graph {
         return texte;
     }
     
+    
+    /* === Renvoie la taille d'une liste selon la catégorie sous format String === */
     public String afficherNombre(String categorie){
         switch(categorie){
             case "Villes":
@@ -285,11 +289,30 @@ public class Graph {
     }
     
     
+    
+    /*---------------------------------------------------------*/
+    /* === Analyser les éléments du graphe (1 - distances) === */
+    /*---------------------------------------------------------*/
+    
     public void afficherVoisinUnSaut(String nomNoeud){
         Noeud noeud = recherche(nomNoeud);
         noeud.afficherVoisin();
     }
     
+    
+    public void parcoursVoisin(Noeud noeud){
+        for (Lien lien : noeud.getListeLien()){
+            lien.getArriveNoeud();
+        }
+    }
+    
+    
+    
+    /*---------------------------------------------------------*/
+    /* === Analyser les éléments du graphe (2 - distances) === */
+    /*---------------------------------------------------------*/
+    
+    /* === Vérification si deux noeuds donnés sont bien à deux distance === */
     public boolean deuxDistance(String nomNoeud1, String nomNoeud2){
         Noeud noeud1 = recherche(nomNoeud1);
         Noeud noeud2 = recherche(nomNoeud2);
@@ -305,51 +328,10 @@ public class Graph {
     }
     
     
-    public void parcoursVoisin(Noeud noeud){
-        for (Lien lien : noeud.getListeLien()){
-            lien.getArriveNoeud();
-        }
-    }
     
-    
-    public Noeud recherche(String nomNoeud){
-        boolean trouve = false;
-        int i = 0;
-        Noeud noeud = null;
-        
-        while (!trouve && i < listeNoeud.size()){
-            noeud = listeNoeud.get(i);
-            if (noeud.getNomLieu().toLowerCase().equals(nomNoeud.toLowerCase())){
-                trouve = true;
-            }
-            i++;
-        }
-        
-        if (trouve)
-            return noeud;
-        else
-            return null;
-    }
-    
-    public Lien recherche(String depart, String arrive){
-        boolean trouve = false;
-        int i = 0;
-        Lien lien = null;
-        
-        while (!trouve && i < listeLien.size()){
-            lien = listeLien.get(i);
-            if (lien.getDepartNoeud().equals(recherche(depart)) && lien.getArriveNoeud().equals(recherche(arrive))){
-                trouve = true;
-            }
-            i++;
-        }
-        
-        if (trouve)
-            return lien;
-        else
-            return null;
-    }
-    
+    /*-----------------------------------------------------------*/
+    /* === Analyser les éléments du graphe (2>= - distances) === */
+    /*-----------------------------------------------------------*/
     
     
     public void compareVilles(String nomNoeud1, String nomNoeud2){
@@ -378,6 +360,9 @@ public class Graph {
         }
     }
     
+    
+    /* === Compte le nombre de noeuds à distance des deux noeuds entrés en paramètre ===
+       === et vérifie si le premier en a plus que le second                          === */
     public boolean compteDeuxDistances(String nomNoeud1, String nomNoeud2, ArrayList<Noeud> liste){
         int nbNoeud1 = 0;
         int nbNoeud2 = 0;
@@ -391,5 +376,52 @@ public class Graph {
                 }
             }
         return (nbNoeud1 > nbNoeud2);
+    }
+    
+    
+    
+    
+    /* ======================================================== */
+    /* ======= Autres: Méthodes utiles à l'exploitation ======= */
+    /* ======================================================== */
+    
+    
+    public Noeud recherche(String nomNoeud){
+        boolean trouve = false;
+        int i = 0;
+        Noeud noeud = null;
+        
+        while (!trouve && i < listeNoeud.size()){
+            noeud = listeNoeud.get(i);
+            if (noeud.getNomLieu().toLowerCase().equals(nomNoeud.toLowerCase())){
+                trouve = true;
+            }
+            i++;
+        }
+        
+        if (trouve)
+            return noeud;
+        else
+            return null;
+    }
+    
+    
+    public Lien recherche(String depart, String arrive){
+        boolean trouve = false;
+        int i = 0;
+        Lien lien = null;
+        
+        while (!trouve && i < listeLien.size()){
+            lien = listeLien.get(i);
+            if (lien.getDepartNoeud().equals(recherche(depart)) && lien.getArriveNoeud().equals(recherche(arrive))){
+                trouve = true;
+            }
+            i++;
+        }
+        
+        if (trouve)
+            return lien;
+        else
+            return null;
     }
 }

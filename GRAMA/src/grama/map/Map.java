@@ -7,7 +7,6 @@ package grama.map;
 import grama.Lien;
 import grama.Noeud;
 import grama.Graph;
-import grama.interfaces.MapDesigner;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -37,13 +36,13 @@ public class Map extends JPanel{
     private static final int RAYON_NOEUD    = DIAMETER_NOEUD / 2;
     boolean isClicked = false;
     
-    private static ArrayList<String> listeSelectedTypeNoeud = new ArrayList<>();
-    private static ArrayList<String> listeSelectedTypeLien = new ArrayList<>();
+    private static final ArrayList<String> listeSelectedTypeNoeud = new ArrayList<>();
+    private static final ArrayList<String> listeSelectedTypeLien = new ArrayList<>();
     
     private java.awt.event.MouseAdapter mouseListener;
     
 
-    private MapDesigner designerListener;
+    //private MapDesigner designerListener;
     
     
 //    private ArrayList<Noeud> listeNoeud = new ArrayList<>();
@@ -58,8 +57,8 @@ public class Map extends JPanel{
     Noeud noeud3 = new Noeud("V", "Vénissieux");
     Noeud noeud4 = new Noeud("L", "Aquarium de Lyon");
     
-    Lien lien1 = new Lien(5, 'D', noeud1, noeud2);
-    Lien lien2 = new Lien(5, 'D', noeud2, noeud1);
+    Lien lien1 = new Lien( 5, 'D', noeud1, noeud2);
+    Lien lien2 = new Lien( 5, 'D', noeud2, noeud1);
     Lien lien3 = new Lien(20, 'A', noeud1, noeud3);
     Lien lien4 = new Lien(20, 'A', noeud3, noeud1);
     Lien lien5 = new Lien(15, 'N', noeud3, noeud4);
@@ -71,6 +70,7 @@ public class Map extends JPanel{
     private final Random posX = new Random();
     private final Random posY = new Random();
     
+    /* ====    Constructeur    ==== */
     public Map() {
         super();
         this.dimension = new Dimension(WIDTH_MAP, HEIGHT_MAP);
@@ -79,15 +79,17 @@ public class Map extends JPanel{
         super.setMinimumSize(this.dimension);
         super.setMaximumSize(this.dimension);
         
-//        MouseHandler mh = new MouseHandler();
-//        addMouseListener(mh);
-//        addMouseMotionListener(mh);
+        MouseHandler mh = new MouseHandler();
+        addMouseListener(mh);
+        addMouseMotionListener(mh);
     }
 
+    /* ============================= */
+    /* ====  Méthodes de bases  ==== */
+    /* ============================= */
     public void addTypeNoeud(String type) {
         Map.listeSelectedTypeNoeud.add(type);
     }
-    
     
     public void removeTypeNoeud(String type){
         Map.listeSelectedTypeNoeud.remove(type);
@@ -96,7 +98,6 @@ public class Map extends JPanel{
     public void addTypeLien(String type) {
         Map.listeSelectedTypeLien.add(type);
     }
-    
     
     public void removeTypeLien(String type){
         Map.listeSelectedTypeLien.remove(type);
@@ -123,12 +124,13 @@ public class Map extends JPanel{
         }
     }
     
-    public void paintGraphe(){
-        //Graphics2D g2d = new Graphics2D g();
-    }
     
-        public final void reset(){
-        this.designerListener = null;
+    /* ============================================= */
+    /* ====    Méthodes de dessins du Graphe    ==== */
+    /* ============================================= */
+    
+    public final void reset(){
+        //this.designerListener = null;
         this.mouseListener = null;
         repaint();
     }
@@ -246,6 +248,9 @@ public class Map extends JPanel{
     
     
     
+    /* ======================================================= */
+    /* ===== Méthodes de test: remplir une liste de test ===== */
+    /* ======================================================= */
     private void remplirListe(Graph graphe){
 //        listeNoeud.add(noeud1);
 //        listeNoeud.add(noeud2);
@@ -264,6 +269,12 @@ public class Map extends JPanel{
         //listeNoeud = graphe.getListeNoeud();
         //listeLien = graphe.getListeLien();
     }
+    
+    
+    
+    /* =============================================== */
+    /* ==== Méthodes de génération de coordonnées ==== */
+    /* =============================================== */
     
     public void generateGraphNoeud(List<Noeud> noeuds){
         List<Noeud> listeNoeud = new ArrayList<>(noeuds);
@@ -324,6 +335,11 @@ public class Map extends JPanel{
     }
     
     
+    
+    /* ============================================== */
+    /* =======     Autres méthodes utiles     ======= */
+    /* ============================================== */
+    
     public GraphNoeud rechercheGraphNoeud(Noeud noeudRecherche){
         int i = 0;
         boolean trouve = false;
@@ -345,6 +361,10 @@ public class Map extends JPanel{
     
     
     
+    /* ============================================== */
+    /* =======       Adapter & Listener       ======= */
+    /* ============================================== */
+    
     private class MouseHandler extends MouseAdapter implements MouseMotionListener {
 
         @Override
@@ -365,7 +385,6 @@ public class Map extends JPanel{
             super.mouseDragged(me);
             GraphNoeud node = listeGraphNoeud.get(0);
             if (isClicked){
-                System.out.println("Less goo");
                 int NewX = me.getX();
                 int newY = me.getY();
                 node.setPosX(NewX);
@@ -378,7 +397,6 @@ public class Map extends JPanel{
         @Override
         public void mouseReleased(MouseEvent me) {
             super.mouseReleased(me);
-            System.out.println("C'est pas Less goo");
             isClicked = false;
         }  
     }

@@ -6,15 +6,9 @@ package grama.map;
 
 import grama.Graph;
 import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import type.typeLien;
-import type.typeNoeud;
 
 /**
  *
@@ -48,8 +42,6 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private void initMap(){
         map1.generateGraphNoeud(grama.getListeNoeud());
         map1.generateGraphLien(grama.getListeLien());
-        
-        //map1.repaint();
     }
     
     
@@ -946,6 +938,8 @@ public class EcranPrincipal extends javax.swing.JFrame {
         lienButtonGroup.add(natioRadioBouton);
         lienButtonGroup.add(depRadioBouton);
     }
+    
+    
     
     
     
