@@ -13,16 +13,17 @@ import java.awt.Color;
  */
 public class GraphNoeud extends Noeud{
     
-    private final int PADDING = 20;
+    private boolean isSelected;
     
-    public int posX;
-    public int posY;
+    private int posX;
+    private int posY;
     public Color couleur;
 
     public GraphNoeud( String typeLieu, String nomLieu, int posX, int posY) {
         super(typeLieu, nomLieu);
         this.posX = posX;
         this.posY = posY;
+        this.isSelected = false;
         
         switch(typeLieu){
             case "V":
@@ -62,7 +63,11 @@ public class GraphNoeud extends Noeud{
         this.posY = posY;
     }
 
-    
-    
-    
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
 }

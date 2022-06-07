@@ -15,10 +15,10 @@ public class GraphLien{
     
     private Lien lien;
     
-    private final int posXDeb;
-    private final int posYDeb;
-    private final int posXFin;
-    private final int posYFin;
+    private int posXDeb;
+    private int posYDeb;
+    private int posXFin;
+    private int posYFin;
 
     public GraphLien(Lien lien, int posXDeb, int posYDeb, int posXFin, int posYFin) {
         this.lien = lien;
@@ -47,6 +47,36 @@ public class GraphLien{
     public int getPosYFin() {
         return posYFin;
     }
+
+    public void setPosXDeb(int posXDeb) {
+        this.posXDeb = posXDeb;
+    }
+
+    public void setPosYDeb(int posYDeb) {
+        this.posYDeb = posYDeb;
+    }
+
+    public void setPosXFin(int posXFin) {
+        this.posXFin = posXFin;
+    }
+
+    public void setPosYFin(int posYFin) {
+        this.posYFin = posYFin;
+    }
+    
+    
+    
+    
+    
+    
+    public Noeud getNoeudDepart() {
+        return this.getLien().getDepartNoeud();
+    }
+    
+    public Noeud getNoeudArrivee() {
+        return this.getLien().getArriveNoeud();
+    }
+    
     
     
     public String getDonnees(){

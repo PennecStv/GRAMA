@@ -7,12 +7,14 @@ package grama.map;
 import grama.Lien;
 import grama.Noeud;
 import grama.Graph;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -51,7 +53,7 @@ public class Map extends JPanel{
     private final ArrayList<GraphNoeud> listeGraphNoeud = new ArrayList<>();
     private final ArrayList<GraphLien> listeGraphLien   = new ArrayList<>();
     
-    /***  Noeuds & Liens de Test ***/
+    /***  Noeuds et Liens de Test ***/
     Noeud noeud1 = new Noeud("V", "Villeurbanne");
     Noeud noeud2 = new Noeud("R", "MacDonald's");
     Noeud noeud3 = new Noeud("V", "Vénissieux");
@@ -200,10 +202,11 @@ public class Map extends JPanel{
     
     private void paintNoeud(Graphics2D g2d, GraphNoeud noeud){
         g2d.setColor(noeud.getCouleur());
-        g2d.fillOval(noeud.posX, noeud.posY, 30, 30);
+        g2d.fillOval(noeud.getPosX(), noeud.getPosY(), 30, 30);
 
-        g2d.setColor(Color.DARK_GRAY);
-        g2d.drawOval(noeud.posX, noeud.posY, 30, 30);
+        g2d.setColor(noeud.isSelected() ?Color.BLUE :Color.DARK_GRAY);
+        g2d.setStroke(new BasicStroke(2.0f));
+        g2d.drawOval(noeud.getPosX(), noeud.getPosY(), 30, 30);
 
         g2d.setColor(Color.BLACK); 
 
@@ -211,11 +214,11 @@ public class Map extends JPanel{
         int w = metrics.stringWidth(noeud.getNomLieu());
         int h = metrics.getHeight();
         g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
-        g2d.drawString(noeud.getNomLieu(), noeud.posX + RAYON_NOEUD - w/2, noeud.posY - h/2);
+        g2d.drawString(noeud.getNomLieu(), noeud.getPosX() + RAYON_NOEUD - w/2, noeud.getPosY() - h/2);
 
         w = metrics.stringWidth(noeud.getTypeLieu());
-        g2d.drawString(noeud.getTypeLieu(), noeud.posX + RAYON_NOEUD - w/2, 
-                                               noeud.posY + RAYON_NOEUD + h/4);
+        g2d.drawString(noeud.getTypeLieu(), noeud.getPosX() + RAYON_NOEUD - w/2, 
+                                               noeud.getPosY() + RAYON_NOEUD + h/4);
     }
     
     
@@ -296,15 +299,27 @@ public class Map extends JPanel{
     
     public void generateGraphLien(List<Lien> liens){
         List<Lien> listeLien = new ArrayList<>(liens);
-       
+        boolean dejaDessine;
+        
         GraphNoeud noeudDepart;
         GraphNoeud noeudArrive;
         for (Lien lien : listeLien){
+            dejaDessine = false;
+            
             noeudDepart = rechercheGraphNoeud(lien.getDepartNoeud());
             noeudArrive = rechercheGraphNoeud(lien.getArriveNoeud());
             
-            listeGraphLien.add(new GraphLien(lien, noeudDepart.getPosX() + RAYON_NOEUD, noeudDepart.getPosY() + RAYON_NOEUD, 
+            for (GraphLien graphlien : listeGraphLien){
+                if ((graphlien.getNoeudArrivee().getNomLieu()).equals(noeudDepart.getNomLieu()) &&
+                     graphlien.getNoeudDepart().getNomLieu().equals(noeudArrive.getNomLieu())){
+                    dejaDessine = true;
+                }
+            }
+            
+            if (!dejaDessine){
+                    listeGraphLien.add(new GraphLien(lien, noeudDepart.getPosX() + RAYON_NOEUD, noeudDepart.getPosY() + RAYON_NOEUD, 
                                                    noeudArrive.getPosX() + RAYON_NOEUD, noeudArrive.getPosY() + RAYON_NOEUD));
+            }
         }
     }
     
@@ -327,11 +342,11 @@ public class Map extends JPanel{
     
     
     public boolean compareCoord(GraphNoeud noeud, int otherPosX, int otherPosY){
-        return (   (noeud.posX + ESPACEMENT <= otherPosX 
-                ||  noeud.posX - ESPACEMENT >= otherPosX)
+        return (   (noeud.getPosX() + ESPACEMENT <= otherPosX 
+                ||  noeud.getPosX() - ESPACEMENT >= otherPosX)
                 || 
-                   (noeud.posY + ESPACEMENT <= otherPosY
-                ||  noeud.posY - ESPACEMENT >= otherPosY ));
+                   (noeud.getPosY() + ESPACEMENT <= otherPosY
+                ||  noeud.getPosY() - ESPACEMENT >= otherPosY ));
     }
     
     
@@ -357,7 +372,11 @@ public class Map extends JPanel{
         return noeud;
     }
     
-    
+    private void deselectAllNodes(){
+        for (GraphNoeud noeud : listeGraphNoeud){
+            noeud.setSelected(false);
+        }
+    }
     
     
     
@@ -369,23 +388,56 @@ public class Map extends JPanel{
 
         @Override
         public void mousePressed(MouseEvent me){
-//            for (GraphNoeud noeud: listeGraphNoeud){
-//                isClicked = (me.getX() > noeud.getPosX() && me.getX() < noeud.getPosX() + DIAMETER_NOEUD &&
-//                    me.getY() > noeud.getPosY() && me.getX() < noeud.getPosY() + DIAMETER_NOEUD)
+            //GraphNoeud node = listeGraphNoeud.get(0);
+            GraphNoeud node;
+            int i = 0;
+            
+            while (!isClicked && i < listeGraphNoeud.size()){
+                node = listeGraphNoeud.get(i);
+                
+                isClicked = (me.getX() > node.getPosX() && me.getX() < node.getPosX() + DIAMETER_NOEUD &&
+                             me.getY() > node.getPosY() && me.getY() < node.getPosY() + DIAMETER_NOEUD);
+                
+                if (isClicked){
+                    deselectAllNodes();
+                    node.setSelected(true);
+                }
+                
+                i++;
+            }
             
         }
         
         @Override
         public void mouseDragged(MouseEvent me) {
             super.mouseDragged(me);
-            GraphNoeud node = listeGraphNoeud.get(0);
-            if (isClicked){
+            
+            GraphNoeud node = null;
+            
+            for (GraphNoeud nodes : listeGraphNoeud){
+                if (nodes.isSelected())
+                    node = nodes;
+            }
+            
+            if (isClicked && node != null){
                 int NewX = me.getX();
                 int newY = me.getY();
-                node.setPosX(NewX);
-                node.setPosY(newY);
+                node.setPosX(NewX - RAYON_NOEUD);
+                node.setPosY(newY - RAYON_NOEUD);
                 
-                repaint();
+                for (GraphLien link : listeGraphLien){
+                    if (link.getNoeudDepart().getNomLieu().equals(node.getNomLieu())){
+                        link.setPosXDeb(NewX);
+                        link.setPosYDeb(newY);
+                    }
+                    
+                    if (link.getNoeudArrivee().getNomLieu().equals(node.getNomLieu())){
+                        link.setPosXFin(NewX);
+                        link.setPosYFin(newY);
+                    }
+                }
+                
+                getParent().repaint();
             }
         }
 
