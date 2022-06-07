@@ -296,7 +296,7 @@ public class Map extends JPanel{
     
     public void generateGraphLien(List<Lien> liens){
         List<Lien> listeLien = new ArrayList<>(liens);
-        
+       
         GraphNoeud noeudDepart;
         GraphNoeud noeudArrive;
         for (Lien lien : listeLien){
@@ -369,15 +369,10 @@ public class Map extends JPanel{
 
         @Override
         public void mousePressed(MouseEvent me){
-            GraphNoeud node = listeGraphNoeud.get(0);
 //            for (GraphNoeud noeud: listeGraphNoeud){
-//                if (me.getX() > noeud.getPosX() && me.getX() < noeud.getPosX() + DIAMETER_NOEUD &&
-//                    me.getY() > noeud.getPosY() && me.getX() < noeud.getPosY() + DIAMETER_NOEUD){
-            isClicked = (me.getX() > node.getPosX() && me.getX() < node.getPosX() + DIAMETER_NOEUD &&
-                me.getY() > node.getPosY() && me.getX() < node.getPosY() + DIAMETER_NOEUD);
+//                isClicked = (me.getX() > noeud.getPosX() && me.getX() < noeud.getPosX() + DIAMETER_NOEUD &&
+//                    me.getY() > noeud.getPosY() && me.getX() < noeud.getPosY() + DIAMETER_NOEUD)
             
-            if (isClicked)
-                System.out.println("C'est clické !");
         }
         
         @Override
