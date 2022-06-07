@@ -45,48 +45,7 @@ public class GraphTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getListeNoeud method, of class Graph.
-     */
-    @Test
-    public void testGetListeNoeud() {
-        System.out.println("getListeNoeud");
-        Graph instance = new Graph();
-        ArrayList<Noeud> expResult = null;
-        ArrayList<Noeud> result = instance.getListeNoeud();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of getListeLien method, of class Graph.
-     */
-    @Test
-    public void testGetListeLien() {
-        System.out.println("getListeLien");
-        Graph instance = new Graph();
-        ArrayList<Lien> expResult = null;
-        ArrayList<Lien> result = instance.getListeLien();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getNoeud method, of class Graph.
-     */
-    @Test
-    public void testGetNoeud() {
-        System.out.println("getNoeud");
-        String nom = "";
-        Graph instance = new Graph();
-        Noeud expResult = null;
-        Noeud result = instance.getNoeud(nom);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of ouvrirGraphe method, of class Graph.
@@ -158,29 +117,6 @@ public class GraphTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of afficherListeNoeud method, of class Graph.
-     */
-    @Test
-    public void testAfficherListeNoeud() {
-        System.out.println("afficherListeNoeud");
-        Graph instance = new Graph();
-        instance.afficherListeNoeud();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of afficherListeLien method, of class Graph.
-     */
-    @Test
-    public void testAfficherListeLien() {
-        System.out.println("afficherListeLien");
-        Graph instance = new Graph();
-        instance.afficherListeLien();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of listerCategorie method, of class Graph.

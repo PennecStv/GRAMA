@@ -37,7 +37,7 @@ public class Noeud {
         this.typeLieu = typeLieu;
     }
     
-    public void setNomLien(String nomLieu) {
+    public void setNomLieu(String nomLieu) {
         this.nomLieu = nomLieu;
     }
     

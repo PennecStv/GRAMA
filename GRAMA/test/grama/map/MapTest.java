@@ -4,10 +4,7 @@
  */
 package grama.map;
 
-import grama.Lien;
 import grama.Noeud;
-import java.awt.Graphics;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -72,56 +69,6 @@ public class MapTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of paintComponent method, of class Map.
-     */
-    @Test
-    public void testPaintComponent() {
-        System.out.println("paintComponent");
-        Graphics g = null;
-        Map instance = new Map();
-        instance.paintComponent(g);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of reset method, of class Map.
-     */
-    @Test
-    public void testReset() {
-        System.out.println("reset");
-        Map instance = new Map();
-        instance.reset();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of generateGraphNoeud method, of class Map.
-     */
-    @Test
-    public void testGenerateGraphNoeud() {
-        System.out.println("generateGraphNoeud");
-        List<Noeud> noeuds = null;
-        Map instance = new Map();
-        instance.generateGraphNoeud(noeuds);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of generateGraphLien method, of class Map.
-     */
-    @Test
-    public void testGenerateGraphLien() {
-        System.out.println("generateGraphLien");
-        List<Lien> liens = null;
-        Map instance = new Map();
-        instance.generateGraphLien(liens);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of compareCoord method, of class Map.
