@@ -72,8 +72,8 @@ public class Graph {
     /* ================================================= */
     
     /* === Lecture d'un fichier CSV === */
-    public String ouvrirGraphe() throws FileNotFoundException, IOException{
-        File graphFile = new File("Graphe.csv");
+    public String ouvrirGraphe(String fichier) throws FileNotFoundException, IOException{
+        File graphFile = new File(fichier);
         
         try (InputStream lecture = new FileInputStream(graphFile)) {
             int unsignedByte;

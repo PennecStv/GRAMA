@@ -34,7 +34,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
     
     
     private void initGraph() throws IOException{
-        String fichierGraphe = grama.ouvrirGraphe();
+        String fichierGraphe = grama.ouvrirGraphe("Graphe.csv");
         grama.creationListe(fichierGraphe);
         grama.creationListeTypee();
     }

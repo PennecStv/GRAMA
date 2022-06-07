@@ -20,7 +20,7 @@ public class Main {
         Graph grama = new Graph();
         
         /* === Ouverture de fichier === */
-        String fichierGraphe = grama.ouvrirGraphe();
+        String fichierGraphe = grama.ouvrirGraphe("Graphe.csv");
         grama.creationListe(fichierGraphe);
         grama.creationListeTypee();
         
