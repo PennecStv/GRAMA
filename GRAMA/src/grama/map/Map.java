@@ -14,7 +14,6 @@ import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -36,7 +35,8 @@ public class Map extends JPanel{
     private final Dimension dimension;
     private static final int DIAMETER_NOEUD = 30;
     private static final int RAYON_NOEUD    = DIAMETER_NOEUD / 2;
-    boolean isClicked = false;
+    boolean isNodeClicked = false;
+    boolean isLinkClicked = false;
     
     private static final ArrayList<String> listeSelectedTypeNoeud = new ArrayList<>();
     private static final ArrayList<String> listeSelectedTypeLien = new ArrayList<>();
@@ -111,10 +111,18 @@ public class Map extends JPanel{
         Map.listeSelectedTypeLien.remove(type);
     }
     
-    public GraphNoeud getSelected(){
+    public GraphNoeud getSelectedNode(){
         for (GraphNoeud noeud : listeGraphNoeud){
             if (noeud.isSelected())
                 return noeud;
+        }
+        return null;
+    }
+    
+    public GraphLien getSelectedLink(){
+        for (GraphLien lien : listeGraphLien){
+            if (lien.isSelected())
+                return lien;
         }
         return null;
     }
@@ -173,13 +181,6 @@ public class Map extends JPanel{
                 paintNoeud(g2d, noeudArr);
                 paintLien(g2d, lien);
             }
-//            } else if (!listeSelectedTypeNoeud.isEmpty() && listeSelectedTypeLien.isEmpty()){
-//                if (listeSelectedTypeNoeud.contains(noeudDep.getTypeLieu()) && listeSelectedTypeNoeud.contains(noeudArr.getTypeLieu())){
-//                    paintNoeud(g2d, noeudDep);
-//                    paintNoeud(g2d, noeudArr);
-//                    paintLien(g2d, lien);
-//                }
-//            }
         }
     }
     
@@ -260,7 +261,14 @@ public class Map extends JPanel{
             
         g2d.fillRoundRect(labelX - w/2, labelY - h/2, w + 5, h + 5, 15, 15);
         
+        if (lien.isSelected()){
+            g2d.setColor(Color.BLUE);
+            g2d.setStroke(new BasicStroke(2.0f));
+            g2d.drawRoundRect(labelX - w/2, labelY - h/2, w + 5, h + 5, 15, 15);
+        }
+        
         g2d.setColor(Color.DARK_GRAY);
+        g2d.setStroke(new BasicStroke(1.0f));
         g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
         g2d.drawString(label, labelX - w/2 + 2, labelY + h/2 - 2);
     }
@@ -313,7 +321,7 @@ public class Map extends JPanel{
                 y = posY.nextInt(HEIGHT_MAP - PADDING) + PADDING;
             }
             
-            listeGraphNoeud.add(new GraphNoeud(noeud.getTypeLieu(), noeud.getNomLieu(), x, y));
+            listeGraphNoeud.add(new GraphNoeud(noeud, x, y));
         }
     }
     
@@ -332,7 +340,7 @@ public class Map extends JPanel{
             
             for (GraphLien graphlien : listeGraphLien){
                 if ((graphlien.getNoeudArrivee().getNomLieu()).equals(noeudDepart.getNomLieu()) &&
-                     graphlien.getNoeudDepart().getNomLieu().equals(noeudArrive.getNomLieu())){
+                    (graphlien.getNoeudDepart().getNomLieu()).equals(noeudArrive.getNomLieu())){
                     dejaDessine = true;
                 }
             }
@@ -342,19 +350,6 @@ public class Map extends JPanel{
                                                    noeudArrive.getPosX() + RAYON_NOEUD, noeudArrive.getPosY() + RAYON_NOEUD));
             }
         }
-        
-        fillListeLien();
-    }
-    
-    
-    private void fillListeLien(){
-        for (GraphNoeud noeud : listeGraphNoeud){
-            for (GraphLien lien : listeGraphLien){
-                if ((lien.getNoeudDepart().getNomLieu()).equals(noeud.getNomLieu()))
-                    noeud.addLien(lien);
-            }
-        }
-        
     }
     
     
@@ -412,6 +407,12 @@ public class Map extends JPanel{
         }
     }
     
+    private void deselectAllLinks(){
+        for (GraphLien lien : listeGraphLien){
+            lien.setSelected(false);
+        }
+    }
+    
     
     
     
@@ -423,17 +424,16 @@ public class Map extends JPanel{
 
         @Override
         public void mousePressed(MouseEvent me){
-            //GraphNoeud node = listeGraphNoeud.get(0);
             GraphNoeud node;
             int i = 0;
             
-            while (!isClicked && i < listeGraphNoeud.size()){
+            while (!isNodeClicked && i < listeGraphNoeud.size()){
                 node = listeGraphNoeud.get(i);
                 
-                isClicked = (me.getX() > node.getPosX() && me.getX() < node.getPosX() + DIAMETER_NOEUD &&
+                isNodeClicked = (me.getX() > node.getPosX() && me.getX() < node.getPosX() + DIAMETER_NOEUD &&
                              me.getY() > node.getPosY() && me.getY() < node.getPosY() + DIAMETER_NOEUD);
                 
-                if (isClicked){
+                if (isNodeClicked){
                     deselectAllNodes();
                     node.setSelected(true);
                 }
@@ -441,8 +441,52 @@ public class Map extends JPanel{
                 i++;
             }
             
-            getParent().repaint();
+            GraphLien link;
+//            System.out.println(link.getDonnees() + " | " + link.getNoeudDepart().getNomLieu() + " et " + link.getNoeudArrivee().getNomLieu());
+//            java.awt.FontMetrics metrics = getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
+//            int w = metrics.stringWidth(link.getDonnees());
+//            int h = metrics.getHeight();
+
+            //g2d.fillRoundRect(labelX - w/2, labelY - h/2, w + 5, h + 5, 15, 15);
+
+//            int labelX = (link.getPosXDeb() + link.getPosXFin())/2 - w/2;
+//            int labelY = (link.getPosYDeb() + link.getPosYFin())/2 - h/2;
+//            
+//            System.out.println("Lien coord Debut" + labelX + " | " + labelY);
+//            System.out.println("Lien coord Fin" + (labelX + w + 5) + " | " + (labelY + h + 5));
+//            System.out.println("Souris coord" + me.getX() + " | " + me.getY());
+//
+//            isLinkClicked = (me.getX() > labelX && me.getY() > labelY &&
+//                             me.getX() < labelX + w + 5 && me.getY() < labelY + h + 5);
+//
+//            if (isLinkClicked){
+//                System.out.println("C'est clické !");
+//                deselectAllLinks();
+//                link.setSelected(true);
+
+            while (!isLinkClicked && i < listeGraphLien.size()){
+                link = listeGraphLien.get(i);
+                
+                java.awt.FontMetrics metrics = getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
+                int w = metrics.stringWidth(link.getDonnees());
+                int h = metrics.getHeight();
+                
+                int labelX = (link.getPosXDeb() + link.getPosXFin())/2 - w/2;
+                int labelY = (link.getPosYDeb() + link.getPosYFin())/2 - h/2;
+                
+                isLinkClicked = (me.getX() >= labelX && me.getY() >= labelY &&
+                             me.getX() <= labelX + w + 5 && me.getY() <= labelY + h + 5);
+                
+                if (isLinkClicked){
+                    System.out.println("C'est clické !");
+                    deselectAllLinks();
+                    link.setSelected(true);
+                }
+                
+                i++;
+            }
             
+            getParent().repaint(); 
         }
         
         @Override
@@ -456,7 +500,7 @@ public class Map extends JPanel{
                     node = nodes;
             }
             
-            if (isClicked && node != null){
+            if (isNodeClicked && node != null){
                 int NewX = me.getX();
                 int newY = me.getY();
                 node.setPosX(NewX - RAYON_NOEUD);
@@ -481,7 +525,8 @@ public class Map extends JPanel{
         @Override
         public void mouseReleased(MouseEvent me) {
             super.mouseReleased(me);
-            isClicked = false;
+            isNodeClicked = false;
+            isLinkClicked = false;
         }  
     }
 }

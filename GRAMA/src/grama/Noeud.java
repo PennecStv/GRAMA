@@ -130,7 +130,7 @@ public class Noeud {
 
     @Override
     public String toString() {
-        return "Noeud {typeLieu: " + typeLieu + " - nomLieu: " + nomLieu + "}";
+        return typeLieu + ": " + nomLieu;
     }
     
     

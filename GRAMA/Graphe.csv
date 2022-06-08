@@ -1,8 +1,8 @@
 V,Lyon:D,9::V,Villeurbanne;N,20::R,Les Echets;N,18::L,We are sports;;
 L,Musée des Confluences:D,6::R,Chamas Tacos;D,2::L,Aquarium de Lyon;D,5::V,Oullins;N,29::R,McDo-Décines;;
-R,McDo-Décines:N,15::L,Parc de la tête d'Or;A,80::V,Mâcon;N,29::L,Musée des Confluences;N,22::V,Ecully;N,21::L,France Aventures Lyon Fourvière;N,22::V,Champagne-au-Mont-d'Or;;
+R,McDo-Décines:N,15::L,Parc de la Tête d'Or;A,80::V,Mâcon;N,29::L,Musée des Confluences;N,22::V,Ecully;N,21::L,France Aventures Lyon Fourvière;N,22::V,Champagne-au-Mont-d'Or;;
 R,Chamas Tacos:A,8::L,Aquarium de Lyon;D,4::L,Centre commercial Westfield Part-Dieu;N,16::V,Dardilly;D,6::L,Musée des Confluences;D,3::L,UGC Ciné Cité Part-Dieu;N,11::V,Chassieu;A,77::V,Mâcon;N,19::V,Pierre-Bénite;;
-L,Parc de la Tête d'Or:D,3::R,Le bistrot d'Alexis;N,11::V,Ecully;D,7::L,France Aventures Lyon Fourvière;N,15::R,McDo-Décines;A,17::R,Les Echets;N,14::V,Dardilly;N,14::V,Chassieu;;
+L,Parc de la Tête d'Or:D,3::R,Le Bistrot D'Alexis;N,11::V,Ecully;D,7::L,France Aventures Lyon Fourvière;N,15::R,McDo-Décines;A,17::R,Les Echets;N,14::V,Dardilly;N,14::V,Chassieu;;
 V,Villeurbanne:N,13::V,Vénissieux;D,2::R,La Tamtamerie;D,9::L,Royal Kids Chassieu;D,9::V,Lyon;N,13::V,Meyzieu;D,5::R,Engimono;N,14::R,McDo-Tassin-la-Demi-Lune;N,19::V,Sainte-Foy-lès-Lyon;;
 R,Les Echets:N,31::V,Feyzin;A,17::L,Parc de la Tête d'Or;A,13::V,Vaulx-en-Velin;N,20::V,Lyon;N,25::V,Saint-Fons;;
 L,We are sports:A,17::R,Le caveau des gourmands;N,10::V,Pierre-Bénite;N,8::R,La Tamtamerie;N,18::V,Lyon;A,20::V,Ecully;A,86::V,Mâcon;D,16::V,Caluire-et-Cuire;;

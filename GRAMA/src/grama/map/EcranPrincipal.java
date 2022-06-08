@@ -43,8 +43,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     }
     
     private void initMap(){
-        map1.generateGraphNoeud(grama.getListeNoeud());
-        map1.generateGraphLien(grama.getListeLien());
+        mapGraphe.generateGraphNoeud(grama.getListeNoeud());
+        mapGraphe.generateGraphLien(grama.getListeLien());
     }
     
     
@@ -65,9 +65,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         villesRadioBouton = new javax.swing.JRadioButton();
         resRadioBouton = new javax.swing.JRadioButton();
         loisirRadioBouton = new javax.swing.JRadioButton();
-        autoroutesRadioBouton = new javax.swing.JRadioButton();
-        natioRadioBouton = new javax.swing.JRadioButton();
         depRadioBouton = new javax.swing.JRadioButton();
+        natioRadioBouton = new javax.swing.JRadioButton();
+        autoroutesRadioBouton = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         noeudsTextArea = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -107,8 +107,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         typeNoeudComboBox = new javax.swing.JComboBox<>();
         noeudSelectedLabel = new javax.swing.JLabel();
         lienSelectedLabel = new javax.swing.JLabel();
-        afficherVoisinsBouton = new javax.swing.JButton();
-        afficherExtremBouton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         voisinsTextArea = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -121,7 +119,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         ecran4Panel = new javax.swing.JPanel();
         retour4Bouton = new javax.swing.JButton();
         mapPanel = new javax.swing.JPanel();
-        map1 = new grama.map.Map();
+        mapGraphe = new grama.map.Map();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         ouvrirMenuItem = new javax.swing.JMenuItem();
@@ -171,11 +169,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             }
         });
 
-        autoroutesRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        autoroutesRadioBouton.setText("Routes départementales");
-        autoroutesRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+        depRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        depRadioBouton.setText("Routes départementales");
+        depRadioBouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autoroutesRadioBoutonActionPerformed(evt);
+                depRadioBoutonActionPerformed(evt);
             }
         });
 
@@ -187,11 +185,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             }
         });
 
-        depRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        depRadioBouton.setText("Autoroutes");
-        depRadioBouton.addActionListener(new java.awt.event.ActionListener() {
+        autoroutesRadioBouton.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        autoroutesRadioBouton.setText("Autoroutes");
+        autoroutesRadioBouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depRadioBoutonActionPerformed(evt);
+                autoroutesRadioBoutonActionPerformed(evt);
             }
         });
 
@@ -234,11 +232,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                                 .addGap(78, 78, 78)
                                 .addComponent(loisirRadioBouton)
                                 .addGap(165, 165, 165)
-                                .addComponent(depRadioBouton)
+                                .addComponent(autoroutesRadioBouton)
                                 .addGap(18, 18, 18)
                                 .addComponent(natioRadioBouton)
                                 .addGap(18, 18, 18)
-                                .addComponent(autoroutesRadioBouton))
+                                .addComponent(depRadioBouton))
                             .addGroup(listePanelLayout.createSequentialGroup()
                                 .addGap(182, 182, 182)
                                 .addComponent(titreListeNoeud, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,9 +265,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                     .addComponent(villesRadioBouton)
                     .addComponent(resRadioBouton)
                     .addComponent(loisirRadioBouton)
-                    .addComponent(autoroutesRadioBouton)
+                    .addComponent(depRadioBouton)
                     .addComponent(natioRadioBouton)
-                    .addComponent(depRadioBouton))
+                    .addComponent(autoroutesRadioBouton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,29 +560,19 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         titre1Distance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titre1Distance.setText("1 - distance");
 
+        titreNoeudSelectedLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         titreNoeudSelectedLabel.setText("Noeud séléctionné:");
 
+        titreLienSelectedLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         titreLienSelectedLabel.setText("Lien séléctionné:");
 
         typeNoeudComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Villes", "Restaurants", "Centres de loisir" }));
 
-        noeudSelectedLabel.setText("jLabel4");
+        noeudSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        noeudSelectedLabel.setText("Aucun noeud sélectionné");
 
-        lienSelectedLabel.setText("jLabel5");
-
-        afficherVoisinsBouton.setText("Afficher voisins");
-        afficherVoisinsBouton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                afficherVoisinsBoutonActionPerformed(evt);
-            }
-        });
-
-        afficherExtremBouton.setText("Afficher extrémités");
-        afficherExtremBouton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                afficherExtremBoutonActionPerformed(evt);
-            }
-        });
+        lienSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        lienSelectedLabel.setText("Aucun lien sélectionné:");
 
         voisinsTextArea.setEditable(false);
         voisinsTextArea.setColumns(20);
@@ -593,10 +581,12 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         extremiteTextArea.setEditable(false);
         extremiteTextArea.setColumns(20);
+        extremiteTextArea.setLineWrap(true);
         extremiteTextArea.setRows(5);
         jScrollPane4.setViewportView(extremiteTextArea);
 
-        titreTypeNoeudLabel.setText("Type de noeud");
+        titreTypeNoeudLabel.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        titreTypeNoeudLabel.setText("Type de noeud voisins:");
 
         javax.swing.GroupLayout ecran1PanelLayout = new javax.swing.GroupLayout(ecran1Panel);
         ecran1Panel.setLayout(ecran1PanelLayout);
@@ -609,15 +599,13 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                     .addComponent(titre1Distance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titreNoeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(typeNoeudComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(afficherVoisinsBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(afficherExtremBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ecran1PanelLayout.createSequentialGroup()
                         .addGroup(ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(titreLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(noeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(noeudSelectedLabel)
                             .addComponent(titreTypeNoeudLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 110, Short.MAX_VALUE))
+                        .addGap(0, 43, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
@@ -636,18 +624,14 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                 .addGap(10, 10, 10)
                 .addComponent(typeNoeudComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(afficherVoisinsBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(titreLienSelectedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lienSelectedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(afficherExtremBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
                 .addComponent(retour1Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -741,14 +725,20 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         menuPanel.add(ecran4Panel, "card4");
 
-        javax.swing.GroupLayout map1Layout = new javax.swing.GroupLayout(map1);
-        map1.setLayout(map1Layout);
-        map1Layout.setHorizontalGroup(
-            map1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        mapGraphe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mapGrapheMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mapGrapheLayout = new javax.swing.GroupLayout(mapGraphe);
+        mapGraphe.setLayout(mapGrapheLayout);
+        mapGrapheLayout.setHorizontalGroup(
+            mapGrapheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1039, Short.MAX_VALUE)
         );
-        map1Layout.setVerticalGroup(
-            map1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        mapGrapheLayout.setVerticalGroup(
+            mapGrapheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -758,13 +748,13 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mapPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE))
+                .addComponent(mapGraphe, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE))
         );
         mapPanelLayout.setVerticalGroup(
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mapPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(map1, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE))
+                .addComponent(mapGraphe, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE))
         );
 
         fichierMenu.setText("Fichier");
@@ -870,30 +860,30 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
     private void loisirCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loisirCheckBoxActionPerformed
         if (loisirCheckBox.isSelected()){
-            map1.addTypeNoeud("L");
+            mapGraphe.addTypeNoeud("L");
             mapPanel.repaint();
         }else{
-            map1.removeTypeNoeud("L");
+            mapGraphe.removeTypeNoeud("L");
             mapPanel.repaint();
         }
     }//GEN-LAST:event_loisirCheckBoxActionPerformed
 
     private void villesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_villesCheckBoxActionPerformed
         if (villesCheckBox.isSelected()){
-            map1.addTypeNoeud("V");
+            mapGraphe.addTypeNoeud("V");
             mapPanel.repaint();
         }else{
-            map1.removeTypeNoeud("V");
+            mapGraphe.removeTypeNoeud("V");
             mapPanel.repaint();
         }
     }//GEN-LAST:event_villesCheckBoxActionPerformed
 
     private void restoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoCheckBoxActionPerformed
         if (restoCheckBox.isSelected()){
-            map1.addTypeNoeud("R");
+            mapGraphe.addTypeNoeud("R");
             mapPanel.repaint();
         }else{
-            map1.removeTypeNoeud("R");
+            mapGraphe.removeTypeNoeud("R");
             mapPanel.repaint();
         }
     }//GEN-LAST:event_restoCheckBoxActionPerformed
@@ -909,40 +899,40 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
     private void autoroutesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesCheckBoxActionPerformed
         if (autoroutesCheckBox.isSelected()){
-            map1.addTypeLien("A");
+            mapGraphe.addTypeLien("A");
             mapPanel.repaint();
         }else{
-            map1.removeTypeLien("A");
+            mapGraphe.removeTypeLien("A");
             mapPanel.repaint();
         }
     }//GEN-LAST:event_autoroutesCheckBoxActionPerformed
 
     private void natioCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natioCheckBoxActionPerformed
         if (natioCheckBox.isSelected()){
-            map1.addTypeLien("N");
+            mapGraphe.addTypeLien("N");
             mapPanel.repaint();
         }else{
-            map1.removeTypeLien("N");
+            mapGraphe.removeTypeLien("N");
             mapPanel.repaint();
         }
     }//GEN-LAST:event_natioCheckBoxActionPerformed
 
     private void depCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depCheckBoxActionPerformed
         if (depCheckBox.isSelected()){
-            map1.addTypeLien("D");
+            mapGraphe.addTypeLien("D");
             mapPanel.repaint();
         }else{
-            map1.removeTypeLien("D");
+            mapGraphe.removeTypeLien("D");
             mapPanel.repaint();
         }
     }//GEN-LAST:event_depCheckBoxActionPerformed
 
-    private void depRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depRadioBoutonActionPerformed
-        if (depRadioBouton.isSelected()){
+    private void autoroutesRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesRadioBoutonActionPerformed
+        if (autoroutesRadioBouton.isSelected()){
             liensTextArea.setText("");
-            liensTextArea.setText(grama.listerCategorie("D"));
+            liensTextArea.setText(grama.listerCategorie("A"));
         }
-    }//GEN-LAST:event_depRadioBoutonActionPerformed
+    }//GEN-LAST:event_autoroutesRadioBoutonActionPerformed
 
     private void natioRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natioRadioBoutonActionPerformed
         if (natioRadioBouton.isSelected()){
@@ -951,12 +941,12 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         }
     }//GEN-LAST:event_natioRadioBoutonActionPerformed
 
-    private void autoroutesRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesRadioBoutonActionPerformed
-        if (autoroutesRadioBouton.isSelected()){
+    private void depRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depRadioBoutonActionPerformed
+        if (depRadioBouton.isSelected()){
             liensTextArea.setText("");
-            liensTextArea.setText(grama.listerCategorie("A"));
+            liensTextArea.setText(grama.listerCategorie("D"));
         }
-    }//GEN-LAST:event_autoroutesRadioBoutonActionPerformed
+    }//GEN-LAST:event_depRadioBoutonActionPerformed
 
     private void loisirRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loisirRadioBoutonActionPerformed
         if (loisirRadioBouton.isSelected()){
@@ -979,38 +969,26 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         }
     }//GEN-LAST:event_villesRadioBoutonActionPerformed
 
-    private void afficherExtremBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherExtremBoutonActionPerformed
-        
-    }//GEN-LAST:event_afficherExtremBoutonActionPerformed
-
-    private void afficherVoisinsBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherVoisinsBoutonActionPerformed
-        GraphNoeud noeudSelected = map1.getSelected();
-        
-        if (noeudSelected != null){
-            switch((String) typeNoeudComboBox.getSelectedItem()){
-                case "Villes":
-                    voisinsTextArea.setText(noeudSelected.afficherVoisins("V"));
-                    break;
-
-                case "Restaurants":
-                    voisinsTextArea.setText(noeudSelected.afficherVoisins("R"));
-                    break;
-
-                case "Centres de loisir":
-                    voisinsTextArea.setText(noeudSelected.afficherVoisins("L"));
-                    break;
-
-                default:
-                    voisinsTextArea.setText(noeudSelected.afficherVoisins(""));
-                    break;
-            }
-        }
-    }//GEN-LAST:event_afficherVoisinsBoutonActionPerformed
-
     private void retour1BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour1BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "cardPrincipal");
     }//GEN-LAST:event_retour1BoutonActionPerformed
+
+    private void mapGrapheMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapGrapheMouseClicked
+        GraphNoeud noeud = mapGraphe.getSelectedNode();
+        GraphLien lien = mapGraphe.getSelectedLink();
+        
+        if (noeud != null){
+            noeudSelectedLabel.setText(noeud.toString());
+            voisinsTextArea.setText(afficherListeVoisins(noeud));
+        }
+        
+        if (lien != null){
+            lienSelectedLabel.setText(lien.getDonnees());
+            extremiteTextArea.setText("Depart - " + lien.getNoeudDepart() +
+                                      "\nArrivee - " + lien.getNoeudArrivee());
+        }
+    }//GEN-LAST:event_mapGrapheMouseClicked
  
     
     private void generateListeFrame(){
@@ -1022,11 +1000,37 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         noeudButtonGroup.add(resRadioBouton);
         noeudButtonGroup.add(loisirRadioBouton);
         
-        lienButtonGroup.add(autoroutesRadioBouton);
-        lienButtonGroup.add(natioRadioBouton);
         lienButtonGroup.add(depRadioBouton);
+        lienButtonGroup.add(natioRadioBouton);
+        lienButtonGroup.add(autoroutesRadioBouton);
     }
     
+    
+    private String afficherListeVoisins(GraphNoeud noeud){
+        String listeVoisin = "";
+        
+        switch( (String) typeNoeudComboBox.getSelectedItem()){
+            case "Tous":
+                listeVoisin = noeud.afficherVoisins("");
+                break;
+                
+            case "Villes":
+                listeVoisin = noeud.afficherVoisins("V");
+                break;
+                
+            case "Restaurants":
+                listeVoisin = noeud.afficherVoisins("R");
+                break;
+                
+            case "Centres de loisir":
+                listeVoisin = noeud.afficherVoisins("L");
+                break;
+                
+            default:
+                break;
+        }
+        return listeVoisin;
+    }
     
     
     
@@ -1074,8 +1078,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AProposMenuItem;
     private javax.swing.JFrame ListeFrame;
-    private javax.swing.JButton afficherExtremBouton;
-    private javax.swing.JButton afficherVoisinsBouton;
     private javax.swing.JMenu aideMenu;
     private javax.swing.JMenuItem aideMenuItem;
     private javax.swing.JCheckBox autoroutesCheckBox;
@@ -1110,7 +1112,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JButton listerBouton;
     private javax.swing.JCheckBox loisirCheckBox;
     private javax.swing.JRadioButton loisirRadioBouton;
-    private grama.map.Map map1;
+    private grama.map.Map mapGraphe;
     private javax.swing.JPanel mapPanel;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JCheckBox natioCheckBox;

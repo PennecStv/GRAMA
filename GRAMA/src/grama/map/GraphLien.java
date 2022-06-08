@@ -19,6 +19,8 @@ public class GraphLien{
     private int posYDeb;
     private int posXFin;
     private int posYFin;
+    
+    private boolean isSelected;
 
     public GraphLien(Lien lien, int posXDeb, int posYDeb, int posXFin, int posYFin) {
         this.lien = lien;
@@ -62,6 +64,14 @@ public class GraphLien{
 
     public void setPosYFin(int posYFin) {
         this.posYFin = posYFin;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
     }
     
     

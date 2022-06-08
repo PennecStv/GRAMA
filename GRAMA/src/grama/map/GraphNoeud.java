@@ -13,23 +13,23 @@ import java.util.ArrayList;
  *
  * @author Steve Pennec
  */
-public class GraphNoeud extends Noeud{
+public class GraphNoeud{
     
     private boolean isSelected;
     
-    private ArrayList<GraphLien> listeLien = new ArrayList<>();
+    public Noeud noeud;
     
     private int posX;
     private int posY;
     public Color couleur;
 
-    public GraphNoeud( String typeLieu, String nomLieu, int posX, int posY) {
-        super(typeLieu, nomLieu);
+    public GraphNoeud( Noeud noeud, int posX, int posY) {
+        this.noeud = noeud;
         this.posX = posX;
         this.posY = posY;
         this.isSelected = false;
         
-        switch(typeLieu){
+        switch(noeud.getTypeLieu()){
             case "V":
                 couleur = Color.RED;
                 break;
@@ -47,6 +47,7 @@ public class GraphNoeud extends Noeud{
         }
     }
 
+    
     public int getPosX() {
         return posX;
     }
@@ -59,11 +60,19 @@ public class GraphNoeud extends Noeud{
         return couleur;
     }
     
+    public String getNomLieu(){
+        return noeud.getNomLieu();
+    }
+    
+    public String getTypeLieu(){
+        return noeud.getTypeLieu();
+    }
+    
     public String afficherVoisins(String type){
         String text = "";
         
-        for (GraphLien lien: this.listeLien){
-            Noeud noeud = lien.getNoeudArrivee();
+        for (Lien lien: this.noeud.getListeLien()){
+            Noeud noeud = lien.getArriveNoeud();
             if (type.equals("")){
                 text += noeud.getTypeLieu() + ": " + noeud.getNomLieu() + "\n";
             }else{
@@ -90,10 +99,14 @@ public class GraphNoeud extends Noeud{
 
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
+    }  
+
+    
+    
+    @Override
+    public String toString() {
+        return this.getTypeLieu() + ": " + this.getNomLieu();
     }
     
     
-    public void addLien(GraphLien lien){
-        this.listeLien.add(lien);
-    }
 }
