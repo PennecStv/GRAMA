@@ -72,6 +72,9 @@ public class Map extends JPanel{
     private final Random posX = new Random();
     private final Random posY = new Random();
     
+    
+    
+    
     /* ====    Constructeur    ==== */
     public Map() {
         super();
@@ -85,6 +88,9 @@ public class Map extends JPanel{
         addMouseListener(mh);
         addMouseMotionListener(mh);
     }
+    
+    
+    
 
     /* ============================= */
     /* ====  Méthodes de bases  ==== */
@@ -103,6 +109,14 @@ public class Map extends JPanel{
     
     public void removeTypeLien(String type){
         Map.listeSelectedTypeLien.remove(type);
+    }
+    
+    public GraphNoeud getSelected(){
+        for (GraphNoeud noeud : listeGraphNoeud){
+            if (noeud.isSelected())
+                return noeud;
+        }
+        return null;
     }
     
     
@@ -204,8 +218,15 @@ public class Map extends JPanel{
         g2d.setColor(noeud.getCouleur());
         g2d.fillOval(noeud.getPosX(), noeud.getPosY(), 30, 30);
 
-        g2d.setColor(noeud.isSelected() ?Color.BLUE :Color.DARK_GRAY);
-        g2d.setStroke(new BasicStroke(2.0f));
+        
+        if (noeud.isSelected()){
+            g2d.setColor(Color.BLUE);
+            g2d.setStroke(new BasicStroke(2.0f));
+        }else{
+            g2d.setColor(Color.DARK_GRAY);
+            g2d.setStroke(new BasicStroke(1.0f));
+        }
+        
         g2d.drawOval(noeud.getPosX(), noeud.getPosY(), 30, 30);
 
         g2d.setColor(Color.BLACK); 
@@ -321,6 +342,19 @@ public class Map extends JPanel{
                                                    noeudArrive.getPosX() + RAYON_NOEUD, noeudArrive.getPosY() + RAYON_NOEUD));
             }
         }
+        
+        fillListeLien();
+    }
+    
+    
+    private void fillListeLien(){
+        for (GraphNoeud noeud : listeGraphNoeud){
+            for (GraphLien lien : listeGraphLien){
+                if ((lien.getNoeudDepart().getNomLieu()).equals(noeud.getNomLieu()))
+                    noeud.addLien(lien);
+            }
+        }
+        
     }
     
     
@@ -380,6 +414,7 @@ public class Map extends JPanel{
     
     
     
+    
     /* ============================================== */
     /* =======       Adapter & Listener       ======= */
     /* ============================================== */
@@ -405,6 +440,8 @@ public class Map extends JPanel{
                 
                 i++;
             }
+            
+            getParent().repaint();
             
         }
         

@@ -6,15 +6,18 @@ package grama.map;
 
 import grama.Graph;
 import java.awt.CardLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.plaf.ComboBoxUI;
 
 /**
  *
  * @author Steve Pennec
  */
-public class EcranPrincipal extends javax.swing.JFrame {
+public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
     Graph grama = new Graph();
     
@@ -98,19 +101,19 @@ public class EcranPrincipal extends javax.swing.JFrame {
         nombreEcran0 = new javax.swing.JLabel();
         ecran1Panel = new javax.swing.JPanel();
         retour1Bouton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        titre1Distance = new javax.swing.JLabel();
+        titreNoeudSelectedLabel = new javax.swing.JLabel();
+        titreLienSelectedLabel = new javax.swing.JLabel();
+        typeNoeudComboBox = new javax.swing.JComboBox<>();
+        noeudSelectedLabel = new javax.swing.JLabel();
+        lienSelectedLabel = new javax.swing.JLabel();
+        afficherVoisinsBouton = new javax.swing.JButton();
+        afficherExtremBouton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        voisinsTextArea = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        extremiteTextArea = new javax.swing.JTextArea();
+        titreTypeNoeudLabel = new javax.swing.JLabel();
         ecran2Panel = new javax.swing.JPanel();
         retour2Bouton = new javax.swing.JButton();
         ecran3Panel = new javax.swing.JPanel();
@@ -555,43 +558,45 @@ public class EcranPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("1 - distance");
+        titre1Distance.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        titre1Distance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titre1Distance.setText("1 - distance");
 
-        jLabel2.setText("Noeud séléctionné:");
+        titreNoeudSelectedLabel.setText("Noeud séléctionné:");
 
-        jLabel3.setText("Lien séléctionné:");
+        titreLienSelectedLabel.setText("Lien séléctionné:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Villes", "Restaurants", "Centres de loisir" }));
+        typeNoeudComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Villes", "Restaurants", "Centres de loisir" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Autoroutes", "Routes nationales", "Routes départementales" }));
+        noeudSelectedLabel.setText("jLabel4");
 
-        jLabel4.setText("jLabel4");
+        lienSelectedLabel.setText("jLabel5");
 
-        jLabel5.setText("jLabel5");
-
-        jButton1.setText("Afficher voisins");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        afficherVoisinsBouton.setText("Afficher voisins");
+        afficherVoisinsBouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                afficherVoisinsBoutonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Afficher extrémités");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        afficherExtremBouton.setText("Afficher extrémités");
+        afficherExtremBouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                afficherExtremBoutonActionPerformed(evt);
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        voisinsTextArea.setEditable(false);
+        voisinsTextArea.setColumns(20);
+        voisinsTextArea.setRows(5);
+        jScrollPane1.setViewportView(voisinsTextArea);
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane4.setViewportView(jTextArea2);
+        extremiteTextArea.setEditable(false);
+        extremiteTextArea.setColumns(20);
+        extremiteTextArea.setRows(5);
+        jScrollPane4.setViewportView(extremiteTextArea);
+
+        titreTypeNoeudLabel.setText("Type de noeud");
 
         javax.swing.GroupLayout ecran1PanelLayout = new javax.swing.GroupLayout(ecran1Panel);
         ecran1Panel.setLayout(ecran1PanelLayout);
@@ -601,17 +606,17 @@ public class EcranPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(retour1Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, 197, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titre1Distance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titreNoeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(typeNoeudComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(afficherVoisinsBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(afficherExtremBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ecran1PanelLayout.createSequentialGroup()
-                        .addGroup(ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(titreLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(noeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(titreTypeNoeudLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 110, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -621,30 +626,30 @@ public class EcranPrincipal extends javax.swing.JFrame {
             ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran1PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel2)
+                .addComponent(titre1Distance)
+                .addGap(39, 39, 39)
+                .addComponent(titreNoeudSelectedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(noeudSelectedLabel)
+                .addGap(10, 10, 10)
+                .addComponent(titreTypeNoeudLabel)
+                .addGap(10, 10, 10)
+                .addComponent(typeNoeudComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(afficherVoisinsBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(titreLienSelectedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lienSelectedLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(afficherExtremBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(retour1Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menuPanel.add(ecran1Panel, "card1");
@@ -974,13 +979,33 @@ public class EcranPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_villesRadioBoutonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void afficherExtremBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherExtremBoutonActionPerformed
+        
+    }//GEN-LAST:event_afficherExtremBoutonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void afficherVoisinsBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherVoisinsBoutonActionPerformed
+        GraphNoeud noeudSelected = map1.getSelected();
+        
+        if (noeudSelected != null){
+            switch((String) typeNoeudComboBox.getSelectedItem()){
+                case "Villes":
+                    voisinsTextArea.setText(noeudSelected.afficherVoisins("V"));
+                    break;
+
+                case "Restaurants":
+                    voisinsTextArea.setText(noeudSelected.afficherVoisins("R"));
+                    break;
+
+                case "Centres de loisir":
+                    voisinsTextArea.setText(noeudSelected.afficherVoisins("L"));
+                    break;
+
+                default:
+                    voisinsTextArea.setText(noeudSelected.afficherVoisins(""));
+                    break;
+            }
+        }
+    }//GEN-LAST:event_afficherVoisinsBoutonActionPerformed
 
     private void retour1BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour1BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
@@ -1049,6 +1074,8 @@ public class EcranPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AProposMenuItem;
     private javax.swing.JFrame ListeFrame;
+    private javax.swing.JButton afficherExtremBouton;
+    private javax.swing.JButton afficherVoisinsBouton;
     private javax.swing.JMenu aideMenu;
     private javax.swing.JMenuItem aideMenuItem;
     private javax.swing.JCheckBox autoroutesCheckBox;
@@ -1065,17 +1092,9 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel ecran3Panel;
     private javax.swing.JButton ecran4Bouton;
     private javax.swing.JPanel ecran4Panel;
+    private javax.swing.JTextArea extremiteTextArea;
     private javax.swing.JMenu fichierMenu;
     private javax.swing.JLabel infoNombreEcran0;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1084,9 +1103,8 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.ButtonGroup lienButtonGroup;
+    private javax.swing.JLabel lienSelectedLabel;
     private javax.swing.JTextArea liensTextArea;
     private javax.swing.JPanel listePanel;
     private javax.swing.JButton listerBouton;
@@ -1098,6 +1116,7 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox natioCheckBox;
     private javax.swing.JRadioButton natioRadioBouton;
     private javax.swing.ButtonGroup noeudButtonGroup;
+    private javax.swing.JLabel noeudSelectedLabel;
     private javax.swing.JTextArea noeudsTextArea;
     private javax.swing.JComboBox<String> nombreComboBox;
     private javax.swing.JLabel nombreEcran0;
@@ -1111,15 +1130,46 @@ public class EcranPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton retour2Bouton;
     private javax.swing.JButton retour3Bouton;
     private javax.swing.JButton retour4Bouton;
+    private javax.swing.JLabel titre1Distance;
     private javax.swing.JLabel titreEcran0;
     private javax.swing.JLabel titreEcranPrincipal;
     private javax.swing.JLabel titreLienEcran0;
+    private javax.swing.JLabel titreLienSelectedLabel;
     private javax.swing.JLabel titreListeLien;
     private javax.swing.JLabel titreListeNoeud;
     private javax.swing.JLabel titreListePanel;
     private javax.swing.JLabel titreNoeudEcran0;
+    private javax.swing.JLabel titreNoeudSelectedLabel;
     private javax.swing.JLabel titreNombreEcran0;
+    private javax.swing.JLabel titreTypeNoeudLabel;
+    private javax.swing.JComboBox<String> typeNoeudComboBox;
     private javax.swing.JCheckBox villesCheckBox;
     private javax.swing.JRadioButton villesRadioBouton;
+    private javax.swing.JTextArea voisinsTextArea;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

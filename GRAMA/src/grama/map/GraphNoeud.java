@@ -4,8 +4,10 @@
  */
 package grama.map;
 
+import grama.Lien;
 import grama.Noeud;
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,6 +16,8 @@ import java.awt.Color;
 public class GraphNoeud extends Noeud{
     
     private boolean isSelected;
+    
+    private ArrayList<GraphLien> listeLien = new ArrayList<>();
     
     private int posX;
     private int posY;
@@ -54,6 +58,23 @@ public class GraphNoeud extends Noeud{
     public Color getCouleur() {
         return couleur;
     }
+    
+    public String afficherVoisins(String type){
+        String text = "";
+        
+        for (GraphLien lien: this.listeLien){
+            Noeud noeud = lien.getNoeudArrivee();
+            if (type.equals("")){
+                text += noeud.getTypeLieu() + ": " + noeud.getNomLieu() + "\n";
+            }else{
+                if (noeud.getTypeLieu().equals(type)){
+                text += noeud.getTypeLieu() + ": " + noeud.getNomLieu() + "\n";
+                }
+            }
+        }
+        return text;
+    }
+    
 
     public void setPosX(int posX) {
         this.posX = posX;
@@ -69,5 +90,10 @@ public class GraphNoeud extends Noeud{
 
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
+    }
+    
+    
+    public void addLien(GraphLien lien){
+        this.listeLien.add(lien);
     }
 }
