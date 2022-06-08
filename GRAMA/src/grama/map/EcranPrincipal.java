@@ -83,6 +83,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         ecran3Bouton = new javax.swing.JButton();
         ecran4Bouton = new javax.swing.JButton();
         titreEcranPrincipal = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         ecran0Panel = new javax.swing.JPanel();
         retour0Bouton = new javax.swing.JButton();
         villesCheckBox = new javax.swing.JCheckBox();
@@ -114,8 +115,30 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         titreTypeNoeudLabel = new javax.swing.JLabel();
         ecran2Panel = new javax.swing.JPanel();
         retour2Bouton = new javax.swing.JButton();
+        titre2Distance = new javax.swing.JLabel();
+        titrePremierNoeudSelectedLabel1 = new javax.swing.JLabel();
+        premierNoeudSelectedLabel1 = new javax.swing.JLabel();
+        selectPremierNoeudBouton1 = new javax.swing.JButton();
+        titreDeuxiemeNoeudSelectedLabel = new javax.swing.JLabel();
+        deuxiemeNoeudSelectedLabel1 = new javax.swing.JLabel();
+        selectDeuxiemeNoeudBouton1 = new javax.swing.JButton();
+        titreResultatLabel = new javax.swing.JLabel();
+        resultatLabel = new javax.swing.JLabel();
         ecran3Panel = new javax.swing.JPanel();
         retour3Bouton = new javax.swing.JButton();
+        selectPremierNoeudBouton2 = new javax.swing.JButton();
+        deuxiemeNoeudSelectedLabel2 = new javax.swing.JLabel();
+        titreDeuxiemeNoeudSelectedLabel2 = new javax.swing.JLabel();
+        selectDeuxiemeNoeudBouton2 = new javax.swing.JButton();
+        titrePremierNoeudSelectedLabel2 = new javax.swing.JLabel();
+        premierNoeudSelectedLabel2 = new javax.swing.JLabel();
+        titrePlus2Distance = new javax.swing.JLabel();
+        titreOuvertLabel = new javax.swing.JLabel();
+        titreGastroLabel = new javax.swing.JLabel();
+        titreCulturelLabel = new javax.swing.JLabel();
+        resultatOuvertLabel = new javax.swing.JLabel();
+        resultatGastroLabel = new javax.swing.JLabel();
+        resultatCulturelLabel = new javax.swing.JLabel();
         ecran4Panel = new javax.swing.JPanel();
         retour4Bouton = new javax.swing.JButton();
         mapPanel = new javax.swing.JPanel();
@@ -329,6 +352,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         ecran4Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         ecran4Bouton.setText("P - Distance");
+        ecran4Bouton.setEnabled(false);
         ecran4Bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ecran4BoutonActionPerformed(evt);
@@ -338,6 +362,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         titreEcranPrincipal.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         titreEcranPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titreEcranPrincipal.setText("Graph Map Analysis");
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Coming Soon !");
 
         javax.swing.GroupLayout principalPanelLayout = new javax.swing.GroupLayout(principalPanel);
         principalPanel.setLayout(principalPanelLayout);
@@ -351,7 +379,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                     .addComponent(ecran1Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran3Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ecran4Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ecran4Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         principalPanelLayout.setVerticalGroup(
@@ -367,9 +396,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                 .addComponent(ecran2Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(ecran3Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ecran4Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         menuPanel.add(principalPanel, "cardPrincipal");
@@ -482,8 +513,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             .addGroup(ecran0PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(retour0Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombreComboBox, 0, 0, Short.MAX_VALUE)
                     .addComponent(titreNoeudEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(listerBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ecran0PanelLayout.createSequentialGroup()
@@ -491,7 +522,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                         .addComponent(titreLienEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(titreNombreEcran0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran0PanelLayout.createSequentialGroup()
-                        .addGap(0, 16, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(ecran0PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(depCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(natioCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -570,6 +601,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         noeudSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         noeudSelectedLabel.setText("Aucun noeud sélectionné");
+        noeudSelectedLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                noeudSelectedLabelMouseReleased(evt);
+            }
+        });
 
         lienSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         lienSelectedLabel.setText("Aucun lien sélectionné:");
@@ -581,7 +617,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         extremiteTextArea.setEditable(false);
         extremiteTextArea.setColumns(20);
-        extremiteTextArea.setLineWrap(true);
         extremiteTextArea.setRows(5);
         jScrollPane4.setViewportView(extremiteTextArea);
 
@@ -603,7 +638,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                         .addGroup(ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(titreLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(noeudSelectedLabel)
+                            .addComponent(noeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(titreTypeNoeudLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 43, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -615,7 +650,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran1PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titre1Distance)
-                .addGap(39, 39, 39)
+                .addGap(40, 40, 40)
                 .addComponent(titreNoeudSelectedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(noeudSelectedLabel)
@@ -625,13 +660,13 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                 .addComponent(typeNoeudComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(40, 40, 40)
                 .addComponent(titreLienSelectedLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(lienSelectedLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(40, 40, 40)
                 .addComponent(retour1Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -648,21 +683,82 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             }
         });
 
+        titre2Distance.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        titre2Distance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titre2Distance.setText("2 - Distance");
+
+        titrePremierNoeudSelectedLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        titrePremierNoeudSelectedLabel1.setText("Premier noeud sélectionné:");
+
+        premierNoeudSelectedLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        premierNoeudSelectedLabel1.setText("Aucun noeud sélectionné");
+
+        selectPremierNoeudBouton1.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        selectPremierNoeudBouton1.setText("Choisir Premier Noeud");
+        selectPremierNoeudBouton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectPremierNoeudBouton1ActionPerformed(evt);
+            }
+        });
+
+        titreDeuxiemeNoeudSelectedLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        titreDeuxiemeNoeudSelectedLabel.setText("Deuxième noeud sélectionné:");
+
+        deuxiemeNoeudSelectedLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        deuxiemeNoeudSelectedLabel1.setText("Aucun noeud sélectionné");
+
+        selectDeuxiemeNoeudBouton1.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        selectDeuxiemeNoeudBouton1.setText("Choisir Deuxième Noeud");
+
+        titreResultatLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        titreResultatLabel.setText("Résultat:");
+
+        resultatLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        resultatLabel.setText("...");
+
         javax.swing.GroupLayout ecran2PanelLayout = new javax.swing.GroupLayout(ecran2Panel);
         ecran2Panel.setLayout(ecran2PanelLayout);
         ecran2PanelLayout.setHorizontalGroup(
             ecran2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ecran2PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(retour2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addGroup(ecran2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titreResultatLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titre2Distance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titrePremierNoeudSelectedLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(premierNoeudSelectedLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectPremierNoeudBouton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectDeuxiemeNoeudBouton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(titreDeuxiemeNoeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deuxiemeNoeudSelectedLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resultatLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(retour2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ecran2PanelLayout.setVerticalGroup(
             ecran2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran2PanelLayout.createSequentialGroup()
-                .addGap(650, 650, 650)
+                .addContainerGap()
+                .addComponent(titre2Distance)
+                .addGap(50, 50, 50)
+                .addComponent(titrePremierNoeudSelectedLabel1)
+                .addGap(10, 10, 10)
+                .addComponent(premierNoeudSelectedLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(selectPremierNoeudBouton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(titreDeuxiemeNoeudSelectedLabel)
+                .addGap(10, 10, 10)
+                .addComponent(deuxiemeNoeudSelectedLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(selectDeuxiemeNoeudBouton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(titreResultatLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultatLabel)
+                .addGap(120, 120, 120)
                 .addComponent(retour2Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
 
         menuPanel.add(ecran2Panel, "card2");
@@ -677,19 +773,104 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             }
         });
 
+        selectPremierNoeudBouton2.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        selectPremierNoeudBouton2.setText("Choisir Deuxième Noeud");
+
+        deuxiemeNoeudSelectedLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        deuxiemeNoeudSelectedLabel2.setText("Aucun noeud sélectionné");
+
+        titreDeuxiemeNoeudSelectedLabel2.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        titreDeuxiemeNoeudSelectedLabel2.setText("Deuxième noeud sélectionné:");
+
+        selectDeuxiemeNoeudBouton2.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        selectDeuxiemeNoeudBouton2.setText("Choisir Premier Noeud");
+        selectDeuxiemeNoeudBouton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectDeuxiemeNoeudBouton2ActionPerformed(evt);
+            }
+        });
+
+        titrePremierNoeudSelectedLabel2.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        titrePremierNoeudSelectedLabel2.setText("Premier noeud sélectionné:");
+
+        premierNoeudSelectedLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        premierNoeudSelectedLabel2.setText("Aucun noeud sélectionné");
+
+        titrePlus2Distance.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        titrePlus2Distance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titrePlus2Distance.setText("+ 2 - Distance");
+
+        titreOuvertLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        titreOuvertLabel.setText("Le plus OUVERT:");
+
+        titreGastroLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        titreGastroLabel.setText("La plus GASTRONOMIQUE:");
+
+        titreCulturelLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        titreCulturelLabel.setText("Le plus CULTUREL:");
+
+        resultatOuvertLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        resultatOuvertLabel.setText("...");
+
+        resultatGastroLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        resultatGastroLabel.setText("...");
+
+        resultatCulturelLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        resultatCulturelLabel.setText("...");
+
         javax.swing.GroupLayout ecran3PanelLayout = new javax.swing.GroupLayout(ecran3Panel);
         ecran3Panel.setLayout(ecran3PanelLayout);
         ecran3PanelLayout.setHorizontalGroup(
             ecran3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ecran3PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(retour3Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addGroup(ecran3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titrePlus2Distance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titrePremierNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(premierNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectDeuxiemeNoeudBouton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectPremierNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(titreDeuxiemeNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deuxiemeNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resultatCulturelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titreCulturelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titreGastroLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titreOuvertLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resultatOuvertLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resultatGastroLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(retour3Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ecran3PanelLayout.setVerticalGroup(
             ecran3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran3PanelLayout.createSequentialGroup()
-                .addGap(650, 650, 650)
+                .addContainerGap()
+                .addComponent(titrePlus2Distance)
+                .addGap(50, 50, 50)
+                .addComponent(titrePremierNoeudSelectedLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(premierNoeudSelectedLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(selectDeuxiemeNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(titreDeuxiemeNoeudSelectedLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(deuxiemeNoeudSelectedLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(selectPremierNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(titreOuvertLabel)
+                .addGap(10, 10, 10)
+                .addComponent(resultatOuvertLabel)
+                .addGap(20, 20, 20)
+                .addComponent(titreGastroLabel)
+                .addGap(10, 10, 10)
+                .addComponent(resultatGastroLabel)
+                .addGap(20, 20, 20)
+                .addComponent(titreCulturelLabel)
+                .addGap(10, 10, 10)
+                .addComponent(resultatCulturelLabel)
+                .addGap(30, 30, 30)
                 .addComponent(retour3Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -989,6 +1170,30 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                                       "\nArrivee - " + lien.getNoeudArrivee());
         }
     }//GEN-LAST:event_mapGrapheMouseClicked
+
+    private void noeudSelectedLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noeudSelectedLabelMouseReleased
+        GraphNoeud noeud = mapGraphe.getSelectedNode();
+        GraphLien lien = mapGraphe.getSelectedLink();
+        
+        if (noeud != null){
+            noeudSelectedLabel.setText(noeud.toString());
+            voisinsTextArea.setText(afficherListeVoisins(noeud));
+        }
+        
+        if (lien != null){
+            lienSelectedLabel.setText(lien.getDonnees());
+            extremiteTextArea.setText("Depart - " + lien.getNoeudDepart() +
+                                      "\nArrivee - " + lien.getNoeudArrivee());
+        }
+    }//GEN-LAST:event_noeudSelectedLabelMouseReleased
+
+    private void selectPremierNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectPremierNoeudBouton1ActionPerformed
+
+    private void selectDeuxiemeNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectDeuxiemeNoeudBouton2ActionPerformed
  
     
     private void generateListeFrame(){
@@ -1084,6 +1289,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JRadioButton autoroutesRadioBouton;
     private javax.swing.JCheckBox depCheckBox;
     private javax.swing.JRadioButton depRadioBouton;
+    private javax.swing.JLabel deuxiemeNoeudSelectedLabel1;
+    private javax.swing.JLabel deuxiemeNoeudSelectedLabel2;
     private javax.swing.JButton ecran0Bouton;
     private javax.swing.JPanel ecran0Panel;
     private javax.swing.JButton ecran1Bouton;
@@ -1097,6 +1304,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JTextArea extremiteTextArea;
     private javax.swing.JMenu fichierMenu;
     private javax.swing.JLabel infoNombreEcran0;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1123,18 +1331,33 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JComboBox<String> nombreComboBox;
     private javax.swing.JLabel nombreEcran0;
     private javax.swing.JMenuItem ouvrirMenuItem;
+    private javax.swing.JLabel premierNoeudSelectedLabel1;
+    private javax.swing.JLabel premierNoeudSelectedLabel2;
     private javax.swing.JPanel principalPanel;
     private javax.swing.JMenuItem quitterMenuItem;
     private javax.swing.JRadioButton resRadioBouton;
     private javax.swing.JCheckBox restoCheckBox;
+    private javax.swing.JLabel resultatCulturelLabel;
+    private javax.swing.JLabel resultatGastroLabel;
+    private javax.swing.JLabel resultatLabel;
+    private javax.swing.JLabel resultatOuvertLabel;
     private javax.swing.JButton retour0Bouton;
     private javax.swing.JButton retour1Bouton;
     private javax.swing.JButton retour2Bouton;
     private javax.swing.JButton retour3Bouton;
     private javax.swing.JButton retour4Bouton;
+    private javax.swing.JButton selectDeuxiemeNoeudBouton1;
+    private javax.swing.JButton selectDeuxiemeNoeudBouton2;
+    private javax.swing.JButton selectPremierNoeudBouton1;
+    private javax.swing.JButton selectPremierNoeudBouton2;
     private javax.swing.JLabel titre1Distance;
+    private javax.swing.JLabel titre2Distance;
+    private javax.swing.JLabel titreCulturelLabel;
+    private javax.swing.JLabel titreDeuxiemeNoeudSelectedLabel;
+    private javax.swing.JLabel titreDeuxiemeNoeudSelectedLabel2;
     private javax.swing.JLabel titreEcran0;
     private javax.swing.JLabel titreEcranPrincipal;
+    private javax.swing.JLabel titreGastroLabel;
     private javax.swing.JLabel titreLienEcran0;
     private javax.swing.JLabel titreLienSelectedLabel;
     private javax.swing.JLabel titreListeLien;
@@ -1143,6 +1366,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JLabel titreNoeudEcran0;
     private javax.swing.JLabel titreNoeudSelectedLabel;
     private javax.swing.JLabel titreNombreEcran0;
+    private javax.swing.JLabel titreOuvertLabel;
+    private javax.swing.JLabel titrePlus2Distance;
+    private javax.swing.JLabel titrePremierNoeudSelectedLabel1;
+    private javax.swing.JLabel titrePremierNoeudSelectedLabel2;
+    private javax.swing.JLabel titreResultatLabel;
     private javax.swing.JLabel titreTypeNoeudLabel;
     private javax.swing.JComboBox<String> typeNoeudComboBox;
     private javax.swing.JCheckBox villesCheckBox;

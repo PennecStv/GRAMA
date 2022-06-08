@@ -375,7 +375,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="titreEcranPrincipal" max="32767" attributes="0"/>
@@ -384,6 +384,7 @@
                           <Component id="ecran2Bouton" alignment="0" max="32767" attributes="0"/>
                           <Component id="ecran3Bouton" alignment="0" max="32767" attributes="0"/>
                           <Component id="ecran4Bouton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel19" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -402,9 +403,11 @@
                       <Component id="ecran2Bouton" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="ecran3Bouton" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="ecran4Bouton" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace pref="266" max="32767" attributes="0"/>
+                      <EmptySpace pref="262" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -460,6 +463,7 @@
                   <Font name="Segoe UI Light" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="P - Distance"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ecran4BoutonActionPerformed"/>
@@ -472,6 +476,15 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Graph Map Analysis"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel19">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Coming Soon !"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -491,11 +504,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nombreComboBox" max="32767" attributes="0"/>
                           <Component id="retour0Bouton" max="32767" attributes="0"/>
+                          <Component id="nombreComboBox" pref="0" max="32767" attributes="0"/>
                           <Component id="titreNoeudEcran0" alignment="0" max="32767" attributes="0"/>
                           <Component id="listerBouton" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -504,7 +517,7 @@
                           </Group>
                           <Component id="titreNombreEcran0" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="depCheckBox" alignment="1" max="32767" attributes="0"/>
                                   <Component id="natioCheckBox" alignment="1" max="32767" attributes="0"/>
@@ -767,7 +780,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="titreLienSelectedLabel" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lienSelectedLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="noeudSelectedLabel" alignment="0" max="-2" attributes="0"/>
+                                  <Component id="noeudSelectedLabel" alignment="0" max="32767" attributes="0"/>
                                   <Component id="titreTypeNoeudLabel" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="43" max="32767" attributes="0"/>
@@ -784,7 +797,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="titre1Distance" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="titreNoeudSelectedLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="noeudSelectedLabel" min="-2" max="-2" attributes="0"/>
@@ -794,13 +807,13 @@
                       <Component id="typeNoeudComboBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="182" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="titreLienSelectedLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="lienSelectedLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="retour1Bouton" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -866,6 +879,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Aucun noeud s&#xe9;lectionn&#xe9;"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="noeudSelectedLabelMouseReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lienSelectedLabel">
               <Properties>
@@ -902,7 +918,6 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
-                    <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
                 </Component>
@@ -933,19 +948,48 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="retour2Bouton" pref="197" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="titreResultatLabel" max="32767" attributes="0"/>
+                          <Component id="titre2Distance" alignment="0" max="32767" attributes="0"/>
+                          <Component id="titrePremierNoeudSelectedLabel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="premierNoeudSelectedLabel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="selectPremierNoeudBouton1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="selectDeuxiemeNoeudBouton1" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="titreDeuxiemeNoeudSelectedLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="deuxiemeNoeudSelectedLabel1" max="32767" attributes="0"/>
+                          <Component id="resultatLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="retour2Bouton" alignment="0" pref="197" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="650" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="titre2Distance" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="titrePremierNoeudSelectedLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="premierNoeudSelectedLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="selectPremierNoeudBouton1" min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="titreDeuxiemeNoeudSelectedLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="deuxiemeNoeudSelectedLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="selectDeuxiemeNoeudBouton1" min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="titreResultatLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="resultatLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                       <Component id="retour2Bouton" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -961,6 +1005,82 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="retour2BoutonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titre2Distance">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Black" size="24" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="2 - Distance"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titrePremierNoeudSelectedLabel1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Historic" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Premier noeud s&#xe9;lectionn&#xe9;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="premierNoeudSelectedLabel1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Aucun noeud s&#xe9;lectionn&#xe9;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="selectPremierNoeudBouton1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="16" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Choisir Premier Noeud"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectPremierNoeudBouton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titreDeuxiemeNoeudSelectedLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Historic" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Deuxi&#xe8;me noeud s&#xe9;lectionn&#xe9;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="deuxiemeNoeudSelectedLabel1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Aucun noeud s&#xe9;lectionn&#xe9;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="selectDeuxiemeNoeudBouton1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="16" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Choisir Deuxi&#xe8;me Noeud"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titreResultatLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Historic" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="R&#xe9;sultat:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="resultatLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -979,9 +1099,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="retour3Bouton" pref="197" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="titrePlus2Distance" alignment="0" max="32767" attributes="0"/>
+                          <Component id="titrePremierNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="premierNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="selectDeuxiemeNoeudBouton2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="selectPremierNoeudBouton2" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="titreDeuxiemeNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="deuxiemeNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="resultatCulturelLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="titreCulturelLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="titreGastroLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="titreOuvertLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="resultatOuvertLabel" max="32767" attributes="0"/>
+                          <Component id="resultatGastroLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="retour3Bouton" alignment="0" pref="197" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -989,7 +1124,33 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="650" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="titrePlus2Distance" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="titrePremierNoeudSelectedLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="premierNoeudSelectedLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="selectDeuxiemeNoeudBouton2" min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="titreDeuxiemeNoeudSelectedLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="deuxiemeNoeudSelectedLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="selectPremierNoeudBouton2" min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="titreOuvertLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="resultatOuvertLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="titreGastroLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="resultatGastroLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="titreCulturelLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="resultatCulturelLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="retour3Bouton" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -1007,6 +1168,114 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="retour3BoutonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="selectPremierNoeudBouton2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="16" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Choisir Deuxi&#xe8;me Noeud"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="deuxiemeNoeudSelectedLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Aucun noeud s&#xe9;lectionn&#xe9;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titreDeuxiemeNoeudSelectedLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Historic" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Deuxi&#xe8;me noeud s&#xe9;lectionn&#xe9;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="selectDeuxiemeNoeudBouton2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="16" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Choisir Premier Noeud"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectDeuxiemeNoeudBouton2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titrePremierNoeudSelectedLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Historic" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Premier noeud s&#xe9;lectionn&#xe9;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="premierNoeudSelectedLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Aucun noeud s&#xe9;lectionn&#xe9;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titrePlus2Distance">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Black" size="24" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="+ 2 - Distance"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titreOuvertLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Historic" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Le plus OUVERT:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titreGastroLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Historic" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="La plus GASTRONOMIQUE:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="titreCulturelLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Le plus CULTUREL:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="resultatOuvertLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="resultatGastroLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="resultatCulturelLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
