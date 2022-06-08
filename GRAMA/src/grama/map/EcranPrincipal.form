@@ -879,9 +879,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Aucun noeud s&#xe9;lectionn&#xe9;"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="noeudSelectedLabelMouseReleased"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lienSelectedLabel">
               <Properties>
@@ -1065,6 +1062,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Choisir Deuxi&#xe8;me Noeud"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectDeuxiemeNoeudBouton1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="titreResultatLabel">
               <Properties>
@@ -1351,6 +1351,7 @@
         <Container class="grama.map.Map" name="mapGraphe">
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapGrapheMouseClicked"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapGrapheMouseReleased"/>
           </Events>
 
           <Layout>

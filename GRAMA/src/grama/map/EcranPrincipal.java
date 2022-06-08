@@ -11,7 +11,8 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.plaf.ComboBoxUI;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -601,11 +602,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         noeudSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         noeudSelectedLabel.setText("Aucun noeud sélectionné");
-        noeudSelectedLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                noeudSelectedLabelMouseReleased(evt);
-            }
-        });
 
         lienSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         lienSelectedLabel.setText("Aucun lien sélectionné:");
@@ -709,6 +705,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         selectDeuxiemeNoeudBouton1.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
         selectDeuxiemeNoeudBouton1.setText("Choisir Deuxième Noeud");
+        selectDeuxiemeNoeudBouton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectDeuxiemeNoeudBouton1ActionPerformed(evt);
+            }
+        });
 
         titreResultatLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
         titreResultatLabel.setText("Résultat:");
@@ -909,6 +910,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         mapGraphe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mapGrapheMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                mapGrapheMouseReleased(evt);
             }
         });
 
@@ -1162,6 +1166,20 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         if (noeud != null){
             noeudSelectedLabel.setText(noeud.toString());
             voisinsTextArea.setText(afficherListeVoisins(noeud));
+            
+            if (attenteSelectionPremierNoeud){
+                premierNoeud = mapGraphe.getSelectedNode();
+                premierNoeudSelectedLabel1.setText(premierNoeud.toString());
+                premierNoeudSelectedLabel2.setText(premierNoeud.toString());
+                attenteSelectionPremierNoeud = false;
+            }
+            
+            if (attenteSelectionDeuxiemeNoeud){
+                deuxiemeNoeud = mapGraphe.getSelectedNode();
+                deuxiemeNoeudSelectedLabel1.setText(deuxiemeNoeud.toString());
+                deuxiemeNoeudSelectedLabel2.setText(deuxiemeNoeud.toString());
+                attenteSelectionDeuxiemeNoeud = false;
+            }
         }
         
         if (lien != null){
@@ -1171,7 +1189,23 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         }
     }//GEN-LAST:event_mapGrapheMouseClicked
 
-    private void noeudSelectedLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noeudSelectedLabelMouseReleased
+    private void selectPremierNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton1ActionPerformed
+        if (!attenteSelectionDeuxiemeNoeud){
+            premierNoeudSelectedLabel1.setText("En attente de sélection...");
+            mapGraphe.unselectAllNodes();
+            attenteSelectionPremierNoeud = true;
+            mapPanel.repaint();
+        }else{
+            JOptionPane warning = new JOptionPane();
+            warning.showMessageDialog(this, "Veuillez d'abord choisir le deuxième noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_selectPremierNoeudBouton1ActionPerformed
+
+    private void selectDeuxiemeNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton2ActionPerformed
+        
+    }//GEN-LAST:event_selectDeuxiemeNoeudBouton2ActionPerformed
+
+    private void mapGrapheMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapGrapheMouseReleased
         GraphNoeud noeud = mapGraphe.getSelectedNode();
         GraphLien lien = mapGraphe.getSelectedLink();
         
@@ -1185,15 +1219,18 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             extremiteTextArea.setText("Depart - " + lien.getNoeudDepart() +
                                       "\nArrivee - " + lien.getNoeudArrivee());
         }
-    }//GEN-LAST:event_noeudSelectedLabelMouseReleased
+    }//GEN-LAST:event_mapGrapheMouseReleased
 
-    private void selectPremierNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectPremierNoeudBouton1ActionPerformed
-
-    private void selectDeuxiemeNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectDeuxiemeNoeudBouton2ActionPerformed
+    private void selectDeuxiemeNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton1ActionPerformed
+        if (!attenteSelectionPremierNoeud){
+            deuxiemeNoeudSelectedLabel1.setText("En attente de sélection...");
+            mapGraphe.unselectAllNodes();
+            attenteSelectionDeuxiemeNoeud = true;
+            mapPanel.repaint();
+        }else{
+            JDialog warning = new JDialog();
+        }
+    }//GEN-LAST:event_selectDeuxiemeNoeudBouton1ActionPerformed
  
     
     private void generateListeFrame(){
@@ -1378,6 +1415,12 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JTextArea voisinsTextArea;
     // End of variables declaration//GEN-END:variables
 
+    /*** === Autres déclarations === ***/
+    private GraphNoeud premierNoeud;
+    private GraphNoeud deuxiemeNoeud;
+    private boolean attenteSelectionPremierNoeud;
+    private boolean attenteSelectionDeuxiemeNoeud;
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         

@@ -401,13 +401,13 @@ public class Map extends JPanel{
         return noeud;
     }
     
-    private void deselectAllNodes(){
+    public void unselectAllNodes(){
         for (GraphNoeud noeud : listeGraphNoeud){
             noeud.setSelected(false);
         }
     }
     
-    private void deselectAllLinks(){
+    public void unselectAllLinks(){
         for (GraphLien lien : listeGraphLien){
             lien.setSelected(false);
         }
@@ -434,7 +434,7 @@ public class Map extends JPanel{
                              me.getY() > node.getPosY() && me.getY() < node.getPosY() + DIAMETER_NOEUD);
                 
                 if (isNodeClicked){
-                    deselectAllNodes();
+                    unselectAllNodes();
                     node.setSelected(true);
                 }
                 
@@ -479,7 +479,7 @@ public class Map extends JPanel{
                 
                 if (isLinkClicked){
                     System.out.println("C'est clické !");
-                    deselectAllLinks();
+                    unselectAllLinks();
                     link.setSelected(true);
                 }
                 
