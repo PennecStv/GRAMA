@@ -1228,7 +1228,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             attenteSelectionDeuxiemeNoeud = true;
             mapPanel.repaint();
         }else{
-            JDialog warning = new JDialog();
+            JOptionPane warning = new JOptionPane();
+            warning.showMessageDialog(this, "Veuillez d'abord choisir le premier noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_selectDeuxiemeNoeudBouton1ActionPerformed
  
