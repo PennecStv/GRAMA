@@ -5,25 +5,36 @@
 package grama.interfaces;
 
 import grama.map.GraphNoeud;
-import javax.swing.JLabel;
 
 /**
- *
+ * Cette interface stocke des méthodes utiles pour gérer l'interface graphique selon certaines manipulations
  * @author Steve Pennec
  */
 public interface ecranListener {
     
+    /**
+     * 
+     */
     public void graphNotinitialized();
     
+    /**
+     * 
+     * @param noeud 
+     */
+    public void noeudAffiche(GraphNoeud noeud);
     
-    public void typeNoeudAffiche(GraphNoeud noeud);
-    
-    
+    /**
+     * 
+     */
     public void selectionPremierNoeud();
     
-    
+    /**
+     * 
+     */
     public void selectionDeuxiemeNoeud();
     
-    
+    /**
+     * 
+     */
     public void selectionAnnule();
 }

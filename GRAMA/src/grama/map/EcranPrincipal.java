@@ -7,31 +7,44 @@ package grama.map;
 import grama.Graph;
 import grama.interfaces.ecranListener;
 import java.awt.CardLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+
+
+
 /**
- *
+ * Cette classe représente l'interface graphique de l'application GRAMA, elle fait office de fenêtre principale.
  * @author Steve Pennec
+ * @version 1.0
  */
 public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     
-    Graph grama;
-    String fichier = "Graphe.csv";
+    /* === Attributs === */
+    /**
+     * Cet attribut contiendra le graphe et qui fournira les résultats demandés par les fonctionnalités de l'application
+     */
+    private Graph grama;
     
     
     /**
-     * Creates new form EcranPrincipale
+     * Il contiendra le chemin absolu du fichier utilisé
+     */
+    private String fichier = "Graphe.csv";
+    
+    
+    
+    
+    
+    /* === Constructeur === */
+    /**
+     * Crée la fenêtre principale de l'application
      */
     public EcranPrincipal() throws IOException {
         initComponents();
@@ -46,6 +59,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
     
     
+    /* === Méthodes d'initialisation === */
+    /**
+     * Initialise et crée le graphe du fichier entré.
+     * @throws IOException 
+     */
     private void initGraph() throws IOException{
         //if (fichier != null){
             String fichierGraphe = grama.ouvrirGraphe(fichier);
@@ -57,12 +75,18 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             
     }
     
+    /**
+     * Initialise le panel de la carte et récupére le graphe pour le dessiner.
+     */
     private void initMap(){
         mapGraphe.generateGraphNoeud(grama.getListeNoeud());
         mapGraphe.generateGraphLien(grama.getListeLien());
     }
     
     
+    
+    
+    /* === Code généré via la fenêtre Design === */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1056,8 +1080,28 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /* === Implémentation évennementielle des boutons de l'application === */
     private void AProposMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AProposMenuItemActionPerformed
-        // TODO add your handling code here:
+        ImageIcon icon = new ImageIcon("icon/GRAMA icon full2.png");
+        
+        aideOptionPane.showMessageDialog(this, """
+                                               GRAMA - Graph Map Analysis
+                                               Version 1.0
+                                               Créateur: Steve PENNEC en G5S2B
+                                               département informatique de l'IUT Lyon 1
+                                               Année de sortie: 2022
+                                               Application entièrement libre de droit.
+                                               
+                                               Cette application a été conçue dans le cadre
+                                               de la SAÉ S2.01 - Développement d'application.
+                                               Sa mise en place a été rendue possible 
+                                               grâce à du sang et de la sueur 
+                                               mais aussi grâce aux cours et à l'encadrement 
+                                               de prodigieux professeurs, un grand remerciement à eux.
+                                               
+                                               En la mémoire de Denis NGUYEN, 
+                                               ancien binôme et ancien étudiant de l'IUT Lyon 1.""", "À propos", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_AProposMenuItemActionPerformed
 
     private void ecran0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran0BoutonActionPerformed
@@ -1229,7 +1273,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         GraphLien lien = mapGraphe.getSelectedLink();
         
         if (noeud != null){
-            typeNoeudAffiche(noeud);
+            noeudAffiche(noeud);
             
             if (attenteSelectionPremierNoeud){
                 premierNoeud = mapGraphe.getSelectedNode();
@@ -1321,32 +1365,22 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     }//GEN-LAST:event_ouvrirMenuItemActionPerformed
 
     private void typeNoeudComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeNoeudComboBoxActionPerformed
-        typeNoeudAffiche(mapGraphe.getSelectedNode());
+        noeudAffiche(mapGraphe.getSelectedNode());
     }//GEN-LAST:event_typeNoeudComboBoxActionPerformed
 
     private void aideMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aideMenuItemActionPerformed
-        ImageIcon icon = new ImageIcon("icon/GRAMA icon full2.png");
         
-        aideOptionPane.showMessageDialog(this, """
-                                               GRAMA - Graph Map Analysis
-                                               Version 1.0
-                                               Créateur: Steve PENNEC en G5S2B
-                                               département informatique de l'IUT Lyon 1
-                                               Année de sortie: 2022
-                                               Application entièrement libre de droit.
-                                               
-                                               Cette application a été conçue dans le cadre
-                                               de la SAÉ S2.01 - Développement d'application.
-                                               Sa mise en place a été rendue possible 
-                                               grâce à du sang et de la sueur 
-                                               mais aussi grâce aux cours et à l'encadrement 
-                                               de prodigieux professeurs, un grand remerciement à eux.
-                                               
-                                               En la mémoire de Denis NGUYEN, 
-                                               ancien binôme et ancien étudiant de l'IUT Lyon 1.""", "À propos", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_aideMenuItemActionPerformed
  
     
+    
+    
+    /* === Autres méthodes === */
+    
+    
+    /**
+     * Configure et génère le groupe de Radiobutton
+     */
     private void generateListeFrame(){
         ListeFrame.setSize(1138, 800);
         ListeFrame.setLocationRelativeTo(null);
@@ -1361,7 +1395,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         lienButtonGroup.add(autoroutesRadioBouton);
     }
     
-    
+    /**
+     * Renvoie la liste des voisins du noeud entré en paramètre selon le type choisi dans la ComboBox de type {@link #typeNoeudComboBox}
+     * @param noeud Correspond au noeud sur laquelle on souhaite savoir ses voisins
+     * @return Retourne la liste des voisins en String
+     */
     private String afficherListeVoisins(GraphNoeud noeud){
         String listeVoisin = "";
         
@@ -1388,6 +1426,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         return listeVoisin;
     }
     
+    
+    /**
+     * Gère l'affichage dans les panels {@link #ecran2Panel} {@link #ecran3Panel} et du graphe lorsqu'on souhaite sélectionner un premier noeud
+     */
     private void selectPremierNoeud(){
         if (!attenteSelectionDeuxiemeNoeud){
             premierNoeudSelectedLabel1.setText("En attente de sélection...");
@@ -1398,6 +1440,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }
     
+    /**
+     * Idem que {@link #selectPremierNoeud()} mais pour la sélection d'un second noeud
+     */
     private void selectDeuxiemeNoeud(){
         if (!attenteSelectionPremierNoeud){
             deuxiemeNoeudSelectedLabel1.setText("En attente de sélection...");
@@ -1408,18 +1453,30 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }
     
+    /**
+     * Permet d'écrire le noeud du premier noeud sélectionné sur le label correspondant
+     */
     private void setTextPremierNoeud(){
         premierNoeudSelectedLabel1.setText(premierNoeud.toString());
         premierNoeudSelectedLabel2.setText(premierNoeud.toString());
         attenteSelectionPremierNoeud = false;
     }
     
+    /**
+     * Idem que {@link #setTextPremierNoeud()} mais pour la sélection d'un second noeud
+     */
     private void setTextDeuxiemeNoeud(){
         deuxiemeNoeudSelectedLabel1.setText(deuxiemeNoeud.toString());
         deuxiemeNoeudSelectedLabel2.setText(deuxiemeNoeud.toString());
         attenteSelectionDeuxiemeNoeud = false;
     }
     
+    /**
+     * Vérifie que les deux noeuds sélectionnés sont différents, sinon elle affiche un message d'avertissement
+     * @param noeud1 Correspond au premier noeud à comparer
+     * @param noeud2 Correspond au second noeud à comparer
+     * @return Retourne un boolean où false quand ils sont identiques, sinon true si différents.
+     */
     private boolean verifySameNoeud(GraphNoeud noeud1, GraphNoeud noeud2){
         if (noeud1 != null && noeud2 != null && noeud1.equals(noeud2)){
             JOptionPane warning = new JOptionPane();
@@ -1429,6 +1486,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         return true;
     }
     
+    /**
+     * Utilise la méthode {@link grama.deuxDistance()} pour savoir si les deux noeuds sélectionnés sont à deux distance et l'affiche dans le label de résultat
+     */
     private void afficher2Distance(){
         if (premierNoeud  != null && deuxiemeNoeud != null){
             if (grama.deuxDistance(premierNoeud.noeud, deuxiemeNoeud.noeud))
@@ -1438,6 +1498,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }
     
+    /**
+     * Utilise la méthode {@link #grama.compareVilles()} afin de comparer deux sites et affiche le résultat dans les labels correspondants
+     */
     private void afficherComparaison(){
         if (premierNoeud  != null && deuxiemeNoeud != null){
             boolean[] comparaison = grama.compareVilles(premierNoeud.noeud, deuxiemeNoeud.noeud);
@@ -1459,6 +1522,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }
     
+    /**
+     * Correspond à la méthode d'ouverture de fichier CSV ou txt pour charger un graphe.
+     */
     private void openFile(){
         openFileChooser.setFileFilter(new FileNameExtensionFilter("Document texte (*.txt)", "txt"));
         openFileChooser.setFileFilter(new FileNameExtensionFilter("Fichier CSV (*.csv)", "csv"));
@@ -1470,6 +1536,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             }
     }
     
+    /**
+     * Rénitialise les données d'un graphe ainsi que la map {@link #mapPanel}
+     */
     private void resetGraphe(){
         grama = new Graph();
         try {
@@ -1485,6 +1554,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     
     
     /**
+     * Méthode main, lancant l'application et l'ouverture de la fenêtre principale
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -1628,34 +1698,68 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     // End of variables declaration//GEN-END:variables
 
     /*** === Autres déclarations === ***/
+    /**
+     * Correspond au premier noeud sélectionné
+     */
     private GraphNoeud premierNoeud;
+    
+    /**
+     * Correspond au second noeud sélectionné
+     */
     private GraphNoeud deuxiemeNoeud;
+    
+    /**
+     * Correspond à un boolean permettant de savoir si le premier noeud est en attente de sélection
+     */
     private boolean attenteSelectionPremierNoeud;
+    
+    /**
+     * Correspond à un boolean permettant de savoir si le deuxième noeud est en attente de sélection
+     */
     private boolean attenteSelectionDeuxiemeNoeud;
 
+    
+    /* === Méthode de ecranListener === */
+    
+    /**
+     * Modifie les labels affichant les informations du noeud en paramètre
+     * @param noeud étant le noeud à afficher
+     */
     @Override
-    public void typeNoeudAffiche(GraphNoeud noeud) {
+    public void noeudAffiche(GraphNoeud noeud) {
         noeudSelectedLabel.setText(noeud.toString());
         voisinsTextArea.setText(afficherListeVoisins(noeud));
     }
 
+    /**
+     * Modifie l'activation du bouton de sélection du deuxième noeud selon l'état de sélection du premier
+     */
     @Override
     public void selectionPremierNoeud() {
         selectDeuxiemeNoeudBouton1.setEnabled(!attenteSelectionPremierNoeud);
         selectDeuxiemeNoeudBouton2.setEnabled(!attenteSelectionPremierNoeud);
     }
 
+    /**
+     * Idem que le précedent {@link #selectionPremierNoeud() mais pour le bouton du premier}
+     */
     @Override
     public void selectionDeuxiemeNoeud() {
         selectPremierNoeudBouton1.setEnabled(!attenteSelectionDeuxiemeNoeud);
         selectPremierNoeudBouton2.setEnabled(!attenteSelectionDeuxiemeNoeud);
     }
 
+    /**
+     * Gère l'activation de la fonction de rénitialisation
+     */
     @Override
     public void graphNotinitialized() {
         renitialiserMenuItem.setEnabled(grama != null);
     }
 
+    /**
+     * Permet d'annuler la sélection d'un noeud lorsque que l'on quitte un des panels de sélection {@link #ecran2Panel} {@link #ecran3Panel}
+     */
     @Override
     public void selectionAnnule() {
         if (attenteSelectionPremierNoeud){
