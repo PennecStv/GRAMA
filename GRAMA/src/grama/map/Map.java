@@ -463,7 +463,8 @@ public class Map extends JPanel{
 //                System.out.println("C'est clické !");
 //                deselectAllLinks();
 //                link.setSelected(true);
-
+            i = 0;
+            
             while (!isLinkClicked && i < listeGraphLien.size()){
                 link = listeGraphLien.get(i);
                 
