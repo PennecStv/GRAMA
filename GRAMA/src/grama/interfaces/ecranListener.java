@@ -4,10 +4,26 @@
  */
 package grama.interfaces;
 
+import grama.map.GraphNoeud;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Steve Pennec
  */
 public interface ecranListener {
     
+    public void graphNotinitialized();
+    
+    
+    public void typeNoeudAffiche(GraphNoeud noeud);
+    
+    
+    public void selectionPremierNoeud();
+    
+    
+    public void selectionDeuxiemeNoeud();
+    
+    
+    public void selectionAnnule();
 }

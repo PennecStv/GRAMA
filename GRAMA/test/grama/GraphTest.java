@@ -193,8 +193,8 @@ public class GraphTest {
         String nomNoeud2 = "";
         Graph instance = new Graph();
         boolean expResult = false;
-        boolean result = instance.deuxDistance(nomNoeud1, nomNoeud2);
-        assertEquals(expResult, result);
+        //boolean result = instance.deuxDistance(nomNoeud1, nomNoeud2);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

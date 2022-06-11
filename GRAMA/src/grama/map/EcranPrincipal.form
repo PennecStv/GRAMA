@@ -264,6 +264,15 @@
     </Component>
     <Component class="javax.swing.JFileChooser" name="openFileChooser">
     </Component>
+    <Component class="javax.swing.JOptionPane" name="aProposOptionPane">
+    </Component>
+    <Component class="javax.swing.JOptionPane" name="aideOptionPane">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fichierMenu">
@@ -315,6 +324,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Afficher l&apos;aide"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aideMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
             </MenuItem>
@@ -438,7 +450,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Light" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="0 - Distance"/>
+                <Property name="text" type="java.lang.String" value="Filtre"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ecran0BoutonActionPerformed"/>
@@ -449,7 +461,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Light" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="1 - Distance"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;Voisins et &lt;br&gt;extr&#xe9;mit&#xe9;s&lt;html&gt;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ecran1BoutonActionPerformed"/>
@@ -471,7 +483,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Light" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&gt;= 2 - Distance"/>
+                <Property name="text" type="java.lang.String" value="Comparaison"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ecran3BoutonActionPerformed"/>
@@ -482,7 +494,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Light" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="P - Distance"/>
+                <Property name="text" type="java.lang.String" value="Chemins"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -547,15 +559,12 @@
                                   <Component id="autoroutesCheckBox" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="titreEcran0" min="-2" pref="162" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="infoNombreEcran0" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="nombreEcran0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="titreEcran0" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -762,7 +771,7 @@
                   <Font name="Segoe UI Black" size="24" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="0 - Distance"/>
+                <Property name="text" type="java.lang.String" value="Filtre"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="nombreEcran0">
@@ -817,7 +826,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="titre1Distance" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="titreNoeudSelectedLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="noeudSelectedLabel" min="-2" max="-2" attributes="0"/>
@@ -858,7 +867,7 @@
                   <Font name="Segoe UI Black" size="24" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="1 - distance"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;Voisins et &lt;br&gt;extr&#xe9;mit&#xe9;s&lt;html&gt;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="titreNoeudSelectedLabel">
@@ -888,6 +897,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typeNoeudComboBoxActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -1250,7 +1262,7 @@
                   <Font name="Segoe UI Black" size="24" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="+ 2 - Distance"/>
+                <Property name="text" type="java.lang.String" value="Comparaison"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="titreOuvertLabel">

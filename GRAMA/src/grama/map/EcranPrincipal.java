@@ -5,6 +5,7 @@
 package grama.map;
 
 import grama.Graph;
+import grama.interfaces.ecranListener;
 import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,7 +14,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -21,10 +24,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Steve Pennec
  */
-public class EcranPrincipal extends javax.swing.JFrame{
-
-    Graph grama = new Graph();
-    String fichier;
+public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
+    
+    Graph grama;
+    String fichier = "Graphe.csv";
     
     
     /**
@@ -32,21 +35,25 @@ public class EcranPrincipal extends javax.swing.JFrame{
      */
     public EcranPrincipal() throws IOException {
         initComponents();
+        
+        grama = new Graph();
         initGraph();
-        initMap();
         setLocationRelativeTo(null);
         
-        
+        ImageIcon img = new ImageIcon("icon/GRAMA icon.png");
+        setIconImage(img.getImage());
     }
 
     
     
     private void initGraph() throws IOException{
-        if (fichier != null){
+        //if (fichier != null){
             String fichierGraphe = grama.ouvrirGraphe(fichier);
             grama.creationListe(fichierGraphe);
             grama.creationListeTypee();
-        }
+            
+            initMap();
+        //}
             
     }
     
@@ -84,6 +91,9 @@ public class EcranPrincipal extends javax.swing.JFrame{
         noeudButtonGroup = new javax.swing.ButtonGroup();
         lienButtonGroup = new javax.swing.ButtonGroup();
         openFileChooser = new javax.swing.JFileChooser();
+        aProposOptionPane = new javax.swing.JOptionPane();
+        aideOptionPane = new javax.swing.JOptionPane();
+        jLabel1 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
         ecran0Bouton = new javax.swing.JButton();
@@ -322,6 +332,8 @@ public class EcranPrincipal extends javax.swing.JFrame{
             .addComponent(listePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel1.setText("jLabel1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph Map Analysis");
 
@@ -329,7 +341,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
         menuPanel.setLayout(new java.awt.CardLayout());
 
         ecran0Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
-        ecran0Bouton.setText("0 - Distance");
+        ecran0Bouton.setText("Filtre");
         ecran0Bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ecran0BoutonActionPerformed(evt);
@@ -337,7 +349,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
         });
 
         ecran1Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
-        ecran1Bouton.setText("1 - Distance");
+        ecran1Bouton.setText("<html>Voisins et <br>extrémités<html>");
         ecran1Bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ecran1BoutonActionPerformed(evt);
@@ -353,7 +365,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
         });
 
         ecran3Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
-        ecran3Bouton.setText(">= 2 - Distance");
+        ecran3Bouton.setText("Comparaison");
         ecran3Bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ecran3BoutonActionPerformed(evt);
@@ -361,7 +373,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
         });
 
         ecran4Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
-        ecran4Bouton.setText("P - Distance");
+        ecran4Bouton.setText("Chemins");
         ecran4Bouton.setEnabled(false);
         ecran4Bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -386,7 +398,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titreEcranPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran0Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ecran1Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ecran1Bouton)
                     .addComponent(ecran2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran3Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran4Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -512,7 +524,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
 
         titreEcran0.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         titreEcran0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titreEcran0.setText("0 - Distance");
+        titreEcran0.setText("Filtre");
 
         nombreEcran0.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -541,12 +553,10 @@ public class EcranPrincipal extends javax.swing.JFrame{
                             .addComponent(villesCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(autoroutesCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(ecran0PanelLayout.createSequentialGroup()
-                        .addComponent(titreEcran0, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(ecran0PanelLayout.createSequentialGroup()
                         .addComponent(infoNombreEcran0)
                         .addGap(18, 18, 18)
-                        .addComponent(nombreEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(nombreEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(titreEcran0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ecran0PanelLayout.setVerticalGroup(
@@ -599,7 +609,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
 
         titre1Distance.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         titre1Distance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titre1Distance.setText("1 - distance");
+        titre1Distance.setText("<html>Voisins et <br>extrémités<html>");
 
         titreNoeudSelectedLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         titreNoeudSelectedLabel.setText("Noeud séléctionné:");
@@ -608,6 +618,11 @@ public class EcranPrincipal extends javax.swing.JFrame{
         titreLienSelectedLabel.setText("Lien séléctionné:");
 
         typeNoeudComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Villes", "Restaurants", "Centres de loisir" }));
+        typeNoeudComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeNoeudComboBoxActionPerformed(evt);
+            }
+        });
 
         noeudSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         noeudSelectedLabel.setText("Aucun noeud sélectionné");
@@ -636,7 +651,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(retour1Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titre1Distance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titre1Distance)
                     .addComponent(titreNoeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(typeNoeudComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ecran1PanelLayout.createSequentialGroup()
@@ -654,8 +669,8 @@ public class EcranPrincipal extends javax.swing.JFrame{
             ecran1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ecran1PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titre1Distance)
-                .addGap(40, 40, 40)
+                .addComponent(titre1Distance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(titreNoeudSelectedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(noeudSelectedLabel)
@@ -818,7 +833,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
 
         titrePlus2Distance.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         titrePlus2Distance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titrePlus2Distance.setText("+ 2 - Distance");
+        titrePlus2Distance.setText("Comparaison");
 
         titreOuvertLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         titreOuvertLabel.setText("Le plus OUVERT:");
@@ -1000,6 +1015,11 @@ public class EcranPrincipal extends javax.swing.JFrame{
         aideMenu.setText("Aide");
 
         aideMenuItem.setText("Afficher l'aide");
+        aideMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aideMenuItemActionPerformed(evt);
+            }
+        });
         aideMenu.add(aideMenuItem);
         aideMenu.add(jSeparator2);
 
@@ -1062,10 +1082,9 @@ public class EcranPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_ecran2BoutonActionPerformed
 
     private void retour2BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour2BoutonActionPerformed
-        //if (!attenteSelectionDeuxiemeNoeud && !attenteSelectionPremierNoeud){
-            CardLayout cl = (CardLayout)(menuPanel.getLayout());
-            cl.show(menuPanel, "cardPrincipal");
-        //}
+        CardLayout cl = (CardLayout)(menuPanel.getLayout());
+        cl.show(menuPanel, "cardPrincipal");
+        selectionAnnule();
     }//GEN-LAST:event_retour2BoutonActionPerformed
 
     private void ecran3BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran3BoutonActionPerformed
@@ -1076,6 +1095,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
     private void retour3BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour3BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "cardPrincipal");
+        selectionAnnule();
     }//GEN-LAST:event_retour3BoutonActionPerformed
 
     private void ecran4BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran4BoutonActionPerformed
@@ -1209,8 +1229,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
         GraphLien lien = mapGraphe.getSelectedLink();
         
         if (noeud != null){
-            noeudSelectedLabel.setText(noeud.toString());
-            voisinsTextArea.setText(afficherListeVoisins(noeud));
+            typeNoeudAffiche(noeud);
             
             if (attenteSelectionPremierNoeud){
                 premierNoeud = mapGraphe.getSelectedNode();
@@ -1218,14 +1237,16 @@ public class EcranPrincipal extends javax.swing.JFrame{
                 if (verifySameNoeud(premierNoeud, deuxiemeNoeud)){
                     setTextPremierNoeud();
                 }
+                selectionPremierNoeud();
             }
             
             if (attenteSelectionDeuxiemeNoeud){
                 deuxiemeNoeud = mapGraphe.getSelectedNode();
                 
                 if (verifySameNoeud(premierNoeud, deuxiemeNoeud)){
-                    setTextDeuxièmeNoeud();
+                    setTextDeuxiemeNoeud();
                 }
+                selectionDeuxiemeNoeud();
             }
         }
         
@@ -1243,6 +1264,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
 
     private void selectPremierNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton1ActionPerformed
         selectPremierNoeud();
+        selectionPremierNoeud();
     }//GEN-LAST:event_selectPremierNoeudBouton1ActionPerformed
 
     private void selectPremierNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton2ActionPerformed
@@ -1267,10 +1289,12 @@ public class EcranPrincipal extends javax.swing.JFrame{
 
     private void selectDeuxiemeNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton1ActionPerformed
         selectDeuxiemeNoeud();
+        selectionDeuxiemeNoeud();
     }//GEN-LAST:event_selectDeuxiemeNoeudBouton1ActionPerformed
 
     private void selectDeuxiemeNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton2ActionPerformed
         selectDeuxiemeNoeud();
+        selectionDeuxiemeNoeud();
     }//GEN-LAST:event_selectDeuxiemeNoeudBouton2ActionPerformed
 
     private void selectPremierNoeudBouton2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton2PropertyChange
@@ -1281,7 +1305,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_selectPremierNoeudBouton2PropertyChange
 
     private void renitialiserMenuItemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_renitialiserMenuItemPropertyChange
-        renitialiserMenuItem.setEnabled(grama != null);
+        graphNotinitialized();
     }//GEN-LAST:event_renitialiserMenuItemPropertyChange
 
     private void quitterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterMenuItemActionPerformed
@@ -1295,6 +1319,32 @@ public class EcranPrincipal extends javax.swing.JFrame{
     private void ouvrirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirMenuItemActionPerformed
         openFile();
     }//GEN-LAST:event_ouvrirMenuItemActionPerformed
+
+    private void typeNoeudComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeNoeudComboBoxActionPerformed
+        typeNoeudAffiche(mapGraphe.getSelectedNode());
+    }//GEN-LAST:event_typeNoeudComboBoxActionPerformed
+
+    private void aideMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aideMenuItemActionPerformed
+        ImageIcon icon = new ImageIcon("icon/GRAMA icon full2.png");
+        
+        aideOptionPane.showMessageDialog(this, """
+                                               GRAMA - Graph Map Analysis
+                                               Version 1.0
+                                               Créateur: Steve PENNEC en G5S2B
+                                               département informatique de l'IUT Lyon 1
+                                               Année de sortie: 2022
+                                               Application entièrement libre de droit.
+                                               
+                                               Cette application a été conçue dans le cadre
+                                               de la SAÉ S2.01 - Développement d'application.
+                                               Sa mise en place a été rendue possible 
+                                               grâce à du sang et de la sueur 
+                                               mais aussi grâce aux cours et à l'encadrement 
+                                               de prodigieux professeurs, un grand remerciement à eux.
+                                               
+                                               En la mémoire de Denis NGUYEN, 
+                                               ancien binôme et ancien étudiant de l'IUT Lyon 1.""", "À propos", JOptionPane.INFORMATION_MESSAGE, icon);
+    }//GEN-LAST:event_aideMenuItemActionPerformed
  
     
     private void generateListeFrame(){
@@ -1345,9 +1395,6 @@ public class EcranPrincipal extends javax.swing.JFrame{
             mapGraphe.unselectAllNodes();
             attenteSelectionPremierNoeud = true;
             mapPanel.repaint();
-        }else{
-            JOptionPane warning = new JOptionPane();
-            warning.showMessageDialog(this, "Veuillez d'abord choisir le deuxième noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -1358,9 +1405,6 @@ public class EcranPrincipal extends javax.swing.JFrame{
             mapGraphe.unselectAllNodes();
             attenteSelectionDeuxiemeNoeud = true;
             mapPanel.repaint();
-        }else{
-            JOptionPane warning = new JOptionPane();
-            warning.showMessageDialog(this, "Veuillez d'abord choisir le premier noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -1370,7 +1414,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
         attenteSelectionPremierNoeud = false;
     }
     
-    private void setTextDeuxièmeNoeud(){
+    private void setTextDeuxiemeNoeud(){
         deuxiemeNoeudSelectedLabel1.setText(deuxiemeNoeud.toString());
         deuxiemeNoeudSelectedLabel2.setText(deuxiemeNoeud.toString());
         attenteSelectionDeuxiemeNoeud = false;
@@ -1483,8 +1527,10 @@ public class EcranPrincipal extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AProposMenuItem;
     private javax.swing.JFrame ListeFrame;
+    private javax.swing.JOptionPane aProposOptionPane;
     private javax.swing.JMenu aideMenu;
     private javax.swing.JMenuItem aideMenuItem;
+    private javax.swing.JOptionPane aideOptionPane;
     private javax.swing.JCheckBox autoroutesCheckBox;
     private javax.swing.JRadioButton autoroutesRadioBouton;
     private javax.swing.JCheckBox depCheckBox;
@@ -1504,6 +1550,7 @@ public class EcranPrincipal extends javax.swing.JFrame{
     private javax.swing.JTextArea extremiteTextArea;
     private javax.swing.JMenu fichierMenu;
     private javax.swing.JLabel infoNombreEcran0;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1585,4 +1632,42 @@ public class EcranPrincipal extends javax.swing.JFrame{
     private GraphNoeud deuxiemeNoeud;
     private boolean attenteSelectionPremierNoeud;
     private boolean attenteSelectionDeuxiemeNoeud;
+
+    @Override
+    public void typeNoeudAffiche(GraphNoeud noeud) {
+        noeudSelectedLabel.setText(noeud.toString());
+        voisinsTextArea.setText(afficherListeVoisins(noeud));
+    }
+
+    @Override
+    public void selectionPremierNoeud() {
+        selectDeuxiemeNoeudBouton1.setEnabled(!attenteSelectionPremierNoeud);
+        selectDeuxiemeNoeudBouton2.setEnabled(!attenteSelectionPremierNoeud);
+    }
+
+    @Override
+    public void selectionDeuxiemeNoeud() {
+        selectPremierNoeudBouton1.setEnabled(!attenteSelectionDeuxiemeNoeud);
+        selectPremierNoeudBouton2.setEnabled(!attenteSelectionDeuxiemeNoeud);
+    }
+
+    @Override
+    public void graphNotinitialized() {
+        renitialiserMenuItem.setEnabled(grama != null);
+    }
+
+    @Override
+    public void selectionAnnule() {
+        if (attenteSelectionPremierNoeud){
+            premierNoeudSelectedLabel1.setText("Aucun noeud sélectionné");
+            premierNoeudSelectedLabel2.setText("Aucun noeud sélectionné");
+            attenteSelectionPremierNoeud = false;
+            selectionPremierNoeud();
+        } else if (attenteSelectionDeuxiemeNoeud){
+            deuxiemeNoeudSelectedLabel1.setText("Aucun noeud sélectionné");
+            deuxiemeNoeudSelectedLabel2.setText("Aucun noeud sélectionné");
+            attenteSelectionDeuxiemeNoeud = false;
+            selectionDeuxiemeNoeud();
+        }
+    }
 }
