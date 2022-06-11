@@ -7,7 +7,6 @@ package grama.map;
 import grama.Lien;
 import grama.Noeud;
 import java.awt.Color;
-import java.util.ArrayList;
 
 /**
  *
@@ -67,6 +66,7 @@ public class GraphNoeud{
     public String getTypeLieu(){
         return noeud.getTypeLieu();
     }
+    
     
     public String afficherVoisins(String type){
         String text = "";

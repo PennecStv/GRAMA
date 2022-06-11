@@ -8,6 +8,6 @@ package grama.interfaces;
  *
  * @author Steve Pennec
  */
-public interface Ecran {
+public interface ecranListener {
     
 }

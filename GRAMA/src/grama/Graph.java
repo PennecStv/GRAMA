@@ -313,17 +313,13 @@ public class Graph {
     /*---------------------------------------------------------*/
     
     /* === Vérification si deux noeuds donnés sont bien à deux distance === */
-    public boolean deuxDistance(String nomNoeud1, String nomNoeud2){
-        Noeud noeud1 = recherche(nomNoeud1);
-        Noeud noeud2 = recherche(nomNoeud2);
+    public boolean deuxDistance( Noeud noeud1, Noeud noeud2){
         
         for (Noeud tempNoeud : noeud1.getVoisin()){
             if (noeud2.getVoisin().contains(tempNoeud)){
-                //System.out.println(nomNoeud1 + " et " + nomNoeud2 + " sont à deux distance.");
                 return true;
             }
         }
-        //System.out.println(nomNoeud1 + " et " + nomNoeud2 + " ne sont pas à deux distance.");
         return false;
     }
     
@@ -334,44 +330,34 @@ public class Graph {
     /*-----------------------------------------------------------*/
     
     
-    public void compareVilles(String nomNoeud1, String nomNoeud2){
-        Noeud noeud1 = recherche(nomNoeud1);
-        Noeud noeud2 = recherche(nomNoeud2);
+    public boolean[] compareVilles(Noeud noeud1, Noeud noeud2){
         
-        if (noeud1.getTypeLieu().equals("V") && noeud2.getTypeLieu().equals("V")){
+        boolean[] result = new boolean[3];
+        
+        //if (noeud1.getTypeLieu().equals("V") && noeud2.getTypeLieu().equals("V")){
             
-            if (compteDeuxDistances(nomNoeud1, nomNoeud2, listeVilles)){
-                System.out.println(nomNoeud1 + " est plus OUVERT que " + nomNoeud2);
-            } else {
-                System.out.println(nomNoeud1 + " est moins OUVERT que " + nomNoeud2);
-            }
+            result[0] = compteDeuxDistances(noeud1, noeud2, listeVilles);
             
-            if (compteDeuxDistances(nomNoeud1, nomNoeud2, listeRestaurants)){
-                System.out.println(nomNoeud1 + " est plus GASTRONOMIQUE que " + nomNoeud2);
-            } else {
-                System.out.println(nomNoeud1 + " est moins GASTRONOMIQUE que " + nomNoeud2);
-            }
+            result[1] = compteDeuxDistances(noeud1, noeud2, listeRestaurants);
             
-            if (compteDeuxDistances(nomNoeud1, nomNoeud2, listeLoisirs)){
-                System.out.println(nomNoeud1 + " est plus CULTURELLE que " + nomNoeud2);
-            } else {
-                System.out.println(nomNoeud1 + " est moins CULTURELLE que " + nomNoeud2);
-            }    
-        }
+            result[2] = compteDeuxDistances(noeud1, noeud2, listeLoisirs);
+        //}
+        
+        return result;
     }
     
     
     /* === Compte le nombre de noeuds à distance des deux noeuds entrés en paramètre ===
        === et vérifie si le premier en a plus que le second                          === */
-    public boolean compteDeuxDistances(String nomNoeud1, String nomNoeud2, ArrayList<Noeud> liste){
+    public boolean compteDeuxDistances(Noeud noeud1, Noeud noeud2, ArrayList<Noeud> liste){
         int nbNoeud1 = 0;
         int nbNoeud2 = 0;
         
         for (Noeud noeud : liste){
-                if (deuxDistance(nomNoeud1, noeud.getNomLieu())){
+                if (deuxDistance(noeud1, noeud)){
                     nbNoeud1++;
                 }
-                if (deuxDistance(nomNoeud2, noeud.getNomLieu())){
+                if (deuxDistance(noeud2, noeud)){
                     nbNoeud2++;
                 }
             }

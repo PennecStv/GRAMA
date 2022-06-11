@@ -8,19 +8,23 @@ import grama.Graph;
 import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author Steve Pennec
  */
-public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
+public class EcranPrincipal extends javax.swing.JFrame{
 
     Graph grama = new Graph();
+    String fichier;
     
     
     /**
@@ -38,9 +42,12 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     
     
     private void initGraph() throws IOException{
-        String fichierGraphe = grama.ouvrirGraphe("Graphe.csv");
-        grama.creationListe(fichierGraphe);
-        grama.creationListeTypee();
+        if (fichier != null){
+            String fichierGraphe = grama.ouvrirGraphe(fichier);
+            grama.creationListe(fichierGraphe);
+            grama.creationListeTypee();
+        }
+            
     }
     
     private void initMap(){
@@ -76,6 +83,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         jSeparator3 = new javax.swing.JSeparator();
         noeudButtonGroup = new javax.swing.ButtonGroup();
         lienButtonGroup = new javax.swing.ButtonGroup();
+        openFileChooser = new javax.swing.JFileChooser();
         menuPanel = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
         ecran0Bouton = new javax.swing.JButton();
@@ -127,10 +135,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         resultatLabel = new javax.swing.JLabel();
         ecran3Panel = new javax.swing.JPanel();
         retour3Bouton = new javax.swing.JButton();
-        selectPremierNoeudBouton2 = new javax.swing.JButton();
+        selectDeuxiemeNoeudBouton2 = new javax.swing.JButton();
         deuxiemeNoeudSelectedLabel2 = new javax.swing.JLabel();
         titreDeuxiemeNoeudSelectedLabel2 = new javax.swing.JLabel();
-        selectDeuxiemeNoeudBouton2 = new javax.swing.JButton();
+        selectPremierNoeudBouton2 = new javax.swing.JButton();
         titrePremierNoeudSelectedLabel2 = new javax.swing.JLabel();
         premierNoeudSelectedLabel2 = new javax.swing.JLabel();
         titrePlus2Distance = new javax.swing.JLabel();
@@ -144,9 +152,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         retour4Bouton = new javax.swing.JButton();
         mapPanel = new javax.swing.JPanel();
         mapGraphe = new grama.map.Map();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         ouvrirMenuItem = new javax.swing.JMenuItem();
+        renitialiserMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         quitterMenuItem = new javax.swing.JMenuItem();
         aideMenu = new javax.swing.JMenu();
@@ -774,8 +783,13 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             }
         });
 
-        selectPremierNoeudBouton2.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
-        selectPremierNoeudBouton2.setText("Choisir Deuxième Noeud");
+        selectDeuxiemeNoeudBouton2.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        selectDeuxiemeNoeudBouton2.setText("Choisir Deuxième Noeud");
+        selectDeuxiemeNoeudBouton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectDeuxiemeNoeudBouton2ActionPerformed(evt);
+            }
+        });
 
         deuxiemeNoeudSelectedLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         deuxiemeNoeudSelectedLabel2.setText("Aucun noeud sélectionné");
@@ -783,11 +797,16 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         titreDeuxiemeNoeudSelectedLabel2.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         titreDeuxiemeNoeudSelectedLabel2.setText("Deuxième noeud sélectionné:");
 
-        selectDeuxiemeNoeudBouton2.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
-        selectDeuxiemeNoeudBouton2.setText("Choisir Premier Noeud");
-        selectDeuxiemeNoeudBouton2.addActionListener(new java.awt.event.ActionListener() {
+        selectPremierNoeudBouton2.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        selectPremierNoeudBouton2.setText("Choisir Premier Noeud");
+        selectPremierNoeudBouton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectDeuxiemeNoeudBouton2ActionPerformed(evt);
+                selectPremierNoeudBouton2ActionPerformed(evt);
+            }
+        });
+        selectPremierNoeudBouton2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                selectPremierNoeudBouton2PropertyChange(evt);
             }
         });
 
@@ -829,8 +848,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                     .addComponent(titrePlus2Distance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titrePremierNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(premierNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selectDeuxiemeNoeudBouton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selectPremierNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(selectPremierNoeudBouton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectDeuxiemeNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(titreDeuxiemeNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(deuxiemeNoeudSelectedLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(resultatCulturelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -852,13 +871,13 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(premierNoeudSelectedLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(selectDeuxiemeNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectPremierNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(titreDeuxiemeNoeudSelectedLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(deuxiemeNoeudSelectedLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(selectPremierNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectDeuxiemeNoeudBouton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(titreOuvertLabel)
                 .addGap(10, 10, 10)
@@ -946,13 +965,37 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
 
         ouvrirMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         ouvrirMenuItem.setText("Ouvrir un Graphe");
+        ouvrirMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ouvrirMenuItemActionPerformed(evt);
+            }
+        });
         fichierMenu.add(ouvrirMenuItem);
+
+        renitialiserMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        renitialiserMenuItem.setText("Rénitialiser le Graphe");
+        renitialiserMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renitialiserMenuItemActionPerformed(evt);
+            }
+        });
+        renitialiserMenuItem.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                renitialiserMenuItemPropertyChange(evt);
+            }
+        });
+        fichierMenu.add(renitialiserMenuItem);
         fichierMenu.add(jSeparator1);
 
         quitterMenuItem.setText("Quitter");
+        quitterMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitterMenuItemActionPerformed(evt);
+            }
+        });
         fichierMenu.add(quitterMenuItem);
 
-        jMenuBar1.add(fichierMenu);
+        menuBar.add(fichierMenu);
 
         aideMenu.setText("Aide");
 
@@ -968,9 +1011,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         });
         aideMenu.add(AProposMenuItem);
 
-        jMenuBar1.add(aideMenu);
+        menuBar.add(aideMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1019,8 +1062,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     }//GEN-LAST:event_ecran2BoutonActionPerformed
 
     private void retour2BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour2BoutonActionPerformed
-        CardLayout cl = (CardLayout)(menuPanel.getLayout());
-        cl.show(menuPanel, "cardPrincipal");
+        //if (!attenteSelectionDeuxiemeNoeud && !attenteSelectionPremierNoeud){
+            CardLayout cl = (CardLayout)(menuPanel.getLayout());
+            cl.show(menuPanel, "cardPrincipal");
+        //}
     }//GEN-LAST:event_retour2BoutonActionPerformed
 
     private void ecran3BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran3BoutonActionPerformed
@@ -1169,16 +1214,18 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             
             if (attenteSelectionPremierNoeud){
                 premierNoeud = mapGraphe.getSelectedNode();
-                premierNoeudSelectedLabel1.setText(premierNoeud.toString());
-                premierNoeudSelectedLabel2.setText(premierNoeud.toString());
-                attenteSelectionPremierNoeud = false;
+                
+                if (verifySameNoeud(premierNoeud, deuxiemeNoeud)){
+                    setTextPremierNoeud();
+                }
             }
             
             if (attenteSelectionDeuxiemeNoeud){
                 deuxiemeNoeud = mapGraphe.getSelectedNode();
-                deuxiemeNoeudSelectedLabel1.setText(deuxiemeNoeud.toString());
-                deuxiemeNoeudSelectedLabel2.setText(deuxiemeNoeud.toString());
-                attenteSelectionDeuxiemeNoeud = false;
+                
+                if (verifySameNoeud(premierNoeud, deuxiemeNoeud)){
+                    setTextDeuxièmeNoeud();
+                }
             }
         }
         
@@ -1187,23 +1234,20 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
             extremiteTextArea.setText("Depart - " + lien.getNoeudDepart() +
                                       "\nArrivee - " + lien.getNoeudArrivee());
         }
+    
+        if (!attenteSelectionDeuxiemeNoeud && !attenteSelectionPremierNoeud){
+            afficher2Distance();
+            afficherComparaison();
+        }
     }//GEN-LAST:event_mapGrapheMouseClicked
 
     private void selectPremierNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton1ActionPerformed
-        if (!attenteSelectionDeuxiemeNoeud){
-            premierNoeudSelectedLabel1.setText("En attente de sélection...");
-            mapGraphe.unselectAllNodes();
-            attenteSelectionPremierNoeud = true;
-            mapPanel.repaint();
-        }else{
-            JOptionPane warning = new JOptionPane();
-            warning.showMessageDialog(this, "Veuillez d'abord choisir le deuxième noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
-        }
+        selectPremierNoeud();
     }//GEN-LAST:event_selectPremierNoeudBouton1ActionPerformed
 
-    private void selectDeuxiemeNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton2ActionPerformed
-        
-    }//GEN-LAST:event_selectDeuxiemeNoeudBouton2ActionPerformed
+    private void selectPremierNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton2ActionPerformed
+        selectPremierNoeud();
+    }//GEN-LAST:event_selectPremierNoeudBouton2ActionPerformed
 
     private void mapGrapheMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapGrapheMouseReleased
         GraphNoeud noeud = mapGraphe.getSelectedNode();
@@ -1222,16 +1266,35 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     }//GEN-LAST:event_mapGrapheMouseReleased
 
     private void selectDeuxiemeNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton1ActionPerformed
-        if (!attenteSelectionPremierNoeud){
-            deuxiemeNoeudSelectedLabel1.setText("En attente de sélection...");
-            mapGraphe.unselectAllNodes();
-            attenteSelectionDeuxiemeNoeud = true;
-            mapPanel.repaint();
-        }else{
-            JOptionPane warning = new JOptionPane();
-            warning.showMessageDialog(this, "Veuillez d'abord choisir le premier noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
-        }
+        selectDeuxiemeNoeud();
     }//GEN-LAST:event_selectDeuxiemeNoeudBouton1ActionPerformed
+
+    private void selectDeuxiemeNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton2ActionPerformed
+        selectDeuxiemeNoeud();
+    }//GEN-LAST:event_selectDeuxiemeNoeudBouton2ActionPerformed
+
+    private void selectPremierNoeudBouton2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton2PropertyChange
+        if (attenteSelectionDeuxiemeNoeud)
+            selectPremierNoeudBouton1.setEnabled(false);
+        else
+            selectPremierNoeudBouton1.setEnabled(true);
+    }//GEN-LAST:event_selectPremierNoeudBouton2PropertyChange
+
+    private void renitialiserMenuItemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_renitialiserMenuItemPropertyChange
+        renitialiserMenuItem.setEnabled(grama != null);
+    }//GEN-LAST:event_renitialiserMenuItemPropertyChange
+
+    private void quitterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_quitterMenuItemActionPerformed
+
+    private void renitialiserMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renitialiserMenuItemActionPerformed
+        resetGraphe();
+    }//GEN-LAST:event_renitialiserMenuItemActionPerformed
+
+    private void ouvrirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirMenuItemActionPerformed
+        openFile();
+    }//GEN-LAST:event_ouvrirMenuItemActionPerformed
  
     
     private void generateListeFrame(){
@@ -1275,6 +1338,105 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
         return listeVoisin;
     }
     
+    private void selectPremierNoeud(){
+        if (!attenteSelectionDeuxiemeNoeud){
+            premierNoeudSelectedLabel1.setText("En attente de sélection...");
+            premierNoeudSelectedLabel2.setText("En attente de sélection...");
+            mapGraphe.unselectAllNodes();
+            attenteSelectionPremierNoeud = true;
+            mapPanel.repaint();
+        }else{
+            JOptionPane warning = new JOptionPane();
+            warning.showMessageDialog(this, "Veuillez d'abord choisir le deuxième noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    private void selectDeuxiemeNoeud(){
+        if (!attenteSelectionPremierNoeud){
+            deuxiemeNoeudSelectedLabel1.setText("En attente de sélection...");
+            deuxiemeNoeudSelectedLabel2.setText("En attente de sélection...");
+            mapGraphe.unselectAllNodes();
+            attenteSelectionDeuxiemeNoeud = true;
+            mapPanel.repaint();
+        }else{
+            JOptionPane warning = new JOptionPane();
+            warning.showMessageDialog(this, "Veuillez d'abord choisir le premier noeud !", "Erreur", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    private void setTextPremierNoeud(){
+        premierNoeudSelectedLabel1.setText(premierNoeud.toString());
+        premierNoeudSelectedLabel2.setText(premierNoeud.toString());
+        attenteSelectionPremierNoeud = false;
+    }
+    
+    private void setTextDeuxièmeNoeud(){
+        deuxiemeNoeudSelectedLabel1.setText(deuxiemeNoeud.toString());
+        deuxiemeNoeudSelectedLabel2.setText(deuxiemeNoeud.toString());
+        attenteSelectionDeuxiemeNoeud = false;
+    }
+    
+    private boolean verifySameNoeud(GraphNoeud noeud1, GraphNoeud noeud2){
+        if (noeud1 != null && noeud2 != null && noeud1.equals(noeud2)){
+            JOptionPane warning = new JOptionPane();
+            warning.showMessageDialog(this, "Les noeuds sélectionnés doivent être différents", "Erreur", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } 
+        return true;
+    }
+    
+    private void afficher2Distance(){
+        if (premierNoeud  != null && deuxiemeNoeud != null){
+            if (grama.deuxDistance(premierNoeud.noeud, deuxiemeNoeud.noeud))
+                resultatLabel.setText("Ils sont à 2 distance.");
+            else
+                resultatLabel.setText("Ils ne sont pas à 2 distance.");  
+        }
+    }
+    
+    private void afficherComparaison(){
+        if (premierNoeud  != null && deuxiemeNoeud != null){
+            boolean[] comparaison = grama.compareVilles(premierNoeud.noeud, deuxiemeNoeud.noeud);
+            
+            if (comparaison[0])
+                resultatOuvertLabel.setText(premierNoeud.toString());
+            else
+                resultatOuvertLabel.setText(deuxiemeNoeud.toString());
+            
+            if (comparaison[1])
+                resultatGastroLabel.setText(premierNoeud.toString());
+            else
+                resultatGastroLabel.setText(deuxiemeNoeud.toString());
+           
+            if (comparaison[2])
+                resultatCulturelLabel.setText(premierNoeud.toString());
+            else
+                resultatCulturelLabel.setText(deuxiemeNoeud.toString());
+        }
+    }
+    
+    private void openFile(){
+        openFileChooser.setFileFilter(new FileNameExtensionFilter("Document texte (*.txt)", "txt"));
+        openFileChooser.setFileFilter(new FileNameExtensionFilter("Fichier CSV (*.csv)", "csv"));
+        int returnVal = openFileChooser.showOpenDialog(this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = openFileChooser.getSelectedFile();
+                fichier = file.getAbsolutePath();
+                resetGraphe(); 
+            }
+    }
+    
+    private void resetGraphe(){
+        grama = new Graph();
+        try {
+            initGraph();
+        } catch (IOException ex) {
+            Logger.getLogger(EcranPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mapGraphe.reset();
+        initMap();
+        mapPanel.repaint();
+    }
     
     
     
@@ -1343,7 +1505,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JMenu fichierMenu;
     private javax.swing.JLabel infoNombreEcran0;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1360,6 +1521,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JRadioButton loisirRadioBouton;
     private grama.map.Map mapGraphe;
     private javax.swing.JPanel mapPanel;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JCheckBox natioCheckBox;
     private javax.swing.JRadioButton natioRadioBouton;
@@ -1368,11 +1530,13 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JTextArea noeudsTextArea;
     private javax.swing.JComboBox<String> nombreComboBox;
     private javax.swing.JLabel nombreEcran0;
+    private javax.swing.JFileChooser openFileChooser;
     private javax.swing.JMenuItem ouvrirMenuItem;
     private javax.swing.JLabel premierNoeudSelectedLabel1;
     private javax.swing.JLabel premierNoeudSelectedLabel2;
     private javax.swing.JPanel principalPanel;
     private javax.swing.JMenuItem quitterMenuItem;
+    private javax.swing.JMenuItem renitialiserMenuItem;
     private javax.swing.JRadioButton resRadioBouton;
     private javax.swing.JCheckBox restoCheckBox;
     private javax.swing.JLabel resultatCulturelLabel;
@@ -1421,29 +1585,4 @@ public class EcranPrincipal extends javax.swing.JFrame implements MouseListener{
     private GraphNoeud deuxiemeNoeud;
     private boolean attenteSelectionPremierNoeud;
     private boolean attenteSelectionDeuxiemeNoeud;
-    
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

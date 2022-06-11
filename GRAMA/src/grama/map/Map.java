@@ -50,8 +50,8 @@ public class Map extends JPanel{
 //    private ArrayList<Noeud> listeNoeud = new ArrayList<>();
 //    private ArrayList<Lien> listeLien   = new ArrayList<>();
     
-    private final ArrayList<GraphNoeud> listeGraphNoeud = new ArrayList<>();
-    private final ArrayList<GraphLien> listeGraphLien   = new ArrayList<>();
+    private ArrayList<GraphNoeud> listeGraphNoeud  = new ArrayList<>();
+    private ArrayList<GraphLien> listeGraphLien    = new ArrayList<>();
     
     /***  Noeuds et Liens de Test ***/
     Noeud noeud1 = new Noeud("V", "Villeurbanne");
@@ -140,8 +140,8 @@ public class Map extends JPanel{
                 java.awt.RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
         if (listeSelectedTypeNoeud.isEmpty() && listeSelectedTypeLien.isEmpty()){
-            paintLiens(g2d);
-            paintNoeuds(g2d);
+            paintAllLiens(g2d);
+            paintAllNoeuds(g2d);
         } else {
             paintLiensTypee(g2d);
             paintNoeudsTypee(g2d);
@@ -154,12 +154,11 @@ public class Map extends JPanel{
     /* ============================================= */
     
     public final void reset(){
-        //this.designerListener = null;
-        this.mouseListener = null;
-        repaint();
+        this.listeGraphNoeud  = new ArrayList<>();
+        this.listeGraphLien   = new ArrayList<>();
     }
     
-    private void paintLiens(Graphics2D g2d){
+    private void paintAllLiens(Graphics2D g2d){
         for (GraphLien lien : listeGraphLien){
             paintLien(g2d, lien);
         }
@@ -198,7 +197,7 @@ public class Map extends JPanel{
     }
     
     
-    private void paintNoeuds(Graphics2D g2d){
+    private void paintAllNoeuds(Graphics2D g2d){
         for (GraphNoeud noeud : listeGraphNoeud){
             paintNoeud(g2d, noeud);
         }

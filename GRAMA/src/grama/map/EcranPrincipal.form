@@ -262,7 +262,9 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="lienButtonGroup">
     </Component>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+    <Component class="javax.swing.JFileChooser" name="openFileChooser">
+    </Component>
+    <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fichierMenu">
           <Properties>
@@ -276,6 +278,21 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ouvrir un Graphe"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ouvrirMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="renitialiserMenuItem">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+R"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="R&#xe9;nitialiser le Graphe"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="renitialiserMenuItemActionPerformed"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="renitialiserMenuItemPropertyChange"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -283,6 +300,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quitter"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quitterMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -316,7 +336,7 @@
     <Property name="title" type="java.lang.String" value="Graph Map Analysis"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -1105,8 +1125,8 @@
                           <Component id="titrePlus2Distance" alignment="0" max="32767" attributes="0"/>
                           <Component id="titrePremierNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
                           <Component id="premierNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="selectDeuxiemeNoeudBouton2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="selectPremierNoeudBouton2" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="selectPremierNoeudBouton2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="selectDeuxiemeNoeudBouton2" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Component id="titreDeuxiemeNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
                           <Component id="deuxiemeNoeudSelectedLabel2" alignment="0" max="32767" attributes="0"/>
                           <Component id="resultatCulturelLabel" alignment="0" max="32767" attributes="0"/>
@@ -1131,13 +1151,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="premierNoeudSelectedLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="selectDeuxiemeNoeudBouton2" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="selectPremierNoeudBouton2" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="titreDeuxiemeNoeudSelectedLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="deuxiemeNoeudSelectedLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="selectPremierNoeudBouton2" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="selectDeuxiemeNoeudBouton2" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="titreOuvertLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -1169,13 +1189,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="retour3BoutonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="selectPremierNoeudBouton2">
+            <Component class="javax.swing.JButton" name="selectDeuxiemeNoeudBouton2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Light" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Choisir Deuxi&#xe8;me Noeud"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectDeuxiemeNoeudBouton2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="deuxiemeNoeudSelectedLabel2">
               <Properties>
@@ -1193,7 +1216,7 @@
                 <Property name="text" type="java.lang.String" value="Deuxi&#xe8;me noeud s&#xe9;lectionn&#xe9;:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="selectDeuxiemeNoeudBouton2">
+            <Component class="javax.swing.JButton" name="selectPremierNoeudBouton2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Light" size="16" style="1"/>
@@ -1201,7 +1224,8 @@
                 <Property name="text" type="java.lang.String" value="Choisir Premier Noeud"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectDeuxiemeNoeudBouton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectPremierNoeudBouton2ActionPerformed"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="selectPremierNoeudBouton2PropertyChange"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="titrePremierNoeudSelectedLabel2">
