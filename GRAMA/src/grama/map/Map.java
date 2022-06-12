@@ -606,7 +606,6 @@ public class Map extends JPanel{
                              me.getX() <= labelX + w + 5 && me.getY() <= labelY + h + 5);
                 
                 if (isLinkClicked){
-                    System.out.println("C'est clické !");
                     unselectAllLinks();
                     link.setSelected(true);
                 }

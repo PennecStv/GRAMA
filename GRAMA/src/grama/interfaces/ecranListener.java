@@ -13,28 +13,28 @@ import grama.map.GraphNoeud;
 public interface ecranListener {
     
     /**
-     * 
+     * Lorsque le graphe n'est pas initialisé
      */
     public void graphNotinitialized();
     
     /**
-     * 
-     * @param noeud 
+     * Lorsque les informations d'un noeud doivent être affiché
+     * @param noeud du noeud dont on souhaite savoir les informations
      */
     public void noeudAffiche(GraphNoeud noeud);
     
     /**
-     * 
+     * Lorsque qu'on sélectionne un premier noeud
      */
     public void selectionPremierNoeud();
     
     /**
-     * 
+     * Lorsque qu'on sélectionne un deuxième noeud
      */
     public void selectionDeuxiemeNoeud();
     
     /**
-     * 
+     * Lorsque qu'on annule une sélection
      */
     public void selectionAnnule();
 }

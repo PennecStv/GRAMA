@@ -157,15 +157,9 @@ public class Graph {
     
     /* === Création d'un noeud === */
     /**
-<<<<<<< HEAD
      * Permet de créer un noeud
      * @param noeud étant les données du noeud à créer
      * @return un noeud créé selon les données entrées en paramètre
-=======
-     * 
-     * @param noeud
-     * @return 
->>>>>>> test
      */
     public Noeud creationNoeud(String noeud){
         String[] donneeNoeud = noeud.split(",");
@@ -177,17 +171,10 @@ public class Graph {
     
     /* === Création d'un lien === */
     /**
-<<<<<<< HEAD
      * Permet de créer un lien à partir d'un noeud de départ
      * @param noeudDepart étant le noeud de départ des liens
      * @param lien étant les données du lien à créer partant du noeud de départ
      * @return un lien créé selon les données entrées en paramètre
-=======
-     * 
-     * @param noeudDepart
-     * @param lien
-     * @return 
->>>>>>> test
      */
     public Lien creationLien(Noeud noeudDepart, String lien){
         String[] lienEtArrive = lien.split("::");
@@ -206,13 +193,8 @@ public class Graph {
     
     /* === Création de la liste de Noeud et de Lien selon le fichier CSV lu === */
     /**
-<<<<<<< HEAD
      * Permet de créer la liste des noeuds et des liens selon un String reprenant le contenu d'un fichier lu
      * @param listeFichierNoeud étant le String contenant les données d'un fichier
-=======
-     * 
-     * @param listeFichierNoeud 
->>>>>>> test
      */
     public void creationListe(String listeFichierNoeud){
         String[] sepLigne = listeFichierNoeud.split(";;");
