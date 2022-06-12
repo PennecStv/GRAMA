@@ -20,20 +20,43 @@ public class Graph {
     
     
     /**
-     * 
+     * Correspond à la liste des noeuds du graphe
      */
     private final ArrayList<Noeud> listeNoeud = new ArrayList<>();
     
     /**
-     * 
+     * Correspond à la liste des liens du graphe
      */
     private final ArrayList<Lien> listeLien   = new ArrayList<>();
 
+    /**
+     * Correspond à la liste des noeuds de type Villes du graphe
+     */
     private final ArrayList<Noeud> listeVilles      = new ArrayList<>();
+    
+    /**
+     * Correspond à la liste des noeuds de type Restaurants du graphe
+     */
     private final ArrayList<Noeud> listeRestaurants = new ArrayList<>();
+    
+    /**
+     * Correspond à la liste des noeuds de type Centres de loisir du graphe
+     */
     private final ArrayList<Noeud> listeLoisirs     = new ArrayList<>();
+    
+    /**
+     * Correspond à la liste des liens de type Autoroutes du graphe
+     */
     private final ArrayList<Lien> listeAutoroutes   = new ArrayList<>();
+    
+    /**
+     * Correspond à la liste des liens de type Routes nationales du graphe
+     */
     private final ArrayList<Lien> listeRouteNat     = new ArrayList<>();
+    
+    /**
+     * Correspond à la liste des liens de type Route départementales du graphe
+     */
     private final ArrayList<Lien> listeRouteDep     = new ArrayList<>();
     
     //Constructeur
@@ -49,23 +72,43 @@ public class Graph {
     /* ================================================= */
     /* ===             Méthodes de bases             === */
     /* ================================================= */
+    /**
+     * Renvoie l'ordre du graphe, soit le nombre de noeuds
+     * @return la taille de la liste de noeuds du graphe
+     */
     public int ordreGraphe(){
         return this.listeNoeud.size();
     }
     
-    
+    /**
+     * Renvoie la taille du graphe, soit le nombre de liens
+     * @return la taille de la liste de liens du graphe
+     */
     public int tailleGraphe(){
         return this.listeLien.size();
     }
 
+    /**
+     * Renvoie la liste de noeuds du graphe
+     * @return la liste de noeuds
+     */
     public ArrayList<Noeud> getListeNoeud() {
         return listeNoeud;
     }
 
+    /**
+     * Renvoie la liste de liens du graphe
+     * @return la liste de liens
+     */
     public ArrayList<Lien> getListeLien() {
         return listeLien;
     }  
     
+    /**
+     * Renvoie parmis la liste de noeud le noeud qui correspond au nom entré au paramètre
+     * @param nom étant le nom du noeud à rechercher
+     * @return le noeud recherché, sinon null si pas trouvé
+     */
     public Noeud getNoeud(String nom){
         int i = 0;
         Noeud noeud = null;
@@ -86,6 +129,13 @@ public class Graph {
     /* ================================================= */
     
     /* === Lecture d'un fichier CSV === */
+    /**
+     * Lis un fichier et récupère les données de celui-ci
+     * @param fichier
+     * @return les données du fichier sous format String
+     * @throws FileNotFoundException si le fichier n'a pas été trouvé
+     * @throws IOException si les données sont incorrects pour être lu
+     */
     public String ouvrirGraphe(String fichier) throws FileNotFoundException, IOException{
         File graphFile = new File(fichier);
         
@@ -106,6 +156,11 @@ public class Graph {
     
     
     /* === Création d'un noeud === */
+    /**
+     * Permet de créer un noeud
+     * @param noeud étant les données du noeud à créer
+     * @return un noeud créé selon les données entrées en paramètre
+     */
     public Noeud creationNoeud(String noeud){
         String[] donneeNoeud = noeud.split(",");
         Noeud nouvNoeud = new Noeud(donneeNoeud[0].replace("\n", "").replace("\r", ""), donneeNoeud[1]);
@@ -115,6 +170,12 @@ public class Graph {
     
     
     /* === Création d'un lien === */
+    /**
+     * Permet de créer un lien à partir d'un noeud de départ
+     * @param noeudDepart étant le noeud de départ des liens
+     * @param lien étant les données du lien à créer partant du noeud de départ
+     * @return un lien créé selon les données entrées en paramètre
+     */
     public Lien creationLien(Noeud noeudDepart, String lien){
         String[] lienEtArrive = lien.split("::");
         
@@ -131,6 +192,10 @@ public class Graph {
     }
     
     /* === Création de la liste de Noeud et de Lien selon le fichier CSV lu === */
+    /**
+     * Permet de créer la liste des noeuds et des liens selon un String reprenant le contenu d'un fichier lu
+     * @param listeFichierNoeud étant le String contenant les données d'un fichier
+     */
     public void creationListe(String listeFichierNoeud){
         String[] sepLigne = listeFichierNoeud.split(";;");
         
@@ -153,6 +218,9 @@ public class Graph {
     
     
     /* === Création des listes des noeuds et des liens typés === */
+    /**
+     * Permet de créer les listes correspondant à chaque type de noeuds et de liens existants
+     */
     public void creationListeTypee(){
         String typeSommets;
         char typeRoute;
@@ -194,13 +262,20 @@ public class Graph {
     
     
     /*** === Affichage === ***/
+    /**
+     * affiche tous les noeuds de la liste de noeuds
+     */
+    @Deprecated
     public void afficherListeNoeud(){
         for (Noeud noeud : listeNoeud){
             System.out.println(noeud);
         }
     }
     
-
+    /**
+     * affiche tous les liens de la liste de liens
+     */
+    @Deprecated
     public void afficherListeLien(){
         for (Lien lien : listeLien){
             System.out.println(lien.toString());
@@ -218,6 +293,11 @@ public class Graph {
     /*---------------------------------------------------------*/
     
     /* === Retourne un String contenant la liste de noeuds ou de liens selon la catégorie === */
+    /**
+     * Permet d'avoir la liste de noeuds ou de liens selon le type entré en paramètre en utilisant la liste correspondante {@link #afficherListe(java.util.ArrayList, java.lang.String)}
+     * @param type étant le type de noeud ou de lien voulu
+     * @return la liste de noeuds ou de lien selon le type voulu
+     */
     public String listerCategorie(String type){
         String texteListe = "";
         
@@ -256,6 +336,12 @@ public class Graph {
     
     
     /* === Parcours de la liste la renvoie sous format String === */
+    /**
+     * Permet d'avoir la liste de noeuds ou de liens selon la liste typée utilisée en paramètre
+     * @param liste étant soit une liste de noeuds typée, soit une liste de liens typée
+     * @param texte
+     * @return 
+     */
     public String afficherListe(ArrayList<?> liste, String texte){
         for (int i = 0; i < liste.size(); i++){
             texte += liste.get(i) + "\n";
@@ -265,7 +351,12 @@ public class Graph {
     
     
     /* === Renvoie la taille d'une liste selon la catégorie sous format String === */
-    public String afficherNombre(String categorie){
+    /**
+     * Renvoie le nombre de noeuds ou de liens selon un type choisi
+     * @param categorie étant un type de noeud ou de lien
+     * @return le nombre de noeuds ou de liens selon le type choisi
+     */
+    public String getNombre(String categorie){
         switch(categorie){
             case "Villes":
                 return String.valueOf(listeVilles.size());
@@ -294,12 +385,6 @@ public class Graph {
             default:
                 return "";
         }
-//        System.out.println("Nombre de villes : " + listeVilles.size());
-//        System.out.println("\nNombre de restaurants : " + listeRestaurants.size());
-//        System.out.println("\nNombre de centres de loisir : " + listeLoisirs.size());
-//        System.out.println("\nNombre d'autoroutes : " + listeAutoroutes.size() / 2);
-//        System.out.println("\nNombre de routes nationales : " + listeRouteNat.size() / 2);
-//        System.out.println("\nNombre de routes départementales : " + listeRouteDep.size() / 2);
     }
     
     
@@ -308,12 +393,21 @@ public class Graph {
     /* === Analyser les éléments du graphe (1 - distances) === */
     /*---------------------------------------------------------*/
     
+    /**
+     * Permet d'afficher les voisins à un saut d'un nom
+     * @param nomNoeud étant le nom du noeud dont on souhaite savoir ses voisins
+     */
+    @Deprecated
     public void afficherVoisinUnSaut(String nomNoeud){
         Noeud noeud = recherche(nomNoeud);
         noeud.afficherVoisin();
     }
     
-    
+    /**
+     * Permet de parcourir les voisins d'un noeud données
+     * @param noeud
+     */
+    @Deprecated
     public void parcoursVoisin(Noeud noeud){
         for (Lien lien : noeud.getListeLien()){
             lien.getArriveNoeud();
@@ -327,6 +421,12 @@ public class Graph {
     /*---------------------------------------------------------*/
     
     /* === Vérification si deux noeuds donnés sont bien à deux distance === */
+    /**
+     * Permet de savoir si deux noeuds sont à deux distances ou pas, autrement dit qu'il sont réliés en passant par deux liens
+     * @param noeud1 étant le premier noeud
+     * @param noeud2 étant le second noeud
+     * @return true s'ils sont à deux distances, false sinon
+     */
     public boolean deuxDistance( Noeud noeud1, Noeud noeud2){
         
         for (Noeud tempNoeud : noeud1.getVoisin()){
@@ -343,8 +443,13 @@ public class Graph {
     /* === Analyser les éléments du graphe (2>= - distances) === */
     /*-----------------------------------------------------------*/
     
-    
-    public boolean[] compareVilles(Noeud noeud1, Noeud noeud2){
+    /**
+     * Permet de savoir si une noeuds
+     * @param noeud1
+     * @param noeud2
+     * @return 
+     */
+    public boolean[] compareNoeuds(Noeud noeud1, Noeud noeud2){
         
         boolean[] result = new boolean[3];
         
@@ -363,6 +468,14 @@ public class Graph {
     
     /* === Compte le nombre de noeuds à distance des deux noeuds entrés en paramètre ===
        === et vérifie si le premier en a plus que le second                          === */
+    
+    /**
+     * 
+     * @param noeud1
+     * @param noeud2
+     * @param liste
+     * @return 
+     */
     public boolean compteDeuxDistances(Noeud noeud1, Noeud noeud2, ArrayList<Noeud> liste){
         int nbNoeud1 = 0;
         int nbNoeud2 = 0;
@@ -385,7 +498,11 @@ public class Graph {
     /* ======= Autres: Méthodes utiles à l'exploitation ======= */
     /* ======================================================== */
     
-    
+    /**
+     * 
+     * @param nomNoeud
+     * @return 
+     */
     public Noeud recherche(String nomNoeud){
         boolean trouve = false;
         int i = 0;
@@ -405,7 +522,12 @@ public class Graph {
             return null;
     }
     
-    
+    /**
+     * 
+     * @param depart
+     * @param arrive
+     * @return 
+     */
     public Lien recherche(String depart, String arrive){
         boolean trouve = false;
         int i = 0;

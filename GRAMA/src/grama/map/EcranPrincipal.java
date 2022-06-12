@@ -1219,7 +1219,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
     private void nombreComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreComboBoxActionPerformed
         String item = (String) nombreComboBox.getSelectedItem();
-        nombreEcran0.setText(grama.afficherNombre(item));
+        nombreEcran0.setText(grama.getNombre(item));
     }//GEN-LAST:event_nombreComboBoxActionPerformed
 
     private void listerBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerBoutonActionPerformed
@@ -1542,7 +1542,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
      */
     private void afficherComparaison(){
         if (premierNoeud  != null && deuxiemeNoeud != null){
-            boolean[] comparaison = grama.compareVilles(premierNoeud.noeud, deuxiemeNoeud.noeud);
+            boolean[] comparaison = grama.compareNoeuds(premierNoeud.noeud, deuxiemeNoeud.noeud);
             
             if (comparaison[0])
                 resultatOuvertLabel.setText(premierNoeud.toString());

@@ -23,24 +23,70 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 /**
- *
+ * Cette  classe correspond au panel représentant la carte qui contiendra et qui dessinera le graphe
  * @author Steve Pennec
  */
 public class Map extends JPanel{
 
+    /**
+     * Correspond à la marge sur les bords du panel
+     */
     private static final int PADDING    = 15;
+    
+    /**
+     * Correspond à l'espacement minimal qu'il doit y avoir entre les noeuds
+     */
     private static final int ESPACEMENT = 45;
+    
+    /**
+     * La largeur de la map
+     */
     private final int WIDTH_MAP         = 1000;
+    
+    /**
+     * La hauteur de la map
+     */
     private final int HEIGHT_MAP        = 740;
+    
+    /**
+     * La dimension de la map
+     */
     private final Dimension dimension;
+    
+    /**
+     * Diamètre des noeuds
+     */
     private static final int DIAMETER_NOEUD = 30;
+    
+    /**
+     * Rayon des noeuds
+     */
     private static final int RAYON_NOEUD    = DIAMETER_NOEUD / 2;
+    
+    /**
+     * Pour savoir si un noeud est cliqué
+     */
     boolean isNodeClicked = false;
+    
+    /**
+     * Pour savoir si un lien est cliqué
+     */
     boolean isLinkClicked = false;
     
+    
+    /**
+     * Liste de String contenant les types de noeuds qu'on a sélectionné dans l'interface graphique
+     */
     private static final ArrayList<String> listeSelectedTypeNoeud = new ArrayList<>();
+    
+    /**
+     * Liste de String contenant les types de liens qu'on a sélectionné dans l'interface graphique
+     */
     private static final ArrayList<String> listeSelectedTypeLien = new ArrayList<>();
     
+    /**
+     * mouseListener pour gérer les Click and Drag
+     */
     private java.awt.event.MouseAdapter mouseListener;
     
 
@@ -50,7 +96,14 @@ public class Map extends JPanel{
 //    private ArrayList<Noeud> listeNoeud = new ArrayList<>();
 //    private ArrayList<Lien> listeLien   = new ArrayList<>();
     
+    /**
+     * Liste des noeuds à dessiner
+     */
     private ArrayList<GraphNoeud> listeGraphNoeud  = new ArrayList<>();
+    
+    /**
+     * Liste des liens à dessiner
+     */
     private ArrayList<GraphLien> listeGraphLien    = new ArrayList<>();
     
     /***  Noeuds et Liens de Test ***/
@@ -68,14 +121,23 @@ public class Map extends JPanel{
     Lien lien7 = new Lien(10, 'N', noeud2, noeud3);
     Lien lien8 = new Lien(10, 'N', noeud3, noeud2);
     
-   
+   /**
+    * Une coordonnée x aléatoire
+    */
     private final Random posX = new Random();
+    
+    /**
+     * Une coordonnée y aléatoire
+     */
     private final Random posY = new Random();
     
     
     
     
     /* ====    Constructeur    ==== */
+    /**
+     * Crée le panel Map de dessin
+     */
     public Map() {
         super();
         this.dimension = new Dimension(WIDTH_MAP, HEIGHT_MAP);
@@ -95,22 +157,42 @@ public class Map extends JPanel{
     /* ============================= */
     /* ====  Méthodes de bases  ==== */
     /* ============================= */
+    /**
+     * Ajoute un type de noeud à la liste de tpye de noeuds sélectionnés{@link #listeSelectedTypeNoeud}
+     * @param type 
+     */
     public void addTypeNoeud(String type) {
         Map.listeSelectedTypeNoeud.add(type);
     }
     
+    /**
+     * Retire un type de noeud à la liste de type de noeuds sélectionnés
+     * @param type 
+     */
     public void removeTypeNoeud(String type){
         Map.listeSelectedTypeNoeud.remove(type);
     }
     
+    /**
+     * Ajoute un type de lien à la liste de type de liens sélectionnés{@link #listeSelectedTypeLien}
+     * @param type 
+     */
     public void addTypeLien(String type) {
         Map.listeSelectedTypeLien.add(type);
     }
     
+    /**
+     * Retire un type de liens à la liste de type de noeuds sélectionnés
+     * @param type 
+     */
     public void removeTypeLien(String type){
         Map.listeSelectedTypeLien.remove(type);
     }
     
+    /**
+     * Renvoie le noeud sélectionné dans la map
+     * @return un noeud s'il y en a un qui est sélectionné, sinon null
+     */
     public GraphNoeud getSelectedNode(){
         for (GraphNoeud noeud : listeGraphNoeud){
             if (noeud.isSelected())
@@ -119,6 +201,10 @@ public class Map extends JPanel{
         return null;
     }
     
+    /**
+     * Renvoie le lien sélectionné dans la map
+     * @return un lien s'il y en a un qui est sélectionné, sinon null
+     */
     public GraphLien getSelectedLink(){
         for (GraphLien lien : listeGraphLien){
             if (lien.isSelected())
@@ -127,7 +213,10 @@ public class Map extends JPanel{
         return null;
     }
     
-    
+    /**
+     * Paint tous les éléments du graphe dans la map
+     * @param g étant un graphique
+     */
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2d = (java.awt.Graphics2D) g;
@@ -152,18 +241,28 @@ public class Map extends JPanel{
     /* ============================================= */
     /* ====    Méthodes de dessins du Graphe    ==== */
     /* ============================================= */
-    
+    /**
+     * Rénitialise les données (noeuds et liens) du graphe
+     */
     public final void reset(){
         this.listeGraphNoeud  = new ArrayList<>();
         this.listeGraphLien   = new ArrayList<>();
     }
     
+    /**
+     * Permet de dessiner tous les liens du graphe dans la map
+     * @param g2d 
+     */
     private void paintAllLiens(Graphics2D g2d){
         for (GraphLien lien : listeGraphLien){
             paintLien(g2d, lien);
         }
     }
     
+    /**
+     * Permet de dessiner uniquement les liens dans le type a été sélectionné
+     * @param g2d
+     */
     private void paintLiensTypee(Graphics2D g2d){
         for (GraphLien lien : listeGraphLien){
             GraphNoeud noeudDep = rechercheGraphNoeud(lien.getLien().getDepartNoeud());
@@ -183,7 +282,11 @@ public class Map extends JPanel{
         }
     }
     
-    
+    /**
+     * Permet de dessiner uniquement le lien entré en paramètre
+     * @param g2d
+     * @param lien étant un lien à dessiner dont on connait les coordonnées du noeud de départ et celui d'arrivée
+     */
     private void paintLien(Graphics2D g2d, GraphLien lien){
         GraphNoeud noeudDep = rechercheGraphNoeud(lien.getLien().getDepartNoeud());
         GraphNoeud noeudArr = rechercheGraphNoeud(lien.getLien().getArriveNoeud());
@@ -196,14 +299,20 @@ public class Map extends JPanel{
         paintLabel(g2d, lien, noeudDep, noeudArr);
     }
     
-    
+    /**
+     * Permet de dessiner tous les noeuds
+     * @param g2d 
+     */
     private void paintAllNoeuds(Graphics2D g2d){
         for (GraphNoeud noeud : listeGraphNoeud){
             paintNoeud(g2d, noeud);
         }
     }
     
-    
+    /**
+     * Permet de dessiner uniquement les noeuds dont le type a été sélectionné
+     * @param g2d 
+     */
     private void paintNoeudsTypee(Graphics2D g2d){
         for (GraphNoeud noeud : listeGraphNoeud){
             
@@ -213,7 +322,11 @@ public class Map extends JPanel{
         }
     }
     
-    
+    /**
+     * Permet de dessiner uniquement le noeud passé en paramètre
+     * @param g2d
+     * @param noeud étant un noeud à dessiner dont les coordonnées ont été initialisées
+     */
     private void paintNoeud(Graphics2D g2d, GraphNoeud noeud){
         g2d.setColor(noeud.getCouleur());
         g2d.fillOval(noeud.getPosX(), noeud.getPosY(), 30, 30);
@@ -242,7 +355,13 @@ public class Map extends JPanel{
                                                noeud.getPosY() + RAYON_NOEUD + h/4);
     }
     
-    
+    /**
+     * Permet de dessiner le texte qui affiche le type et la pondération d'un lien
+     * @param g2d
+     * @param lien étant le lien concerné
+     * @param noeudDep étant le noeud de départ pour connaître sa couleur
+     * @param noeudArr  étant le noeud d'arrivée pour connaître sa couleur
+     */
     private void paintLabel(Graphics2D g2d, GraphLien lien, GraphNoeud noeudDep, GraphNoeud noeudArr){
         String label = lien.getDonnees();
         
@@ -271,17 +390,12 @@ public class Map extends JPanel{
         g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
         g2d.drawString(label, labelX - w/2 + 2, labelY + h/2 - 2);
     }
-    
-    
-    private void paintNoeudSelected(){
-        
-    }
-    
-    
+       
     
     /* ======================================================= */
     /* ===== Méthodes de test: remplir une liste de test ===== */
     /* ======================================================= */
+    @Deprecated
     private void remplirListe(Graph graphe){
 //        listeNoeud.add(noeud1);
 //        listeNoeud.add(noeud2);
@@ -296,9 +410,9 @@ public class Map extends JPanel{
 //        listeLien.add(lien6);
 //        listeLien.add(lien7);
 //        listeLien.add(lien8);
-        
-        //listeNoeud = graphe.getListeNoeud();
-        //listeLien = graphe.getListeLien();
+//        
+//        listeNoeud = graphe.getListeNoeud();
+//        listeLien = graphe.getListeLien();
     }
     
     
@@ -307,6 +421,10 @@ public class Map extends JPanel{
     /* ==== Méthodes de génération de coordonnées ==== */
     /* =============================================== */
     
+    /**
+     * Génère la liste des noeuds à dessiner avec leurs coordonnées selon le graphe à exploiter
+     * @param noeuds étant la liste des noeuds dont les coordonnées doivent être générées
+     */
     public void generateGraphNoeud(List<Noeud> noeuds){
         List<Noeud> listeNoeud = new ArrayList<>(noeuds);
         
@@ -324,7 +442,10 @@ public class Map extends JPanel{
         }
     }
     
-    
+    /**
+     * Génère la liste des liens à dessiner avec leurs coordonnées selon le graphe à exploiter
+     * @param liens étant la liste des liens dont les coordonnées doivent être générées selon ceux du noeud de départ et celui d'arrivée
+     */
     public void generateGraphLien(List<Lien> liens){
         List<Lien> listeLien = new ArrayList<>(liens);
         boolean dejaDessine;
@@ -351,7 +472,12 @@ public class Map extends JPanel{
         }
     }
     
-    
+    /**
+     * Permet de vérifier si les coordonnées entrées en paramètre sont valides
+     * @param posX étant la coordonnée x
+     * @param posY étant la coordonnée y
+     * @return un boolean de confirmation
+     */
     private boolean verifCoord(int posX, int posY){
         int i = 0;
         boolean verif = true;
@@ -368,7 +494,13 @@ public class Map extends JPanel{
     }
     
     
-    
+    /**
+     * Permet de comparer les coordonnées d'un noeud et celles entrées en paramètre pour voir si elles sont assez éloignées
+     * @param noeud étant le noeud de référence
+     * @param otherPosX étant la coordonnée x à comparer par rapport celle du noeud
+     * @param otherPosY étant la coordonnée y à comparer par rapport à celle du noeud
+     * @return 
+     */
     public boolean compareCoord(GraphNoeud noeud, int otherPosX, int otherPosY){
         return (   (noeud.getPosX() + ESPACEMENT <= otherPosX 
                 ||  noeud.getPosX() - ESPACEMENT >= otherPosX)
@@ -382,7 +514,11 @@ public class Map extends JPanel{
     /* ============================================== */
     /* =======     Autres méthodes utiles     ======= */
     /* ============================================== */
-    
+    /**
+     * Permet de retrouver un noeud du graphe dans la liste des noeuds à dessiner
+     * @param noeudRecherche étant le noeud à rechercher
+     * @return le noeud à dessiner correspondant au noeud du graphe entré en paramètre
+     */
     public GraphNoeud rechercheGraphNoeud(Noeud noeudRecherche){
         int i = 0;
         boolean trouve = false;
@@ -400,12 +536,18 @@ public class Map extends JPanel{
         return noeud;
     }
     
+    /**
+     * Désélectionne tous les noeuds
+     */
     public void unselectAllNodes(){
         for (GraphNoeud noeud : listeGraphNoeud){
             noeud.setSelected(false);
         }
     }
     
+    /**
+     * Désélectionne tous les liens
+     */
     public void unselectAllLinks(){
         for (GraphLien lien : listeGraphLien){
             lien.setSelected(false);
@@ -419,8 +561,15 @@ public class Map extends JPanel{
     /* =======       Adapter & Listener       ======= */
     /* ============================================== */
     
+    /**
+     * Cette classe permet de gérer les actions effectuées par l'utilisateur via la souris
+     */
     private class MouseHandler extends MouseAdapter implements MouseMotionListener {
 
+        /**
+         * Correspond à la réaction de la map lorsque la souris est cliquée, permettant ainsi de sélectionner un noeud ou un lien
+         * @param me 
+         */
         @Override
         public void mousePressed(MouseEvent me){
             GraphNoeud node;
@@ -441,29 +590,8 @@ public class Map extends JPanel{
             }
             
             GraphLien link;
-//            System.out.println(link.getDonnees() + " | " + link.getNoeudDepart().getNomLieu() + " et " + link.getNoeudArrivee().getNomLieu());
-//            java.awt.FontMetrics metrics = getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
-//            int w = metrics.stringWidth(link.getDonnees());
-//            int h = metrics.getHeight();
 
-            //g2d.fillRoundRect(labelX - w/2, labelY - h/2, w + 5, h + 5, 15, 15);
-
-//            int labelX = (link.getPosXDeb() + link.getPosXFin())/2 - w/2;
-//            int labelY = (link.getPosYDeb() + link.getPosYFin())/2 - h/2;
-//            
-//            System.out.println("Lien coord Debut" + labelX + " | " + labelY);
-//            System.out.println("Lien coord Fin" + (labelX + w + 5) + " | " + (labelY + h + 5));
-//            System.out.println("Souris coord" + me.getX() + " | " + me.getY());
-//
-//            isLinkClicked = (me.getX() > labelX && me.getY() > labelY &&
-//                             me.getX() < labelX + w + 5 && me.getY() < labelY + h + 5);
-//
-//            if (isLinkClicked){
-//                System.out.println("C'est clické !");
-//                deselectAllLinks();
-//                link.setSelected(true);
             i = 0;
-            
             while (!isLinkClicked && i < listeGraphLien.size()){
                 link = listeGraphLien.get(i);
                 
@@ -489,6 +617,11 @@ public class Map extends JPanel{
             getParent().repaint(); 
         }
         
+        
+        /**
+         * Correspond à la réaction de la map lorsque la souris est cliquée et maintenue, permettant ici de pouvoir déplacer un noeud
+         * @param me 
+         */
         @Override
         public void mouseDragged(MouseEvent me) {
             super.mouseDragged(me);
@@ -522,6 +655,11 @@ public class Map extends JPanel{
             }
         }
 
+        
+        /**
+         * Correspond à la réaction de la map lorsque le clique de la souris est relachée après avoir été maintenue
+         * @param me 
+         */
         @Override
         public void mouseReleased(MouseEvent me) {
             super.mouseReleased(me);

@@ -164,7 +164,7 @@ public class GraphTest {
         String categorie = "";
         Graph instance = new Graph();
         String expResult = "";
-        String result = instance.afficherNombre(categorie);
+        String result = instance.getNombre(categorie);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
