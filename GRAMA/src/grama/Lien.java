@@ -4,6 +4,8 @@
  */
 package grama;
 
+import java.util.Objects;
+
 /**
  *
  * @author Steve Pennec
@@ -46,4 +48,36 @@ public class Lien {
         return "Type: " + typeRoute + " - Valeur: " + ponderation + 
                " - Depart: " + DepartNoeud.getNomLieu() + " - Arrivee: " + ArriveNoeud.getNomLieu();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Lien other = (Lien) obj;
+        if (this.ponderation != other.ponderation) {
+            return false;
+        }
+        if (this.typeRoute != other.typeRoute) {
+            return false;
+        }
+        if (!Objects.equals(this.DepartNoeud, other.DepartNoeud)) {
+            return false;
+        }
+        return Objects.equals(this.ArriveNoeud, other.ArriveNoeud);
+    }
+    
+    
 }

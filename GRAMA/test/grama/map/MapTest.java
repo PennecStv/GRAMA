@@ -4,7 +4,10 @@
  */
 package grama.map;
 
+import grama.Lien;
 import grama.Noeud;
+import java.awt.Graphics;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,6 +101,109 @@ public class MapTest {
         GraphNoeud expResult = null;
         GraphNoeud result = instance.rechercheGraphNoeud(noeudRecherche);
         assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getSelectedNode method, of class Map.
+     */
+    @org.junit.Test
+    public void testGetSelectedNode() {
+        System.out.println("getSelectedNode");
+        Map instance = new Map();
+        GraphNoeud expResult = null;
+        GraphNoeud result = instance.getSelectedNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getSelectedLink method, of class Map.
+     */
+    @org.junit.Test
+    public void testGetSelectedLink() {
+        System.out.println("getSelectedLink");
+        Map instance = new Map();
+        GraphLien expResult = null;
+        GraphLien result = instance.getSelectedLink();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of paintComponent method, of class Map.
+     */
+    @org.junit.Test
+    public void testPaintComponent() {
+        System.out.println("paintComponent");
+        Graphics g = null;
+        Map instance = new Map();
+        instance.paintComponent(g);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of reset method, of class Map.
+     */
+    @org.junit.Test
+    public void testReset() {
+        System.out.println("reset");
+        Map instance = new Map();
+        instance.reset();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of generateGraphNoeud method, of class Map.
+     */
+    @org.junit.Test
+    public void testGenerateGraphNoeud() {
+        System.out.println("generateGraphNoeud");
+        List<Noeud> noeuds = null;
+        Map instance = new Map();
+        instance.generateGraphNoeud(noeuds);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of generateGraphLien method, of class Map.
+     */
+    @org.junit.Test
+    public void testGenerateGraphLien() {
+        System.out.println("generateGraphLien");
+        List<Lien> liens = null;
+        Map instance = new Map();
+        instance.generateGraphLien(liens);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of unselectAllNodes method, of class Map.
+     */
+    @org.junit.Test
+    public void testUnselectAllNodes() {
+        System.out.println("unselectAllNodes");
+        Map instance = new Map();
+        instance.unselectAllNodes();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of unselectAllLinks method, of class Map.
+     */
+    @org.junit.Test
+    public void testUnselectAllLinks() {
+        System.out.println("unselectAllLinks");
+        Map instance = new Map();
+        instance.unselectAllLinks();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
