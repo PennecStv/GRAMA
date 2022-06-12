@@ -1,0 +1,17 @@
+V,Firminy:D,3.5::V,Chambon-Feugerolles;D,4.7::V,Unieux;D,2::R,La Mine Burgers;A,19.5::L,Geoffroy Guichard;;
+V,Chambon-Feugerolles:D,11.1::V,St-Etienne;D,4.2::V,La Ricamarie;D,10.7::V,Roche-la-Molière;;
+V,St-Etienne:N,12.5::V,Saint-Chamond;D,5.2::L,Parc Jean Marc;;
+V,Saint-Chamond:A,14.6::V,Rive-de-Gier;;
+V,Rive-de-Gier:A,15.5::V,Givors;D,9.1::L,Espace Pierre Bret;;
+V,Givors:A,19.1::V,Saint-Fons;D,11.3::V,Brignais;;
+V,Saint-Fons:D,12.2::V,Villeurbanne;D,7.7::L,Musée Lumière;D,6.5::V,Lyon 8e Arrondissement;;
+V,Brignais:A,24.4::V,Villeurbanne;D,2.9::L,Cinéma;;
+L,Cinéma:D,7.6::R,Intermarché SUPER;;
+R,Intermarché SUPER:D,19.3::V,Villeurbanne;;
+V,Unieux:D,3.1::R,Auberge Des Girards;;
+V,La Ricamarie:D,5::L,Musée d'Art et d'Industrie;;
+V,Roche-la-Molière:D,2.4::L,Roseraie du Berland;;
+V,Villeurbanne:D,2.8::R,Le Studio;D,2.3::L,Institut d'art contemporain;D,9.6::V,Lyon 9e Arrondissement;D,2.9::L,Parc de la Tête d'Or;;
+V,Lyon 8e Arrondissement:D,4.8::V,Villeurbanne;D,2.4::L,Parc Sergent Blandan;;
+V,Lyon 9e Arrondissement:A,5.8::V,Lyon 2e Arrondissement;A,5.9::L,Confluence;;
+V,Lyon 2e Arrondissement:A,14.8::V,Brignais;;

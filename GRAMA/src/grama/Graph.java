@@ -26,6 +26,9 @@ public class Graph {
     private final ArrayList<Lien> listeRouteDep     = new ArrayList<>();
     
     //Constructeur
+    /**
+     * 
+     */
     public Graph() {
         super();
     }
@@ -72,6 +75,13 @@ public class Graph {
     /* ================================================= */
     
     /* === Lecture d'un fichier CSV === */
+    /**
+     * 
+     * @param fichier
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public String ouvrirGraphe(String fichier) throws FileNotFoundException, IOException{
         File graphFile = new File(fichier);
         
@@ -92,6 +102,11 @@ public class Graph {
     
     
     /* === Création d'un noeud === */
+    /**
+     * 
+     * @param noeud
+     * @return 
+     */
     public Noeud creationNoeud(String noeud){
         String[] donneeNoeud = noeud.split(",");
         Noeud nouvNoeud = new Noeud(donneeNoeud[0].replace("\n", "").replace("\r", ""), donneeNoeud[1]);
@@ -101,13 +116,19 @@ public class Graph {
     
     
     /* === Création d'un lien === */
+    /**
+     * 
+     * @param noeudDepart
+     * @param lien
+     * @return 
+     */
     public Lien creationLien(Noeud noeudDepart, String lien){
         String[] lienEtArrive = lien.split("::");
         
         String[] donneeLien = lienEtArrive[0].split(",");
         
         char typeLien = donneeLien[0].charAt(0);
-        int kilometrage = Integer.parseInt(donneeLien[1]);
+        int kilometrage = Float.valueOf(donneeLien[1]).intValue();
         
         Noeud noeudArrivee = creationNoeud(lienEtArrive[1]);
         
@@ -117,6 +138,10 @@ public class Graph {
     }
     
     /* === Création de la liste de Noeud et de Lien selon le fichier CSV lu === */
+    /**
+     * 
+     * @param listeFichierNoeud 
+     */
     public void creationListe(String listeFichierNoeud){
         String[] sepLigne = listeFichierNoeud.split(";;");
         
@@ -139,6 +164,9 @@ public class Graph {
     
     
     /* === Création des listes des noeuds et des liens typés === */
+    /**
+     * 
+     */
     public void creationListeTypee(){
         String typeSommets;
         char typeRoute;
@@ -180,13 +208,18 @@ public class Graph {
     
     
     /*** === Affichage === ***/
+    /**
+     * 
+     */
     public void afficherListeNoeud(){
         for (Noeud noeud : listeNoeud){
             System.out.println(noeud);
         }
     }
     
-
+    /**
+     * 
+     */
     public void afficherListeLien(){
         for (Lien lien : listeLien){
             System.out.println(lien.toString());
@@ -204,6 +237,11 @@ public class Graph {
     /*---------------------------------------------------------*/
     
     /* === Retourne un String contenant la liste de noeuds ou de liens selon la catégorie === */
+    /**
+     * 
+     * @param type
+     * @return 
+     */
     public String listerCategorie(String type){
         String texteListe = "";
         
@@ -242,6 +280,12 @@ public class Graph {
     
     
     /* === Parcours de la liste la renvoie sous format String === */
+    /**
+     * 
+     * @param liste
+     * @param texte
+     * @return 
+     */
     public String afficherListe(ArrayList<?> liste, String texte){
         for (int i = 0; i < liste.size(); i++){
             texte += liste.get(i) + "\n";
@@ -251,6 +295,11 @@ public class Graph {
     
     
     /* === Renvoie la taille d'une liste selon la catégorie sous format String === */
+    /**
+     * 
+     * @param categorie
+     * @return 
+     */
     public String afficherNombre(String categorie){
         switch(categorie){
             case "Villes":
@@ -280,12 +329,6 @@ public class Graph {
             default:
                 return "";
         }
-//        System.out.println("Nombre de villes : " + listeVilles.size());
-//        System.out.println("\nNombre de restaurants : " + listeRestaurants.size());
-//        System.out.println("\nNombre de centres de loisir : " + listeLoisirs.size());
-//        System.out.println("\nNombre d'autoroutes : " + listeAutoroutes.size() / 2);
-//        System.out.println("\nNombre de routes nationales : " + listeRouteNat.size() / 2);
-//        System.out.println("\nNombre de routes départementales : " + listeRouteDep.size() / 2);
     }
     
     
@@ -293,17 +336,13 @@ public class Graph {
     /*---------------------------------------------------------*/
     /* === Analyser les éléments du graphe (1 - distances) === */
     /*---------------------------------------------------------*/
-    
+    /**
+     * 
+     * @param nomNoeud 
+     */
     public void afficherVoisinUnSaut(String nomNoeud){
         Noeud noeud = recherche(nomNoeud);
         noeud.afficherVoisin();
-    }
-    
-    
-    public void parcoursVoisin(Noeud noeud){
-        for (Lien lien : noeud.getListeLien()){
-            lien.getArriveNoeud();
-        }
     }
     
     
@@ -313,6 +352,12 @@ public class Graph {
     /*---------------------------------------------------------*/
     
     /* === Vérification si deux noeuds donnés sont bien à deux distance === */
+    /**
+     * 
+     * @param noeud1
+     * @param noeud2
+     * @return 
+     */
     public boolean deuxDistance( Noeud noeud1, Noeud noeud2){
         
         for (Noeud tempNoeud : noeud1.getVoisin()){
@@ -328,8 +373,12 @@ public class Graph {
     /*-----------------------------------------------------------*/
     /* === Analyser les éléments du graphe (2>= - distances) === */
     /*-----------------------------------------------------------*/
-    
-    
+    /**
+     * 
+     * @param noeud1
+     * @param noeud2
+     * @return 
+     */
     public boolean[] compareVilles(Noeud noeud1, Noeud noeud2){
         
         boolean[] result = new boolean[3];
@@ -349,6 +398,13 @@ public class Graph {
     
     /* === Compte le nombre de noeuds à distance des deux noeuds entrés en paramètre ===
        === et vérifie si le premier en a plus que le second                          === */
+    /**
+     * 
+     * @param noeud1
+     * @param noeud2
+     * @param liste
+     * @return 
+     */
     public boolean compteDeuxDistances(Noeud noeud1, Noeud noeud2, ArrayList<Noeud> liste){
         int nbNoeud1 = 0;
         int nbNoeud2 = 0;
@@ -370,8 +426,11 @@ public class Graph {
     /* ======================================================== */
     /* ======= Autres: Méthodes utiles à l'exploitation ======= */
     /* ======================================================== */
-    
-    
+    /**
+     * 
+     * @param nomNoeud
+     * @return 
+     */
     public Noeud recherche(String nomNoeud){
         boolean trouve = false;
         int i = 0;
@@ -391,7 +450,12 @@ public class Graph {
             return null;
     }
     
-    
+    /**
+     * 
+     * @param depart
+     * @param arrive
+     * @return 
+     */
     public Lien recherche(String depart, String arrive){
         boolean trouve = false;
         int i = 0;
