@@ -112,6 +112,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         jScrollPane3 = new javax.swing.JScrollPane();
         liensTextArea = new javax.swing.JTextArea();
         jSeparator3 = new javax.swing.JSeparator();
+        exitFrameBouton = new javax.swing.JButton();
         noeudButtonGroup = new javax.swing.ButtonGroup();
         lienButtonGroup = new javax.swing.ButtonGroup();
         openFileChooser = new javax.swing.JFileChooser();
@@ -153,9 +154,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         lienSelectedLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         voisinsTextArea = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        extremiteTextArea = new javax.swing.JTextArea();
         titreTypeNoeudLabel = new javax.swing.JLabel();
+        titreDepartLienSelectedLabel = new javax.swing.JLabel();
+        titreArriveeLienSelectedLabel = new javax.swing.JLabel();
+        departLienSelectedLabel = new javax.swing.JLabel();
+        arriveeLienSelectedLabel = new javax.swing.JLabel();
         ecran2Panel = new javax.swing.JPanel();
         retour2Bouton = new javax.swing.JButton();
         titre2Distance = new javax.swing.JLabel();
@@ -204,11 +207,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         titreListePanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titreListePanel.setText("Liste des éléments du Graph Map Analysis");
 
-        titreListeNoeud.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        titreListeNoeud.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         titreListeNoeud.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titreListeNoeud.setText("NOEUDS");
 
-        titreListeLien.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        titreListeLien.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         titreListeLien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titreListeLien.setText("LIENS");
 
@@ -264,7 +267,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         noeudsTextArea.setEditable(false);
         noeudsTextArea.setColumns(20);
-        noeudsTextArea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
+        noeudsTextArea.setFont(new java.awt.Font("Segoe UI Historic", 0, 16)); // NOI18N
         noeudsTextArea.setRows(5);
         noeudsTextArea.setMinimumSize(new java.awt.Dimension(500, 500));
         jScrollPane2.setViewportView(noeudsTextArea);
@@ -274,12 +277,20 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         liensTextArea.setEditable(false);
         liensTextArea.setColumns(20);
-        liensTextArea.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
+        liensTextArea.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         liensTextArea.setRows(5);
         liensTextArea.setMinimumSize(new java.awt.Dimension(500, 500));
         jScrollPane3.setViewportView(liensTextArea);
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        exitFrameBouton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        exitFrameBouton.setText("Quitter");
+        exitFrameBouton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitFrameBoutonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout listePanelLayout = new javax.swing.GroupLayout(listePanel);
         listePanel.setLayout(listePanelLayout);
@@ -289,12 +300,15 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addContainerGap()
                 .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(listePanelLayout.createSequentialGroup()
-                        .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titreListePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(listePanelLayout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addComponent(villesRadioBouton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(villesRadioBouton))
+                            .addComponent(exitFrameBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(listePanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(resRadioBouton)
                                 .addGap(78, 78, 78)
                                 .addComponent(loisirRadioBouton)
@@ -304,9 +318,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                                 .addComponent(natioRadioBouton)
                                 .addGap(18, 18, 18)
                                 .addComponent(depRadioBouton))
+                            .addComponent(titreListePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(listePanelLayout.createSequentialGroup()
-                                .addGap(182, 182, 182)
-                                .addComponent(titreListeNoeud, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)
+                                .addComponent(titreListeNoeud)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(titreListeLien, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(227, 227, 227)))
@@ -322,12 +337,15 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titreListePanel)
-                .addGap(18, 18, 18)
-                .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titreListeNoeud)
-                    .addComponent(titreListeLien))
-                .addGap(35, 35, 35)
+                .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(listePanelLayout.createSequentialGroup()
+                        .addComponent(titreListePanel)
+                        .addGap(18, 18, 18)
+                        .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(titreListeNoeud)
+                            .addComponent(titreListeLien)))
+                    .addComponent(exitFrameBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
                 .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(villesRadioBouton)
                     .addComponent(resRadioBouton)
@@ -338,7 +356,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(listePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -656,16 +674,24 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         voisinsTextArea.setEditable(false);
         voisinsTextArea.setColumns(20);
+        voisinsTextArea.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         voisinsTextArea.setRows(5);
         jScrollPane1.setViewportView(voisinsTextArea);
 
-        extremiteTextArea.setEditable(false);
-        extremiteTextArea.setColumns(20);
-        extremiteTextArea.setRows(5);
-        jScrollPane4.setViewportView(extremiteTextArea);
-
         titreTypeNoeudLabel.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         titreTypeNoeudLabel.setText("Type de noeud voisins:");
+
+        titreDepartLienSelectedLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        titreDepartLienSelectedLabel.setText("Noeud de départ:");
+
+        titreArriveeLienSelectedLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        titreArriveeLienSelectedLabel.setText("Noeud d'arrivée:");
+
+        departLienSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        departLienSelectedLabel.setText("...");
+
+        arriveeLienSelectedLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        arriveeLienSelectedLabel.setText("...");
 
         javax.swing.GroupLayout ecran1PanelLayout = new javax.swing.GroupLayout(ecran1Panel);
         ecran1Panel.setLayout(ecran1PanelLayout);
@@ -683,9 +709,12 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                             .addComponent(titreLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(noeudSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(titreTypeNoeudLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(titreTypeNoeudLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(titreDepartLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(titreArriveeLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(departLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(arriveeLienSelectedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 43, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -706,11 +735,17 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(titreLienSelectedLabel)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addComponent(lienSelectedLabel)
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
+                .addComponent(titreDepartLienSelectedLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(departLienSelectedLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(titreArriveeLienSelectedLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arriveeLienSelectedLabel)
+                .addGap(30, 30, 30)
                 .addComponent(retour1Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1296,8 +1331,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         
         if (lien != null){
             lienSelectedLabel.setText(lien.getDonnees());
-            extremiteTextArea.setText("Depart - " + lien.getNoeudDepart() +
-                                      "\nArrivee - " + lien.getNoeudArrivee());
+            departLienSelectedLabel.setText(lien.getNoeudDepart().toString());
+            arriveeLienSelectedLabel.setText(lien.getNoeudArrivee().toString());
         }
     
         if (!attenteSelectionDeuxiemeNoeud && !attenteSelectionPremierNoeud){
@@ -1326,8 +1361,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         
         if (lien != null){
             lienSelectedLabel.setText(lien.getDonnees());
-            extremiteTextArea.setText("Depart - " + lien.getNoeudDepart() +
-                                      "\nArrivee - " + lien.getNoeudArrivee());
+            departLienSelectedLabel.setText(lien.getNoeudDepart().toString());
+            arriveeLienSelectedLabel.setText(lien.getNoeudArrivee().toString());
         }
     }//GEN-LAST:event_mapGrapheMouseReleased
 
@@ -1371,6 +1406,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private void aideMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aideMenuItemActionPerformed
         
     }//GEN-LAST:event_aideMenuItemActionPerformed
+
+    private void exitFrameBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitFrameBoutonActionPerformed
+        ListeFrame.dispose();
+    }//GEN-LAST:event_exitFrameBoutonActionPerformed
  
     
     
@@ -1601,10 +1640,12 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JMenu aideMenu;
     private javax.swing.JMenuItem aideMenuItem;
     private javax.swing.JOptionPane aideOptionPane;
+    private javax.swing.JLabel arriveeLienSelectedLabel;
     private javax.swing.JCheckBox autoroutesCheckBox;
     private javax.swing.JRadioButton autoroutesRadioBouton;
     private javax.swing.JCheckBox depCheckBox;
     private javax.swing.JRadioButton depRadioBouton;
+    private javax.swing.JLabel departLienSelectedLabel;
     private javax.swing.JLabel deuxiemeNoeudSelectedLabel1;
     private javax.swing.JLabel deuxiemeNoeudSelectedLabel2;
     private javax.swing.JButton ecran0Bouton;
@@ -1617,7 +1658,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JPanel ecran3Panel;
     private javax.swing.JButton ecran4Bouton;
     private javax.swing.JPanel ecran4Panel;
-    private javax.swing.JTextArea extremiteTextArea;
+    private javax.swing.JButton exitFrameBouton;
     private javax.swing.JMenu fichierMenu;
     private javax.swing.JLabel infoNombreEcran0;
     private javax.swing.JLabel jLabel1;
@@ -1625,7 +1666,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1671,7 +1711,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JButton selectPremierNoeudBouton2;
     private javax.swing.JLabel titre1Distance;
     private javax.swing.JLabel titre2Distance;
+    private javax.swing.JLabel titreArriveeLienSelectedLabel;
     private javax.swing.JLabel titreCulturelLabel;
+    private javax.swing.JLabel titreDepartLienSelectedLabel;
     private javax.swing.JLabel titreDeuxiemeNoeudSelectedLabel;
     private javax.swing.JLabel titreDeuxiemeNoeudSelectedLabel2;
     private javax.swing.JLabel titreEcran0;

@@ -43,7 +43,7 @@ public class Lien {
     
     @Override
     public String toString(){
-        return "Lien {Type: " + typeRoute + " - Valeur: " + ponderation + 
-               " - Depart: " + DepartNoeud.getNomLieu() + " - Arrivee: " + ArriveNoeud.getNomLieu() +  "}";
+        return "Type: " + typeRoute + " - Valeur: " + ponderation + 
+               " - Depart: " + DepartNoeud.getNomLieu() + " - Arrivee: " + ArriveNoeud.getNomLieu();
     }
 }

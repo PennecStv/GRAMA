@@ -8,14 +8,25 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- *
+ * Cette classe correspond au graphe à étudier et ses composants
  * @author Steve Pennec
  */
 public class Graph {
     
+    /**
+     * String servant à récuperer le fichier du graphe
+     */
     String recupGraphe = "";
     
+    
+    /**
+     * 
+     */
     private final ArrayList<Noeud> listeNoeud = new ArrayList<>();
+    
+    /**
+     * 
+     */
     private final ArrayList<Lien> listeLien   = new ArrayList<>();
 
     private final ArrayList<Noeud> listeVilles      = new ArrayList<>();
@@ -26,6 +37,9 @@ public class Graph {
     private final ArrayList<Lien> listeRouteDep     = new ArrayList<>();
     
     //Constructeur
+    /**
+     * Instancie le graphe
+     */
     public Graph() {
         super();
     }
