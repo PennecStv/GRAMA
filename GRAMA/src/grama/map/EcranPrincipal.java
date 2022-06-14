@@ -118,7 +118,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         openFileChooser = new javax.swing.JFileChooser();
         aProposOptionPane = new javax.swing.JOptionPane();
         aideOptionPane = new javax.swing.JOptionPane();
-        jLabel1 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
         ecran0Bouton = new javax.swing.JButton();
@@ -381,14 +380,17 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             .addComponent(listePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("jLabel1");
+        openFileChooser.setApproveButtonText("Ouvrir");
+        openFileChooser.setDialogTitle("Ouvrir un graphe");
+        openFileChooser.setSelectedFile(new java.io.File("C:\\Users\\Steve Pennec\\Desktop\\IUT Lyon - Travail\\GRAMA\\GRAMA Git\\sae-grama-project\\GRAMA\\Graphe.csv"));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph Map Analysis");
-        setMaximumSize(new java.awt.Dimension(1920, 1080));
 
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuPanel.setLayout(new java.awt.CardLayout());
+
+        principalPanel.setBackground(new java.awt.Color(206, 206, 206));
 
         ecran0Bouton.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         ecran0Bouton.setText("Filtre");
@@ -472,7 +474,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addComponent(comingSoonLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ecran4Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         menuPanel.add(principalPanel, "cardPrincipal");
@@ -886,11 +888,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 selectPremierNoeudBouton2ActionPerformed(evt);
             }
         });
-        selectPremierNoeudBouton2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                selectPremierNoeudBouton2PropertyChange(evt);
-            }
-        });
 
         titrePremierNoeudSelectedLabel2.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         titrePremierNoeudSelectedLabel2.setText("Premier noeud sélectionné:");
@@ -974,7 +971,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addComponent(resultatCulturelLabel)
                 .addGap(30, 30, 30)
                 .addComponent(retour3Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menuPanel.add(ecran3Panel, "card3");
@@ -1008,6 +1005,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         menuPanel.add(ecran4Panel, "card4");
 
+        mapPanel.setLayout(new javax.swing.BoxLayout(mapPanel, javax.swing.BoxLayout.PAGE_AXIS));
+
+        mapGraphe.setMaximumSize(new java.awt.Dimension(2000, 1000));
+        mapGraphe.setPreferredSize(new java.awt.Dimension(1000, 740));
         mapGraphe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mapGrapheMouseClicked(evt);
@@ -1021,12 +1022,14 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         mapGraphe.setLayout(mapGrapheLayout);
         mapGrapheLayout.setHorizontalGroup(
             mapGrapheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1082, Short.MAX_VALUE)
+            .addGap(0, 1132, Short.MAX_VALUE)
         );
         mapGrapheLayout.setVerticalGroup(
             mapGrapheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
+
+        mapPanel.add(mapGraphe);
 
         consolePanel.setBackground(new java.awt.Color(169, 169, 169));
 
@@ -1037,6 +1040,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         jScrollPane4.setPreferredSize(new java.awt.Dimension(226, 30));
 
+        consoleTextArea.setEditable(false);
         consoleTextArea.setColumns(20);
         consoleTextArea.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         consoleTextArea.setRows(5);
@@ -1046,42 +1050,22 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         consolePanel.setLayout(consolePanelLayout);
         consolePanelLayout.setHorizontalGroup(
             consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(consolePanelLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, consolePanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(consoleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE))
         );
         consolePanelLayout.setVerticalGroup(
             consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(consoleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(consolePanelLayout.createSequentialGroup()
+                .addGroup(consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consoleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
-        mapPanel.setLayout(mapPanelLayout);
-        mapPanelLayout.setHorizontalGroup(
-            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mapPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(consolePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mapPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(mapGraphe, javax.swing.GroupLayout.PREFERRED_SIZE, 1082, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        mapPanelLayout.setVerticalGroup(
-            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mapPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(consolePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
-            .addGroup(mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mapPanelLayout.createSequentialGroup()
-                    .addComponent(mapGraphe, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
+        mapPanel.add(consolePanel);
 
         fichierMenu.setText("Fichier");
 
@@ -1123,6 +1107,11 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         afficherMenuPanelCheckBox.setSelected(true);
         afficherMenuPanelCheckBox.setText("Afficher le menu");
+        afficherMenuPanelCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afficherMenuPanelCheckBoxActionPerformed(evt);
+            }
+        });
         affichageMenu.add(afficherMenuPanelCheckBox);
 
         afficherConsoleCheckBox.setSelected(true);
@@ -1171,17 +1160,21 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
-    /* === Implémentation évennementielle des boutons de l'application === */
+    /* === Implémentation événementielle des boutons de l'application === */
+    /**
+     * Affiche un JDialog montrant les informations de l'application
+     * @param evt 
+     */
     private void AProposMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AProposMenuItemActionPerformed
         ImageIcon icon = new ImageIcon("icon/GRAMA icon full2.png");
         
@@ -1200,58 +1193,98 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                                                mais aussi grâce aux cours et à l'encadrement 
                                                de prodigieux professeurs, un grand remerciement à eux.
                                                
-                                               En la mémoire de Denis NGUYEN, 
+                                               Dédicace au frérot Denis NGUYEN, 
                                                ancien binôme et ancien étudiant de l'IUT Lyon 1.""", "À propos", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_AProposMenuItemActionPerformed
 
+    /**
+     * Bascule le menu du graphe de l'écran principale vers l'écran "Filtre" {@link #ecran0Panel}
+     * @param evt 
+     */
     private void ecran0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran0BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "card0");
         
     }//GEN-LAST:event_ecran0BoutonActionPerformed
 
+    /**
+     * Fais revenir le menu du graphe vers le menu principale {@link #principalPanel}
+     * @param evt 
+     */
     private void retour0BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour0BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "cardPrincipal");
     }//GEN-LAST:event_retour0BoutonActionPerformed
 
+    /**
+     * Bascule le menu du graphe de l'écran principale vers l'écran "Voisins et extrémités" {@link #ecran1Panel}
+     * @param evt 
+     */
     private void ecran1BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran1BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "card1");
     }//GEN-LAST:event_ecran1BoutonActionPerformed
 
+    /**
+     * Bascule le menu du graphe de l'écran principale vers l'écran "2 - Distance" {@link #ecran2Panel}
+     * @param evt 
+     */
     private void ecran2BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran2BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "card2");
     }//GEN-LAST:event_ecran2BoutonActionPerformed
 
+    /**
+     * Fais revenir le menu du graphe vers le menu principale {@link #principalPanel}
+     * @param evt 
+     */
     private void retour2BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour2BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "cardPrincipal");
         selectionAnnule();
     }//GEN-LAST:event_retour2BoutonActionPerformed
 
+    /**
+     * Bascule le menu du graphe de l'écran principale vers l'écran "Comparaison" {@link #ecran3Panel}
+     * @param evt 
+     */
     private void ecran3BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran3BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "card3");
     }//GEN-LAST:event_ecran3BoutonActionPerformed
 
+    /**
+     * Fais revenir le menu du graphe vers le menu principale {@link #principalPanel}
+     * @param evt 
+     */
     private void retour3BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour3BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "cardPrincipal");
         selectionAnnule();
     }//GEN-LAST:event_retour3BoutonActionPerformed
 
+    /**
+     * Bascule le menu du graphe de l'écran principale vers l'écran "Chemins" {@link #ecran4Panel}
+     * @param evt 
+     */
     private void ecran4BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecran4BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "card4");
     }//GEN-LAST:event_ecran4BoutonActionPerformed
 
+    /**
+     * Fais revenir le menu du graphe vers le menu principale {@link #principalPanel}
+     * @param evt 
+     */
     private void retour4BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour4BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "cardPrincipal");
     }//GEN-LAST:event_retour4BoutonActionPerformed
 
+    /**
+     * Permet de sélectionner et d'afficher seulement les noeuds de type Centre de loisirs
+     * @param evt 
+     */
     private void loisirCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loisirCheckBoxActionPerformed
         if (loisirCheckBox.isSelected()){
             mapGraphe.addTypeNoeud("L");
@@ -1262,6 +1295,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_loisirCheckBoxActionPerformed
 
+    /**
+     * Permet de sélectionner et d'afficher seulement les noeuds de type Villes
+     * @param evt 
+     */
     private void villesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_villesCheckBoxActionPerformed
         if (villesCheckBox.isSelected()){
             mapGraphe.addTypeNoeud("V");
@@ -1272,6 +1309,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_villesCheckBoxActionPerformed
 
+    /**
+     * Permet de sélectionner et d'afficher seulement les noeuds de type Restaurants
+     * @param evt 
+     */
     private void restoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoCheckBoxActionPerformed
         if (restoCheckBox.isSelected()){
             mapGraphe.addTypeNoeud("R");
@@ -1282,15 +1323,27 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_restoCheckBoxActionPerformed
 
+    /**
+     * Permet de sélectionner le type de noeuds ou de liens dont on souhaite avoir le nombre
+     * @param evt 
+     */
     private void nombreComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreComboBoxActionPerformed
         String item = (String) nombreComboBox.getSelectedItem();
         nombreEcran0.setText(grama.getNombre(item));
     }//GEN-LAST:event_nombreComboBoxActionPerformed
 
+    /**
+     * Permet d'afficher la fenêtre servant à lister les noeuds ou les liens par catégorie
+     * @param evt 
+     */
     private void listerBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerBoutonActionPerformed
         generateListeFrame();
     }//GEN-LAST:event_listerBoutonActionPerformed
 
+    /**
+     * Permet de sélectionner et d'afficher seulement les liens de type Autoroutes
+     * @param evt 
+     */
     private void autoroutesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesCheckBoxActionPerformed
         if (autoroutesCheckBox.isSelected()){
             mapGraphe.addTypeLien("A");
@@ -1301,6 +1354,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_autoroutesCheckBoxActionPerformed
 
+    /**
+     * Permet de sélectionner et d'afficher seulement les liens de type Routes Nationales
+     * @param evt 
+     */
     private void natioCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natioCheckBoxActionPerformed
         if (natioCheckBox.isSelected()){
             mapGraphe.addTypeLien("N");
@@ -1311,6 +1368,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_natioCheckBoxActionPerformed
 
+    /**
+     * Permet de sélectionner et d'afficher seulement les liens de type Routes Départementales
+     * @param evt 
+     */
     private void depCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depCheckBoxActionPerformed
         if (depCheckBox.isSelected()){
             mapGraphe.addTypeLien("D");
@@ -1321,6 +1382,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_depCheckBoxActionPerformed
 
+    /**
+     * Permet d'afficher la liste de liens de type Autoroutes dans le JFrame {@link #ListeFrame}
+     * @param evt 
+     */
     private void autoroutesRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoroutesRadioBoutonActionPerformed
         if (autoroutesRadioBouton.isSelected()){
             liensTextArea.setText("");
@@ -1328,6 +1393,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_autoroutesRadioBoutonActionPerformed
 
+    /**
+     * Permet d'afficher la liste de liens de type Routes Nationales dans le JFrame {@link #ListeFrame}
+     * @param evt 
+     */
     private void natioRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natioRadioBoutonActionPerformed
         if (natioRadioBouton.isSelected()){
             liensTextArea.setText("");
@@ -1335,6 +1404,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_natioRadioBoutonActionPerformed
 
+    /**
+     * Permet d'afficher la liste de liens de type Routes Départementales dans le JFrame {@link #ListeFrame}
+     * @param evt 
+     */
     private void depRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depRadioBoutonActionPerformed
         if (depRadioBouton.isSelected()){
             liensTextArea.setText("");
@@ -1342,6 +1415,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_depRadioBoutonActionPerformed
 
+    /**
+     * Permet d'afficher la liste de noeuds de type Centre de loisirs dans le JFrame {@link #ListeFrame}
+     * @param evt 
+     */
     private void loisirRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loisirRadioBoutonActionPerformed
         if (loisirRadioBouton.isSelected()){
             noeudsTextArea.setText("");
@@ -1349,6 +1426,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_loisirRadioBoutonActionPerformed
 
+    /**
+     * Permet d'afficher la liste de noeuds de type Restaurants dans le JFrame {@link #ListeFrame}
+     * @param evt 
+     */
     private void resRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resRadioBoutonActionPerformed
         if (resRadioBouton.isSelected()){
             noeudsTextArea.setText("");
@@ -1356,6 +1437,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_resRadioBoutonActionPerformed
 
+    /**
+     * Permet d'afficher la liste de noeuds de type Villes dans le JFrame {@link #ListeFrame}
+     * @param evt 
+     */
     private void villesRadioBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_villesRadioBoutonActionPerformed
         if (villesRadioBouton.isSelected()){
             noeudsTextArea.setText("");
@@ -1363,22 +1448,31 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_villesRadioBoutonActionPerformed
 
+    /**
+     * Fais revenir le menu du graphe vers le menu principale {@link #principalPanel}
+     * @param evt 
+     */
     private void retour1BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour1BoutonActionPerformed
         CardLayout cl = (CardLayout)(menuPanel.getLayout());
         cl.show(menuPanel, "cardPrincipal");
     }//GEN-LAST:event_retour1BoutonActionPerformed
 
+    /**
+     * Permet de clicker et de sélectionner un noeud ou un lien dans et de les utiliser dans le menu du graphe
+     * @param evt 
+     */
     private void mapGrapheMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapGrapheMouseClicked
         GraphNoeud noeud = mapGraphe.getSelectedNode();
         GraphLien lien = mapGraphe.getSelectedLink();
         
+        //Lorsqu'un noeud est sélectionné
         if (noeud != null){
             noeudAffiche(noeud);
             
             if (attenteSelectionPremierNoeud){
                 premierNoeud = mapGraphe.getSelectedNode();
                 
-                if (verifySameNoeud(premierNoeud, deuxiemeNoeud)){
+                if (verifySameNoeud(premierNoeud, deuxiemeNoeud)){ //Pour éviter de sélectionner le même noeud
                     setTextPremierNoeud();
                 }
                 selectionPremierNoeud();
@@ -1394,27 +1488,41 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             }
         }
         
+        //Lorsqu'un lien est sélectionné
         if (lien != null){
             lienSelectedLabel.setText(lien.getDonnees());
             departLienSelectedLabel.setText(lien.getNoeudDepart().toString());
             arriveeLienSelectedLabel.setText(lien.getNoeudArrivee().toString());
         }
     
+        //Si deux noeuds ont été sélectionnés, on peut les comparer et savoir s'ils sont à deux distance
         if (!attenteSelectionDeuxiemeNoeud && !attenteSelectionPremierNoeud){
             afficher2Distance();
             afficherComparaison();
         }
     }//GEN-LAST:event_mapGrapheMouseClicked
 
+    /**
+     * Permet de sélectionner un premier noeud dans les menus {@link #ecran2Panel}
+     * @param evt 
+     */
     private void selectPremierNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton1ActionPerformed
         selectPremierNoeud();
         selectionPremierNoeud();
     }//GEN-LAST:event_selectPremierNoeudBouton1ActionPerformed
 
+    /**
+     * Permet de sélectionner un premier noeud dans le menu {@link #ecran2Panel}
+     * @param evt 
+     */
     private void selectPremierNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton2ActionPerformed
         selectPremierNoeud();
     }//GEN-LAST:event_selectPremierNoeudBouton2ActionPerformed
 
+    /**
+     * Même chose que l'action {@link #mapGrapheMouseClicked(java.awt.event.MouseEvent)} mais lorsque la souris est relachée après avoir été maintenue
+     * @param evt 
+     */
     private void mapGrapheMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapGrapheMouseReleased
         GraphNoeud noeud = mapGraphe.getSelectedNode();
         GraphLien lien = mapGraphe.getSelectedLink();
@@ -1431,58 +1539,103 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_mapGrapheMouseReleased
 
+    /**
+     * Permet de sélectionner un deuxième noeud dans le menu {@link #ecran3Panel}
+     * @param evt 
+     */
     private void selectDeuxiemeNoeudBouton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton1ActionPerformed
         selectDeuxiemeNoeud();
         selectionDeuxiemeNoeud();
     }//GEN-LAST:event_selectDeuxiemeNoeudBouton1ActionPerformed
 
+    /**
+     * Permet de sélectionner un deuxième noeud dans le menu {@link #ecran3Panel}
+     * @param evt 
+     */
     private void selectDeuxiemeNoeudBouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDeuxiemeNoeudBouton2ActionPerformed
         selectDeuxiemeNoeud();
         selectionDeuxiemeNoeud();
     }//GEN-LAST:event_selectDeuxiemeNoeudBouton2ActionPerformed
 
-    private void selectPremierNoeudBouton2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selectPremierNoeudBouton2PropertyChange
-        if (attenteSelectionDeuxiemeNoeud)
-            selectPremierNoeudBouton1.setEnabled(false);
-        else
-            selectPremierNoeudBouton1.setEnabled(true);
-    }//GEN-LAST:event_selectPremierNoeudBouton2PropertyChange
-
+    /**
+     * Désactive le bouton de rénitialisation si le graphe n'a pas été chargé
+     * @param evt 
+     */
     private void renitialiserMenuItemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_renitialiserMenuItemPropertyChange
         graphNotinitialized();
     }//GEN-LAST:event_renitialiserMenuItemPropertyChange
 
+    /**
+     * Permet de quitter l'application
+     * @param evt 
+     */
     private void quitterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_quitterMenuItemActionPerformed
 
+    /**
+     * Permet de rénitialiser le graphe
+     * @param evt 
+     */
     private void renitialiserMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renitialiserMenuItemActionPerformed
         resetGraphe();
     }//GEN-LAST:event_renitialiserMenuItemActionPerformed
 
+    /**
+     * Permet d'ouvrir un sélecteur de fichier pour ouvrir un graphe
+     * @param evt 
+     */
     private void ouvrirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirMenuItemActionPerformed
         openFile();
     }//GEN-LAST:event_ouvrirMenuItemActionPerformed
 
+    /**
+     * Permet d'afficher les informations du noeud sélectionné lorsque qu'on change de type dans l'écran {@link #ecran0Panel}
+     * @param evt 
+     */
     private void typeNoeudComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeNoeudComboBoxActionPerformed
         noeudAffiche(mapGraphe.getSelectedNode());
     }//GEN-LAST:event_typeNoeudComboBoxActionPerformed
 
+    /**
+     * Affiche l'aide de l'application
+     * @param evt 
+     */
     private void aideMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aideMenuItemActionPerformed
         
     }//GEN-LAST:event_aideMenuItemActionPerformed
 
+    /**
+     * Permet de quitter la {@link #ListeFrame}
+     * @param evt 
+     */
     private void exitFrameBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitFrameBoutonActionPerformed
         ListeFrame.dispose();
     }//GEN-LAST:event_exitFrameBoutonActionPerformed
 
+    /**
+     * Permet d'afficher la console
+     * @param evt 
+     */
     private void afficherConsoleCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherConsoleCheckBoxActionPerformed
-        if (afficherConsoleCheckBox.isEnabled()){
+        if (afficherConsoleCheckBox.isSelected()){
             consolePanel.setVisible(true);
         } else{
             consolePanel.setVisible(false);
         }
     }//GEN-LAST:event_afficherConsoleCheckBoxActionPerformed
+
+    /**
+     * Permet d'afficher le menu du graphe
+     * @param evt 
+     */
+    private void afficherMenuPanelCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherMenuPanelCheckBoxActionPerformed
+        if (afficherMenuPanelCheckBox.isSelected()){
+            menuPanel.setVisible(true);
+        } else{
+            menuPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_afficherMenuPanelCheckBoxActionPerformed
  
     
     
@@ -1743,7 +1896,6 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JButton exitFrameBouton;
     private javax.swing.JMenu fichierMenu;
     private javax.swing.JLabel infoNombreEcran0;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

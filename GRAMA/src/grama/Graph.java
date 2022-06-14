@@ -162,8 +162,8 @@ public class Graph {
      * @return un noeud créé selon les données entrées en paramètre
      */
     public Noeud creationNoeud(String noeud){
-        String[] donneeNoeud = noeud.split(",");
-        Noeud nouvNoeud = new Noeud(donneeNoeud[0].replace("\n", "").replace("\r", ""), donneeNoeud[1]);
+        String[] donneeNoeud = noeud.split(","); //le String en paramètre est sous la forme "TypeNoeud, NomNoeud"
+        Noeud nouvNoeud = new Noeud(donneeNoeud[0].replace("\n", "").replace("\r", ""), donneeNoeud[1]); //Il faut faire attention à enlever les sauts de lignes
         
         return nouvNoeud;
     }

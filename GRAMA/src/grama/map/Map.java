@@ -6,7 +6,6 @@ package grama.map;
 
 import grama.Lien;
 import grama.Noeud;
-import grama.Graph;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -46,7 +45,7 @@ public class Map extends JPanel{
     /**
      * La hauteur de la map
      */
-    private final int HEIGHT_MAP = 720;
+    private final int HEIGHT_MAP = 700;
     
     /**
      * La dimension de la map
@@ -88,13 +87,6 @@ public class Map extends JPanel{
      * mouseListener pour gérer les Click and Drag
      */
     private java.awt.event.MouseAdapter mouseListener;
-    
-
-    //private MapDesigner designerListener;
-    
-    
-//    private ArrayList<Noeud> listeNoeud = new ArrayList<>();
-//    private ArrayList<Lien> listeLien   = new ArrayList<>();
     
     /**
      * Liste des noeuds à dessiner
@@ -229,7 +221,7 @@ public class Map extends JPanel{
                 java.awt.RenderingHints.KEY_TEXT_ANTIALIASING,
                 java.awt.RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
-        if (listeSelectedTypeNoeud.isEmpty() && listeSelectedTypeLien.isEmpty()){
+        if (listeSelectedTypeNoeud.isEmpty() && listeSelectedTypeLien.isEmpty()){ //Si aucun type de noeuds ni de liens a été sélectionnés
             paintAllLiens(g2d);
             paintAllNoeuds(g2d);
         } else {
@@ -266,15 +258,21 @@ public class Map extends JPanel{
      */
     private void paintLiensTypee(Graphics2D g2d){
         for (GraphLien lien : listeGraphLien){
+            //On récupère les noeuds de départ et d'arrivée de chaque lien
             GraphNoeud noeudDep = rechercheGraphNoeud(lien.getLien().getDepartNoeud());
             GraphNoeud noeudArr = rechercheGraphNoeud(lien.getLien().getArriveNoeud());
-            if (listeSelectedTypeLien.contains(String.valueOf(lien.getLien().getTypeRoute())) && !listeSelectedTypeNoeud.isEmpty()){
+            
+            //On regarde si un type a été choisi pour les liens à dessiner et les noeuds à dessiner
+            if (!listeSelectedTypeNoeud.isEmpty() && listeSelectedTypeLien.contains(String.valueOf(lien.getLien().getTypeRoute()))){
 
+                //On dessine les liens et les noeuds dont les types ont été sélectionnés
                 if (listeSelectedTypeNoeud.contains(noeudDep.getTypeLieu()) && listeSelectedTypeNoeud.contains(noeudArr.getTypeLieu())){
                     paintNoeud(g2d, noeudDep);
                     paintNoeud(g2d, noeudArr);
                     paintLien(g2d, lien);
                 }
+                
+            //Sinon ici, on dessine les liens dont un type a été sélectionné mais aucun type de noeud ne l'a été
             } else if (listeSelectedTypeLien.contains(String.valueOf(lien.getLien().getTypeRoute())) && listeSelectedTypeNoeud.isEmpty()){
                 paintNoeud(g2d, noeudDep);
                 paintNoeud(g2d, noeudArr);
@@ -410,6 +408,7 @@ public class Map extends JPanel{
         
         for (Noeud noeud : listeNoeud){
             
+            //On génère des coordonnées jusqu'à qu'elles soient vérifiées et assez séparées des autres
             while (!verifCoord(x, y)){
                 x = posX.nextInt(WIDTH_MAP - PADDING) + PADDING;
                 y = posY.nextInt(HEIGHT_MAP - PADDING) + PADDING;
@@ -436,6 +435,7 @@ public class Map extends JPanel{
             noeudArrive = rechercheGraphNoeud(lien.getArriveNoeud());
             
             for (GraphLien graphlien : listeGraphLien){
+                //Cette condition parcours la liste des noeuds déjà généré, ce qui permet de savoir si un lien entre eux ont déjà été déssiné
                 if ((graphlien.getNoeudArrivee().getNomLieu()).equals(noeudDepart.getNomLieu()) &&
                     (graphlien.getNoeudDepart().getNomLieu()).equals(noeudArrive.getNomLieu())){
                     dejaDessine = true;
@@ -459,6 +459,7 @@ public class Map extends JPanel{
         int i = 0;
         boolean verif = true;
         
+        //On parcours tous les noeuds à dessiner et on regarde si les coordonnées entrées en paramètre sont assez éloignés de ceux de chaque noeud
         while (verif && i < listeGraphNoeud.size()){
             GraphNoeud tempNoeud = listeGraphNoeud.get(i);
             
@@ -572,6 +573,8 @@ public class Map extends JPanel{
             while (!isLinkClicked && i < listeGraphLien.size()){
                 link = listeGraphLien.get(i);
                 
+                
+                //On récupére ici les dimensions du texte à afficher dans le label pour pouvoir cliquer dans sa zone
                 java.awt.FontMetrics metrics = getFontMetrics(new java.awt.Font("Copperplate", java.awt.Font.BOLD, 12));
                 int w = metrics.stringWidth(link.getDonnees());
                 int h = metrics.getHeight();
