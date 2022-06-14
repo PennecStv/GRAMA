@@ -4,7 +4,6 @@
  */
 package grama;
 
-import java.util.ArrayList;
 //import org.junit.jupiter.api.Test;*
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -21,8 +20,8 @@ public class GraphTest {
 
 
     /**
-     * Test of ouvrirGraphe method, of class Graph.
-     * Non fonctionnel car la lecture n'arrive pas à récuperer les caractères spéciaux
+     * Test of ouvrirGraphe method, of class Graph.Non fonctionnel car la lecture n'arrive pas à récuperer les caractères spéciaux
+     * @throws java.lang.Exception
      */
     @Test
     @Deprecated
@@ -103,78 +102,6 @@ public class GraphTest {
         
         assertEquals(expResult1, result1);
         assertEquals(expResult2, result2);
-    }
-
-    /**
-     * Test of creationListeTypee method, of class Graph.
-     */
-    @Test
-    public void testCreationListeTypee() {
-        System.out.println("creationListeTypee");
-        Graph instance = new Graph();
-        instance.creationListeTypee();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-
-    /**
-     * Test of listerCategorie method, of class Graph.
-     */
-    @Test
-    public void testListerCategorie() {
-        System.out.println("listerCategorie");
-        String type = "";
-        Graph instance = new Graph();
-        String expResult = "";
-        String result = instance.listerCategorie(type);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of afficherListe method, of class Graph.
-     */
-    @Test
-    public void testAfficherListe() {
-        System.out.println("afficherListe");
-        ArrayList liste = null;
-        String texte = "";
-        Graph instance = new Graph();
-        String expResult = "";
-        String result = instance.afficherListe(liste, texte);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of afficherNombre method, of class Graph.
-     */
-    @Test
-    public void testAfficherNombre() {
-        System.out.println("afficherNombre");
-        String categorie = "";
-        Graph instance = new Graph();
-        String expResult = "";
-        String result = instance.getNombre(categorie);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of afficherVoisinUnSaut method, of class Graph.
-     */
-    @Test
-    public void testAfficherVoisinUnSaut() {
-        System.out.println("afficherVoisinUnSaut");
-        String nomNoeud = "";
-        Graph instance = new Graph();
-        instance.afficherVoisinUnSaut(nomNoeud);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

@@ -127,7 +127,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         ecran3Bouton = new javax.swing.JButton();
         ecran4Bouton = new javax.swing.JButton();
         titreEcranPrincipal = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        comingSoonLabel = new javax.swing.JLabel();
         ecran0Panel = new javax.swing.JPanel();
         retour0Bouton = new javax.swing.JButton();
         villesCheckBox = new javax.swing.JCheckBox();
@@ -189,12 +189,19 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         retour4Bouton = new javax.swing.JButton();
         mapPanel = new javax.swing.JPanel();
         mapGraphe = new grama.map.Map();
+        consolePanel = new javax.swing.JPanel();
+        consoleLabel = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        consoleTextArea = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         ouvrirMenuItem = new javax.swing.JMenuItem();
         renitialiserMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         quitterMenuItem = new javax.swing.JMenuItem();
+        affichageMenu = new javax.swing.JMenu();
+        afficherMenuPanelCheckBox = new javax.swing.JCheckBoxMenuItem();
+        afficherConsoleCheckBox = new javax.swing.JCheckBoxMenuItem();
         aideMenu = new javax.swing.JMenu();
         aideMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -378,6 +385,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph Map Analysis");
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
 
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuPanel.setLayout(new java.awt.CardLayout());
@@ -427,9 +435,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         titreEcranPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titreEcranPrincipal.setText("Graph Map Analysis");
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("Coming Soon !");
+        comingSoonLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        comingSoonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        comingSoonLabel.setText("Coming Soon !");
 
         javax.swing.GroupLayout principalPanelLayout = new javax.swing.GroupLayout(principalPanel);
         principalPanel.setLayout(principalPanelLayout);
@@ -438,13 +446,13 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             .addGroup(principalPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titreEcranPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titreEcranPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                     .addComponent(ecran0Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran1Bouton)
                     .addComponent(ecran2Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran3Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ecran4Bouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comingSoonLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         principalPanelLayout.setVerticalGroup(
@@ -461,10 +469,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addGap(50, 50, 50)
                 .addComponent(ecran3Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jLabel19)
+                .addComponent(comingSoonLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ecran4Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         menuPanel.add(principalPanel, "cardPrincipal");
@@ -966,7 +974,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addComponent(resultatCulturelLabel)
                 .addGap(30, 30, 30)
                 .addComponent(retour3Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         menuPanel.add(ecran3Panel, "card3");
@@ -1013,11 +1021,41 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         mapGraphe.setLayout(mapGrapheLayout);
         mapGrapheLayout.setHorizontalGroup(
             mapGrapheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1039, Short.MAX_VALUE)
+            .addGap(0, 1082, Short.MAX_VALUE)
         );
         mapGrapheLayout.setVerticalGroup(
             mapGrapheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 785, Short.MAX_VALUE)
+        );
+
+        consolePanel.setBackground(new java.awt.Color(169, 169, 169));
+
+        consoleLabel.setBackground(new java.awt.Color(169, 169, 169));
+        consoleLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        consoleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        consoleLabel.setText("Console:");
+
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(226, 30));
+
+        consoleTextArea.setColumns(20);
+        consoleTextArea.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        consoleTextArea.setRows(5);
+        jScrollPane4.setViewportView(consoleTextArea);
+
+        javax.swing.GroupLayout consolePanelLayout = new javax.swing.GroupLayout(consolePanel);
+        consolePanel.setLayout(consolePanelLayout);
+        consolePanelLayout.setHorizontalGroup(
+            consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(consolePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(consoleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE))
+        );
+        consolePanelLayout.setVerticalGroup(
+            consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(consoleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
@@ -1025,14 +1063,24 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         mapPanelLayout.setHorizontalGroup(
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mapPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mapGraphe, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(consolePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mapPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(mapGraphe, javax.swing.GroupLayout.PREFERRED_SIZE, 1082, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         mapPanelLayout.setVerticalGroup(
             mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mapPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mapGraphe, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mapPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(consolePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
+            .addGroup(mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mapPanelLayout.createSequentialGroup()
+                    .addComponent(mapGraphe, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         fichierMenu.setText("Fichier");
@@ -1071,6 +1119,23 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         menuBar.add(fichierMenu);
 
+        affichageMenu.setText("Affichage");
+
+        afficherMenuPanelCheckBox.setSelected(true);
+        afficherMenuPanelCheckBox.setText("Afficher le menu");
+        affichageMenu.add(afficherMenuPanelCheckBox);
+
+        afficherConsoleCheckBox.setSelected(true);
+        afficherConsoleCheckBox.setText("Afficher la console");
+        afficherConsoleCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afficherConsoleCheckBoxActionPerformed(evt);
+            }
+        });
+        affichageMenu.add(afficherConsoleCheckBox);
+
+        menuBar.add(affichageMenu);
+
         aideMenu.setText("Aide");
 
         aideMenuItem.setText("Afficher l'aide");
@@ -1100,16 +1165,16 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1410,6 +1475,14 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private void exitFrameBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitFrameBoutonActionPerformed
         ListeFrame.dispose();
     }//GEN-LAST:event_exitFrameBoutonActionPerformed
+
+    private void afficherConsoleCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherConsoleCheckBoxActionPerformed
+        if (afficherConsoleCheckBox.isEnabled()){
+            consolePanel.setVisible(true);
+        } else{
+            consolePanel.setVisible(false);
+        }
+    }//GEN-LAST:event_afficherConsoleCheckBoxActionPerformed
  
     
     
@@ -1571,6 +1644,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = openFileChooser.getSelectedFile();
                 fichier = file.getAbsolutePath();
+                consoleTextArea.setText("Le graphe a été chargé avec succès.");
                 resetGraphe(); 
             }
     }
@@ -1583,6 +1657,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         try {
             initGraph();
         } catch (IOException ex) {
+            consoleTextArea.setText("Erreur: Le graphe n'a pas pu être chargé...");
             Logger.getLogger(EcranPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         mapGraphe.reset();
@@ -1637,12 +1712,19 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JMenuItem AProposMenuItem;
     private javax.swing.JFrame ListeFrame;
     private javax.swing.JOptionPane aProposOptionPane;
+    private javax.swing.JMenu affichageMenu;
+    private javax.swing.JCheckBoxMenuItem afficherConsoleCheckBox;
+    private javax.swing.JCheckBoxMenuItem afficherMenuPanelCheckBox;
     private javax.swing.JMenu aideMenu;
     private javax.swing.JMenuItem aideMenuItem;
     private javax.swing.JOptionPane aideOptionPane;
     private javax.swing.JLabel arriveeLienSelectedLabel;
     private javax.swing.JCheckBox autoroutesCheckBox;
     private javax.swing.JRadioButton autoroutesRadioBouton;
+    private javax.swing.JLabel comingSoonLabel;
+    private javax.swing.JLabel consoleLabel;
+    private javax.swing.JPanel consolePanel;
+    private javax.swing.JTextArea consoleTextArea;
     private javax.swing.JCheckBox depCheckBox;
     private javax.swing.JRadioButton depRadioBouton;
     private javax.swing.JLabel departLienSelectedLabel;
@@ -1662,10 +1744,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JMenu fichierMenu;
     private javax.swing.JLabel infoNombreEcran0;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

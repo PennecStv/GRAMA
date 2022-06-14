@@ -1,15 +1,14 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
 package grama.map;
 
+import grama.Graph;
 import grama.Lien;
 import grama.Noeud;
-import java.awt.Graphics;
-import java.util.List;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -17,195 +16,128 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class MapTest {
     
+    /*** La map de test ***/
+    Map map = new Map();
+    
+    /*** Le graphe de test ***/
+    Graph graphe = new Graph();
+    
+    
+    /***  Noeuds et Liens de Test ***/
+    Noeud noeud1 = new Noeud("V", "Villeurbanne");
+    Noeud noeud2 = new Noeud("R", "MacDonald's");
+    Noeud noeud3 = new Noeud("V", "Vénissieux");
+    Noeud noeud4 = new Noeud("L", "Aquarium de Lyon");
+    
+    Lien lien1 = new Lien( 5, 'D', noeud1, noeud2);
+    Lien lien2 = new Lien( 5, 'D', noeud2, noeud1);
+    Lien lien3 = new Lien(20, 'A', noeud1, noeud3);
+    Lien lien4 = new Lien(20, 'A', noeud3, noeud1);
+    Lien lien5 = new Lien(15, 'N', noeud3, noeud4);
+    Lien lien6 = new Lien(15, 'N', noeud4, noeud3);
+    Lien lien7 = new Lien(10, 'N', noeud2, noeud3);
+    Lien lien8 = new Lien(10, 'N', noeud3, noeud2);
+    
     public MapTest() {
+        remplirListe(graphe);
     }
 
-    /**
-     * Test of addTypeNoeud method, of class Map.
-     */
-    @Test
-    public void testAddTypeNoeud() {
-        System.out.println("addTypeNoeud");
-        String type = "";
-        Map instance = new Map();
-        instance.addTypeNoeud(type);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    
+    /* ======================================================= */
+    /* ===== Méthodes de test: remplir une liste de test ===== */
+    /* ======================================================= */
+    private void remplirListe(Graph graphe){
+        graphe.getListeNoeud().add(noeud1);
+        graphe.getListeNoeud().add(noeud2);
+        graphe.getListeNoeud().add(noeud3);
+        graphe.getListeNoeud().add(noeud4);
+        
+        graphe.getListeLien().add(lien1);
+        graphe.getListeLien().add(lien2);
+        graphe.getListeLien().add(lien3);
+        graphe.getListeLien().add(lien4);
+        graphe.getListeLien().add(lien5);
+        graphe.getListeLien().add(lien6);
+        graphe.getListeLien().add(lien7);
+        graphe.getListeLien().add(lien8);
     }
 
-    /**
-     * Test of removeTypeNoeud method, of class Map.
-     */
-    @Test
-    public void testRemoveTypeNoeud() {
-        System.out.println("removeTypeNoeud");
-        String type = "";
-        Map instance = new Map();
-        instance.removeTypeNoeud(type);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addTypeLien method, of class Map.
-     */
-    @Test
-    public void testAddTypeLien() {
-        System.out.println("addTypeLien");
-        String type = "";
-        Map instance = new Map();
-        instance.addTypeLien(type);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of removeTypeLien method, of class Map.
-     */
-    @Test
-    public void testRemoveTypeLien() {
-        System.out.println("removeTypeLien");
-        String type = "";
-        Map instance = new Map();
-        instance.removeTypeLien(type);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-
-    /**
-     * Test of compareCoord method, of class Map.
-     */
-    @Test
-    public void testCompareCoord() {
-        System.out.println("compareCoord");
-        GraphNoeud noeud = null;
-        int otherPosX = 0;
-        int otherPosY = 0;
-        Map instance = new Map();
-        boolean expResult = false;
-        boolean result = instance.compareCoord(noeud, otherPosX, otherPosY);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of rechercheGraphNoeud method, of class Map.
-     */
-    @Test
-    public void testRechercheGraphNoeud() {
-        System.out.println("rechercheGraphNoeud");
-        Noeud noeudRecherche = null;
-        Map instance = new Map();
-        GraphNoeud expResult = null;
-        GraphNoeud result = instance.rechercheGraphNoeud(noeudRecherche);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getSelectedNode method, of class Map.
-     */
-    @org.junit.Test
-    public void testGetSelectedNode() {
-        System.out.println("getSelectedNode");
-        Map instance = new Map();
-        GraphNoeud expResult = null;
-        GraphNoeud result = instance.getSelectedNode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getSelectedLink method, of class Map.
-     */
-    @org.junit.Test
-    public void testGetSelectedLink() {
-        System.out.println("getSelectedLink");
-        Map instance = new Map();
-        GraphLien expResult = null;
-        GraphLien result = instance.getSelectedLink();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of paintComponent method, of class Map.
-     */
-    @org.junit.Test
-    public void testPaintComponent() {
-        System.out.println("paintComponent");
-        Graphics g = null;
-        Map instance = new Map();
-        instance.paintComponent(g);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of reset method, of class Map.
-     */
-    @org.junit.Test
-    public void testReset() {
-        System.out.println("reset");
-        Map instance = new Map();
-        instance.reset();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of generateGraphNoeud method, of class Map.
      */
-    @org.junit.Test
+    @Test
     public void testGenerateGraphNoeud() {
-        System.out.println("generateGraphNoeud");
-        List<Noeud> noeuds = null;
-        Map instance = new Map();
-        instance.generateGraphNoeud(noeuds);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        map.generateGraphNoeud(graphe.getListeNoeud());
+        
+        assertEquals(map.getListeGraphNoeud().size(), graphe.getListeNoeud().size());
+        for (int i = 0; i < graphe.getListeNoeud().size(); i++){
+            assertEquals(map.getListeGraphNoeud().get(i).getNomLieu(), graphe.getListeNoeud().get(i).getNomLieu());
+            assertEquals(map.getListeGraphNoeud().get(i).getTypeLieu(), graphe.getListeNoeud().get(i).getTypeLieu());
+        }
     }
 
     /**
      * Test of generateGraphLien method, of class Map.
      */
-    @org.junit.Test
+    @Test
     public void testGenerateGraphLien() {
-        System.out.println("generateGraphLien");
-        List<Lien> liens = null;
-        Map instance = new Map();
-        instance.generateGraphLien(liens);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of unselectAllNodes method, of class Map.
-     */
-    @org.junit.Test
-    public void testUnselectAllNodes() {
-        System.out.println("unselectAllNodes");
-        Map instance = new Map();
-        instance.unselectAllNodes();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of unselectAllLinks method, of class Map.
-     */
-    @org.junit.Test
-    public void testUnselectAllLinks() {
-        System.out.println("unselectAllLinks");
-        Map instance = new Map();
-        instance.unselectAllLinks();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        map.generateGraphNoeud(graphe.getListeNoeud());
+        map.generateGraphLien(graphe.getListeLien());
+        
+        boolean verif;
+        for (GraphLien mapLien : map.getListeGraphLien()){
+            verif = false;
+            for (Lien lien : graphe.getListeLien()){
+                if (mapLien.getLien().equals(lien))
+                    verif = true;
+            }
+        assertTrue(verif);
+        }
     }
     
+    
+    /**
+     * Test of rechercheGraphNoeud method, of class Map.
+     */
+    @Test
+    public void testRechercheGraphNoeud() {
+        map.generateGraphNoeud(graphe.getListeNoeud());
+        
+        Noeud noeudRecherche1 = new Noeud("V", "Villeurbanne");
+        Noeud noeudRecherche2 = new Noeud("L", "Aquarium de Lyon");
+        Noeud noeudRecherche3 = new Noeud("R", "Burger King");
+        
+        GraphNoeud expResult1 = map.getListeGraphNoeud().get(0);
+        GraphNoeud expResult2 = map.getListeGraphNoeud().get(map.getListeGraphNoeud().size() - 1);
+        GraphNoeud expResult3 = null;
+        
+        GraphNoeud result1 = map.rechercheGraphNoeud(noeudRecherche1);
+        GraphNoeud result2 = map.rechercheGraphNoeud(noeudRecherche2);
+        GraphNoeud result3 = map.rechercheGraphNoeud(noeudRecherche3);
+        
+        assertEquals(expResult1, result1);
+        assertEquals(expResult2, result2);
+        assertEquals(expResult3, result3);
+    }
+    
+    /**
+     * Test of compareCoord method, of class Map.
+     */
+    @Test
+    public void testCompareCoord() {
+        map.generateGraphNoeud(graphe.getListeNoeud());
+        
+        GraphNoeud testNoeud1 = map.getListeGraphNoeud().get(0);
+        GraphNoeud testNoeud2 = map.getListeGraphNoeud().get(1);
+        
+        boolean expResult1 = true;
+        boolean expResult2 = false;
+        
+        boolean result1 = map.compareCoord(testNoeud1, testNoeud2.getPosX(), testNoeud2.getPosY());
+        boolean result2 = map.compareCoord(testNoeud2, testNoeud2.getPosX(), testNoeud2.getPosY());
+        
+        assertEquals(expResult1, result1);
+        assertEquals(expResult2, result2);
+    }
 }

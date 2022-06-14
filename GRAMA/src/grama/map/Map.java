@@ -23,7 +23,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 /**
- * Cette  classe correspond au panel représentant la carte qui contiendra et qui dessinera le graphe
+ * Cette classe correspond au panel représentant la carte qui contiendra et qui dessinera le graphe
  * @author Steve Pennec
  */
 public class Map extends JPanel{
@@ -31,7 +31,7 @@ public class Map extends JPanel{
     /**
      * Correspond à la marge sur les bords du panel
      */
-    private static final int PADDING    = 15;
+    private static final int PADDING = 15;
     
     /**
      * Correspond à l'espacement minimal qu'il doit y avoir entre les noeuds
@@ -41,12 +41,12 @@ public class Map extends JPanel{
     /**
      * La largeur de la map
      */
-    private final int WIDTH_MAP         = 1000;
+    private final int WIDTH_MAP = 1000;
     
     /**
      * La hauteur de la map
      */
-    private final int HEIGHT_MAP        = 740;
+    private final int HEIGHT_MAP = 720;
     
     /**
      * La dimension de la map
@@ -61,7 +61,7 @@ public class Map extends JPanel{
     /**
      * Rayon des noeuds
      */
-    private static final int RAYON_NOEUD    = DIAMETER_NOEUD / 2;
+    private static final int RAYON_NOEUD = DIAMETER_NOEUD / 2;
     
     /**
      * Pour savoir si un noeud est cliqué
@@ -105,21 +105,6 @@ public class Map extends JPanel{
      * Liste des liens à dessiner
      */
     private ArrayList<GraphLien> listeGraphLien    = new ArrayList<>();
-    
-    /***  Noeuds et Liens de Test ***/
-    Noeud noeud1 = new Noeud("V", "Villeurbanne");
-    Noeud noeud2 = new Noeud("R", "MacDonald's");
-    Noeud noeud3 = new Noeud("V", "Vénissieux");
-    Noeud noeud4 = new Noeud("L", "Aquarium de Lyon");
-    
-    Lien lien1 = new Lien( 5, 'D', noeud1, noeud2);
-    Lien lien2 = new Lien( 5, 'D', noeud2, noeud1);
-    Lien lien3 = new Lien(20, 'A', noeud1, noeud3);
-    Lien lien4 = new Lien(20, 'A', noeud3, noeud1);
-    Lien lien5 = new Lien(15, 'N', noeud3, noeud4);
-    Lien lien6 = new Lien(15, 'N', noeud4, noeud3);
-    Lien lien7 = new Lien(10, 'N', noeud2, noeud3);
-    Lien lien8 = new Lien(10, 'N', noeud3, noeud2);
     
    /**
     * Une coordonnée x aléatoire
@@ -188,10 +173,26 @@ public class Map extends JPanel{
     public void removeTypeLien(String type){
         Map.listeSelectedTypeLien.remove(type);
     }
+
+    /**
+     * Renvoie la liste des noeuds à dessiner sur la map
+     * @return retourne une liste de noeuds ayant des coordonnées
+     */
+    public ArrayList<GraphNoeud> getListeGraphNoeud() {
+        return listeGraphNoeud;
+    }
+
+    /**
+     * Renvoie la liste des liens à dessiner sur la map
+     * @return retourne une liste de liens ayant des coordonnées
+     */
+    public ArrayList<GraphLien> getListeGraphLien() {
+        return listeGraphLien;
+    }
     
     /**
      * Renvoie le noeud sélectionné dans la map
-     * @return un noeud s'il y en a un qui est sélectionné, sinon null
+     * @return retourne un noeud s'il y en a un qui est sélectionné, sinon null
      */
     public GraphNoeud getSelectedNode(){
         for (GraphNoeud noeud : listeGraphNoeud){
@@ -389,30 +390,6 @@ public class Map extends JPanel{
         g2d.setStroke(new BasicStroke(1.0f));
         g2d.setFont(new Font("Copperplate", Font.BOLD, 12));
         g2d.drawString(label, labelX - w/2 + 2, labelY + h/2 - 2);
-    }
-       
-    
-    /* ======================================================= */
-    /* ===== Méthodes de test: remplir une liste de test ===== */
-    /* ======================================================= */
-    @Deprecated
-    private void remplirListe(Graph graphe){
-//        listeNoeud.add(noeud1);
-//        listeNoeud.add(noeud2);
-//        listeNoeud.add(noeud3);
-//        listeNoeud.add(noeud4);
-//        
-//        listeLien.add(lien1);
-//        listeLien.add(lien2);
-//        listeLien.add(lien3);
-//        listeLien.add(lien4);
-//        listeLien.add(lien5);
-//        listeLien.add(lien6);
-//        listeLien.add(lien7);
-//        listeLien.add(lien8);
-//        
-//        listeNoeud = graphe.getListeNoeud();
-//        listeLien = graphe.getListeLien();
     }
     
     

@@ -14,14 +14,40 @@ import java.awt.Color;
  */
 public class GraphNoeud{
     
+    /**
+     * 
+     */
     private boolean isSelected;
     
+    /**
+     * 
+     */
     public Noeud noeud;
     
+    /**
+     * 
+     */
     private int posX;
+    
+    /**
+     * 
+     */
     private int posY;
+    
+    /**
+     * 
+     */
     public Color couleur;
 
+    
+    
+    /*** Constructeur ***/
+    /**
+     * 
+     * @param noeud
+     * @param posX
+     * @param posY 
+     */
     public GraphNoeud( Noeud noeud, int posX, int posY) {
         this.noeud = noeud;
         this.posX = posX;
@@ -46,28 +72,89 @@ public class GraphNoeud{
         }
     }
 
+    /* ============================== */
+    /* ===   Getters et Setters   === */
+    /* ============================== */
     
+    /**
+     * 
+     * @return 
+     */
     public int getPosX() {
         return posX;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getPosY() {
         return posY;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Color getCouleur() {
         return couleur;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String getNomLieu(){
         return noeud.getNomLieu();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String getTypeLieu(){
         return noeud.getTypeLieu();
     }
     
+    /**
+     * 
+     * @param posX 
+     */
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    /**
+     * 
+     * @param posY 
+     */
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    /**
+     * 
+     * @param isSelected 
+     */
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }  
+
     
+    //Autre méthode
+    /**
+     * 
+     * @param type
+     * @return 
+     */
     public String afficherVoisins(String type){
         String text = "";
         
@@ -84,25 +171,11 @@ public class GraphNoeud{
         return text;
     }
     
-
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
-
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean isSelected) {
-        this.isSelected = isSelected;
-    }  
-
     
-    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         return this.getTypeLieu() + ": " + this.getNomLieu();

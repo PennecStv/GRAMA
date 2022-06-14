@@ -85,7 +85,7 @@ public class Lien {
     }
     
     /**
-     * Affiche le lien et ses informations
+     * Renvoie le lien et ses informations sous une chaîne de caractères String
      * @return tous les attributs du liens ainsi que les noms de noeuds dans ses extrémités
      */
     @Override
