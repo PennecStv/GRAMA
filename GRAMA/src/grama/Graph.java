@@ -360,20 +360,6 @@ public class Graph {
         switch(categorie){
             case "Villes":
                 return String.valueOf(listeVilles.size());
-            default:
-                return "";
-        }
-    }
-    
-     /** 
-     *
-     * @param categorie
-     * @return 
-     */
-    public String afficherNombre(String categorie){
-        switch(categorie){
-            case "Villes":
-                return String.valueOf(listeVilles.size());
                 
             case "Restaurants":
                 return String.valueOf(listeRestaurants.size());

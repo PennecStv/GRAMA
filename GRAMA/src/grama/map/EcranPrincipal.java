@@ -7,14 +7,19 @@ package grama.map;
 import grama.Graph;
 import grama.interfaces.ecranListener;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.FontUIResource;
 
 
 
@@ -36,7 +41,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     /**
      * Il contiendra le chemin absolu du fichier utilisé
      */
-    private String fichier = "Graphe.csv";
+    private String fichier = "test.csv";
     
     
     
@@ -118,6 +123,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         openFileChooser = new javax.swing.JFileChooser();
         aProposOptionPane = new javax.swing.JOptionPane();
         aideOptionPane = new javax.swing.JOptionPane();
+        rechercheOptionPane = new javax.swing.JOptionPane();
         menuPanel = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
         ecran0Bouton = new javax.swing.JButton();
@@ -201,6 +207,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         affichageMenu = new javax.swing.JMenu();
         afficherMenuPanelCheckBox = new javax.swing.JCheckBoxMenuItem();
         afficherConsoleCheckBox = new javax.swing.JCheckBoxMenuItem();
+        rechercheMenu = new javax.swing.JMenu();
+        rechercheNoeudMenuItem = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        rechercheLienMenuItem = new javax.swing.JMenuItem();
         aideMenu = new javax.swing.JMenu();
         aideMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -384,6 +394,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         openFileChooser.setDialogTitle("Ouvrir un graphe");
         openFileChooser.setSelectedFile(new java.io.File("C:\\Users\\Steve Pennec\\Desktop\\IUT Lyon - Travail\\GRAMA\\GRAMA Git\\sae-grama-project\\GRAMA\\Graphe.csv"));
 
+        rechercheOptionPane.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph Map Analysis");
 
@@ -474,7 +486,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addComponent(comingSoonLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ecran4Bouton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         menuPanel.add(principalPanel, "cardPrincipal");
@@ -685,7 +697,9 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         voisinsTextArea.setEditable(false);
         voisinsTextArea.setColumns(20);
         voisinsTextArea.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        voisinsTextArea.setLineWrap(true);
         voisinsTextArea.setRows(5);
+        voisinsTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(voisinsTextArea);
 
         titreTypeNoeudLabel.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -1026,7 +1040,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         );
         mapGrapheLayout.setVerticalGroup(
             mapGrapheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 725, Short.MAX_VALUE)
         );
 
         mapPanel.add(mapGraphe);
@@ -1062,7 +1076,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                 .addGroup(consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(consoleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         mapPanel.add(consolePanel);
@@ -1125,9 +1139,33 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
 
         menuBar.add(affichageMenu);
 
+        rechercheMenu.setText("Recherche");
+
+        rechercheNoeudMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        rechercheNoeudMenuItem.setText("Rechercher un noeud");
+        rechercheNoeudMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercheNoeudMenuItemActionPerformed(evt);
+            }
+        });
+        rechercheMenu.add(rechercheNoeudMenuItem);
+        rechercheMenu.add(jSeparator4);
+
+        rechercheLienMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        rechercheLienMenuItem.setText("Rechercher un lien");
+        rechercheLienMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercheLienMenuItemActionPerformed(evt);
+            }
+        });
+        rechercheMenu.add(rechercheLienMenuItem);
+
+        menuBar.add(rechercheMenu);
+
         aideMenu.setText("Aide");
 
         aideMenuItem.setText("Afficher l'aide");
+        aideMenuItem.setEnabled(false);
         aideMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aideMenuItemActionPerformed(evt);
@@ -1163,7 +1201,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE))
+                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
         );
 
         pack();
@@ -1193,7 +1231,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
                                                mais aussi grâce aux cours et à l'encadrement 
                                                de prodigieux professeurs, un grand remerciement à eux.
                                                
-                                               Dédicace au frérot Denis NGUYEN, 
+                                               Dédicace à Denis NGUYEN, 
                                                ancien binôme et ancien étudiant de l'IUT Lyon 1.""", "À propos", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_AProposMenuItemActionPerformed
 
@@ -1636,6 +1674,36 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             menuPanel.setVisible(false);
         }
     }//GEN-LAST:event_afficherMenuPanelCheckBoxActionPerformed
+
+    private void rechercheLienMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheLienMenuItemActionPerformed
+        GraphLien[] noeud = new GraphLien[mapGraphe.getListeGraphLien().size()];  
+        mapGraphe.getListeGraphLien().toArray(noeud);
+
+        JComboBox noeudComboBox = new JComboBox(noeud);
+        noeudComboBox.setFont(new Font("Segoe UI Light", Font.PLAIN, 14));
+        
+        rechercheOptionPane.showMessageDialog(null, noeudComboBox, "Recherche d'un noeud", JOptionPane.PLAIN_MESSAGE);
+        GraphLien retour = (GraphLien) noeudComboBox.getSelectedItem();
+        retour.setSelected(true);
+        mapPanel.repaint();
+        lienSelectedLabel.setText(retour.getDonnees());
+        departLienSelectedLabel.setText(retour.getNoeudDepart().toString());
+        arriveeLienSelectedLabel.setText(retour.getNoeudArrivee().toString());
+    }//GEN-LAST:event_rechercheLienMenuItemActionPerformed
+
+    private void rechercheNoeudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheNoeudMenuItemActionPerformed
+        GraphNoeud[] noeud = new GraphNoeud[mapGraphe.getListeGraphNoeud().size()];  
+        mapGraphe.getListeGraphNoeud().toArray(noeud);
+
+        JComboBox noeudComboBox = new JComboBox(noeud);
+        noeudComboBox.setFont(new Font("Segoe UI Light", Font.PLAIN, 14));
+        
+        rechercheOptionPane.showMessageDialog(null, noeudComboBox, "Recherche d'un noeud", JOptionPane.PLAIN_MESSAGE);
+        GraphNoeud retour = (GraphNoeud) noeudComboBox.getSelectedItem();
+        retour.setSelected(true);
+        mapPanel.repaint();
+        noeudAffiche(retour);
+    }//GEN-LAST:event_rechercheNoeudMenuItemActionPerformed
  
     
     
@@ -1797,8 +1865,8 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = openFileChooser.getSelectedFile();
                 fichier = file.getAbsolutePath();
+                resetGraphe();
                 consoleTextArea.setText("Le graphe a été chargé avec succès.");
-                resetGraphe(); 
             }
     }
     
@@ -1807,14 +1875,12 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
      */
     private void resetGraphe(){
         grama = new Graph();
+        mapGraphe.reset();
         try {
             initGraph();
         } catch (IOException ex) {
             consoleTextArea.setText("Erreur: Le graphe n'a pas pu être chargé...");
-            Logger.getLogger(EcranPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mapGraphe.reset();
-        initMap();
         mapPanel.repaint();
     }
     
@@ -1903,6 +1969,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.ButtonGroup lienButtonGroup;
     private javax.swing.JLabel lienSelectedLabel;
     private javax.swing.JTextArea liensTextArea;
@@ -1927,6 +1994,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     private javax.swing.JLabel premierNoeudSelectedLabel2;
     private javax.swing.JPanel principalPanel;
     private javax.swing.JMenuItem quitterMenuItem;
+    private javax.swing.JMenuItem rechercheLienMenuItem;
+    private javax.swing.JMenu rechercheMenu;
+    private javax.swing.JMenuItem rechercheNoeudMenuItem;
+    private javax.swing.JOptionPane rechercheOptionPane;
     private javax.swing.JMenuItem renitialiserMenuItem;
     private javax.swing.JRadioButton resRadioBouton;
     private javax.swing.JCheckBox restoCheckBox;

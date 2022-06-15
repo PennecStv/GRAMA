@@ -182,4 +182,11 @@ public class GraphLien{
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
+
+    @Override
+    public String toString() {
+        return this.getDonnees();
+    }
+    
+    
 }

@@ -8,7 +8,7 @@ import grama.type.typeNoeud;
 import java.io.IOException;
 
 /**
- *
+ * Cette classe Main a été utilisé pour afficher et contrôler les résultats
  * @author Steve Pennec
  */
 public class Main {
@@ -22,7 +22,7 @@ public class Main {
         Graph grama = new Graph();
         
         /* === Ouverture de fichier === */
-        String fichierGraphe = grama.ouvrirGraphe("Graphe.csv");
+        String fichierGraphe = grama.ouvrirGraphe("test.csv");
         grama.creationListe(fichierGraphe);
         grama.creationListeTypee();
         
@@ -35,7 +35,7 @@ public class Main {
         grama.listerCategorie("D");
         
         /* === Affichage du nombre de liens et de liens === */
-        grama.afficherNombre("A");
+        grama.getNombre("A");
         
         /* === Test sur un noeud === */
         Noeud testNoeud = grama.recherche("Villeurbanne");

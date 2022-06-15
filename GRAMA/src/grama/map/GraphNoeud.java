@@ -9,7 +9,7 @@ import grama.Noeud;
 import java.awt.Color;
 
 /**
- *
+ * Cette classe représente les noeuds qui seront à dessiner sur les graphes, liés intrinsèquement à la classe Noeud {@link #noeud} du graphe.
  * @author Steve Pennec
  */
 public class GraphNoeud{

@@ -40,7 +40,7 @@ public class Map extends JPanel{
     /**
      * La largeur de la map
      */
-    private final int WIDTH_MAP = 1000;
+    private final int WIDTH_MAP = 1100;
     
     /**
      * La hauteur de la map
@@ -434,6 +434,9 @@ public class Map extends JPanel{
             noeudDepart = rechercheGraphNoeud(lien.getDepartNoeud());
             noeudArrive = rechercheGraphNoeud(lien.getArriveNoeud());
             
+            if (noeudArrive == null){
+                //System.out.println(noeudDepart);
+            }
             for (GraphLien graphlien : listeGraphLien){
                 //Cette condition parcours la liste des noeuds déjà généré, ce qui permet de savoir si un lien entre eux ont déjà été déssiné
                 if ((graphlien.getNoeudArrivee().getNomLieu()).equals(noeudDepart.getNomLieu()) &&
