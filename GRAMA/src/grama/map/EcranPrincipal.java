@@ -1675,6 +1675,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         }
     }//GEN-LAST:event_afficherMenuPanelCheckBoxActionPerformed
 
+    /**
+     * Permet de rechercher un noeud en particulier et de le sélectionner
+     * @param evt 
+     */
     private void rechercheLienMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheLienMenuItemActionPerformed
         GraphLien[] noeud = new GraphLien[mapGraphe.getListeGraphLien().size()];  
         mapGraphe.getListeGraphLien().toArray(noeud);
@@ -1691,6 +1695,10 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         arriveeLienSelectedLabel.setText(retour.getNoeudArrivee().toString());
     }//GEN-LAST:event_rechercheLienMenuItemActionPerformed
 
+    /**
+     * Permet de rechercher un lien en particulier et de le sélectionner
+     * @param evt 
+     */
     private void rechercheNoeudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheNoeudMenuItemActionPerformed
         GraphNoeud[] noeud = new GraphNoeud[mapGraphe.getListeGraphNoeud().size()];  
         mapGraphe.getListeGraphNoeud().toArray(noeud);
@@ -1709,8 +1717,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     
     
     /* === Autres méthodes === */
-    
-    
+        
     /**
      * Configure et génère le groupe de Radiobutton
      */

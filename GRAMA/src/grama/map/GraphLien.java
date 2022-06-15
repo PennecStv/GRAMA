@@ -14,33 +14,33 @@ import grama.Noeud;
 public class GraphLien{
     
     /**
-     * 
+     * Le lien lié à ce lien à dessiner
      */
     private Lien lien;
     
     
     /**
-     * 
+     * Position x du début du lien
      */
     private int posXDeb;
     
     /**
-     * 
+     * Position y du début du lien
      */
     private int posYDeb;
     
     /**
-     * 
+     * Position x de la fin du lien
      */
     private int posXFin;
     
     /**
-     * 
+     * Position y de la fin du lien
      */
     private int posYFin;
     
     /**
-     * 
+     * Si ce lien est sélectionné
      */
     private boolean isSelected;
 
@@ -48,12 +48,12 @@ public class GraphLien{
     
     /*** Constructeur ***/
     /**
-     * Constructeur
-     * @param lien
-     * @param posXDeb
-     * @param posYDeb
-     * @param posXFin
-     * @param posYFin 
+     * Constructeur du lien à dessiner sur le graphe
+     * @param lien le lien correspond à ce dessin
+     * @param posXDeb une position x de début
+     * @param posYDeb une position y de début
+     * @param posXFin une position x de fin
+     * @param posYFin une position y de fin
      */
     public GraphLien(Lien lien, int posXDeb, int posYDeb, int posXFin, int posYFin) {
         this.lien = lien;
@@ -67,66 +67,65 @@ public class GraphLien{
     /* ============================== */
     /* ===   Getters et Setters   === */
     /* ============================== */
-    
     /**
-     * 
-     * @return 
+     * Renvoie le lien correspondant au lien à dessiner
+     * @return un lien
      */
     public Lien getLien() {
         return lien;
     }
 
     /**
-     * 
-     * @return 
+     * Renvoie la position x du début du lien à dessiner
+     * @return retourne une position x
      */
     public int getPosXDeb() {
         return posXDeb;
     }
 
     /**
-     * 
-     * @return 
+     * Renvoie la position y du début du lien à dessiner
+     * @return retourne une position y
      */
     public int getPosYDeb() {
         return posYDeb;
     }
 
     /**
-     * 
-     * @return 
+     * Renvoie la position x de la fin du lien à dessiner
+     * @return retourne une position x
      */
     public int getPosXFin() {
         return posXFin;
     }
 
     /**
-     * 
-     * @return 
+     * Renvoie la position y de la fin du lien à dessiner
+     * @return retourne une position y
      */
     public int getPosYFin() {
         return posYFin;
     }
 
     /**
-     * 
-     * @return 
+     * Renvoie le noeud de départ du lien à dessiner
+     * @return retourne un lien
      */
     public Noeud getNoeudDepart() {
         return this.getLien().getDepartNoeud();
     }
     
     /**
-     * 
-     * @return 
+     * Renvoie le noeud d'arrivée du lien à dessiner
+     * @return retourne un lien
      */
     public Noeud getNoeudArrivee() {
         return this.getLien().getArriveNoeud();
     }
     
     /**
-     * 
-     * @return 
+     * Renvoie les données du lien à dessiner, c'est-à-dire son type et sa pondération
+     * @return retourne un type de lien et une valeur de kilométrage
      */
     public String getDonnees(){
         return this.lien.getTypeRoute() + ", " + this.lien.getPonderation();
@@ -136,53 +135,57 @@ public class GraphLien{
     
     
     /**
-     * 
-     * @param posXDeb 
+     * Modifie la position x du début du lien
+     * @param posXDeb une position x
      */
     public void setPosXDeb(int posXDeb) {
         this.posXDeb = posXDeb;
     }
 
     /**
-     * 
-     * @param posYDeb 
+     * Modifie la position y du début du lien
+     * @param posYDeb une position y
      */
     public void setPosYDeb(int posYDeb) {
         this.posYDeb = posYDeb;
     }
 
     /**
-     * 
-     * @param posXFin 
+     * Modifie la position x de la fin du lien
+     * @param posXFin une position x
      */
     public void setPosXFin(int posXFin) {
         this.posXFin = posXFin;
     }
 
     /**
-     * 
-     * @param posYFin 
+     * Modifie la position y de la fin du lien
+     * @param posYFin une position y
      */
     public void setPosYFin(int posYFin) {
         this.posYFin = posYFin;
     }
 
     /**
-     * 
-     * @return 
+     * Permet de savoir si lien est sélectionné
+     * @return retourne un boolean pour savoir si le lien est sélectionné
      */
     public boolean isSelected() {
         return isSelected;
     }
 
     /**
-     * 
-     * @param isSelected 
+     * Permet de rendre ce lien sélectionné
+     * @param isSelected un boolean où true si sélectionné, false sinon
      */
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
 
+    /**
+     * Mettre le lien à dessiner sous format String en donnant le type et la pondération
+     * @return un string
+     */
     @Override
     public String toString() {
         return this.getDonnees();

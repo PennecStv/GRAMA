@@ -15,27 +15,27 @@ import java.awt.Color;
 public class GraphNoeud{
     
     /**
-     * 
+     * Si le noeud est sélectionné dans le graphe
      */
     private boolean isSelected;
     
     /**
-     * 
+     * Le lien lié au noeud à dessiner
      */
     public Noeud noeud;
     
     /**
-     * 
+     * La coordonnée x du noeud à dessiner
      */
     private int posX;
     
     /**
-     * 
+     * La coordonnée y du noeud à dessiner
      */
     private int posY;
     
     /**
-     * 
+     * La couleur du noeud à dessiner selon son type
      */
     public Color couleur;
 
@@ -43,10 +43,10 @@ public class GraphNoeud{
     
     /*** Constructeur ***/
     /**
-     * 
-     * @param noeud
-     * @param posX
-     * @param posY 
+     * Constructeur
+     * @param noeud un noeud du graphe qu'il faudra dessiner sur l'interface graphique
+     * @param posX une position x du noeud
+     * @param posY une position y du noeud
      */
     public GraphNoeud( Noeud noeud, int posX, int posY) {
         this.noeud = noeud;
@@ -77,39 +77,39 @@ public class GraphNoeud{
     /* ============================== */
     
     /**
-     * 
-     * @return 
+     * Renvoie la position x du noeud à dessiner
+     * @return retourne la position y
      */
     public int getPosX() {
         return posX;
     }
 
     /**
-     * 
-     * @return 
+     * Renvoie la position y du noeud à dessiner
+     * @return retourne la position y
      */
     public int getPosY() {
         return posY;
     }
 
     /**
-     * 
-     * @return 
+     * Renvoie la couleur du noeud
+     * @return retourne la couleur du noeud
      */
     public Color getCouleur() {
         return couleur;
     }
     
     /**
-     * 
-     * @return 
+     * Renvoie le nom du noeud à dessiner
+     * @return le nom du noeud à dessiner
      */
     public String getNomLieu(){
         return noeud.getNomLieu();
     }
     
     /**
-     * 
+     * Renvoie le type du noeud à dessiner
      * @return 
      */
     public String getTypeLieu(){
@@ -117,32 +117,32 @@ public class GraphNoeud{
     }
     
     /**
-     * 
-     * @param posX 
+     * Modifie la position x du noeud à dessiner
+     * @param posX une position x
      */
     public void setPosX(int posX) {
         this.posX = posX;
     }
 
     /**
-     * 
-     * @param posY 
+     * Modifie la position y du noeud à dessiner
+     * @param posY une position y
      */
     public void setPosY(int posY) {
         this.posY = posY;
     }
 
     /**
-     * 
-     * @return 
+     * Permet de savoir si le noeud est sélectionné
+     * @return un boolean si le noeud est sélectionné
      */
     public boolean isSelected() {
         return isSelected;
     }
 
     /**
-     * 
-     * @param isSelected 
+     * Modifie la sélection du noeud
+     * @param isSelected un boolean pour modifier la sélection du noeud
      */
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
@@ -151,9 +151,9 @@ public class GraphNoeud{
     
     //Autre méthode
     /**
-     * 
-     * @param type
-     * @return 
+     * Permet d'afficher tous les voisins de ce noeud à dessiner
+     * @param type un type de voisins à dessiner
+     * @return un String reprenant la liste des voisins du noeud
      */
     public String afficherVoisins(String type){
         String text = "";
@@ -173,8 +173,8 @@ public class GraphNoeud{
     
     
     /**
-     * 
-     * @return 
+     * Avoir le noeud à dessiner sous format String en donnant son type et son nom
+     * @return une chaîne de caractère String reprenant les données du lien
      */
     @Override
     public String toString() {

@@ -7,29 +7,32 @@ package grama.interfaces;
 import grama.map.Map;
 
 /**
- *
+ * Cette interface n'est pas utilisé, elle avait pour but de contenir les méthodes de dessins de la map
  * @author Steve Pennec
  */
 public interface MapDesigner {
     
 //METHODES PUBLICS
     /**
-     * Peinds les champignons
+     * Peind les noeuds du graphe
      * @param g Correspond au graphique qui sera peint
      */
     public void paintNoeud(java.awt.Graphics g);
 
     /**
-     * Peinds le nombre d'unité par champignons
+     * Peind les liens du graphe
      * @param g Correspond au graphique qui sera peint
      */
     public void paintLien(java.awt.Graphics g);
 
-    
+    /**
+     * Peind les données des liens du graphe
+     * @param g 
+     */
     public void paintLabel(java.awt.Graphics g);
     
     /**
-     * Peinds la sélection d'un champignons
+     * Peind le noeud sélectionné
      * @param g Correspond au graphique qui sera peint
      */
     public void paintNoeudSelected(java.awt.Graphics g);

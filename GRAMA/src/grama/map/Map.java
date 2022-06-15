@@ -136,7 +136,7 @@ public class Map extends JPanel{
     /* ============================= */
     /**
      * Ajoute un type de noeud à la liste de tpye de noeuds sélectionnés{@link #listeSelectedTypeNoeud}
-     * @param type 
+     * @param type le type de noeud à ajouter
      */
     public void addTypeNoeud(String type) {
         Map.listeSelectedTypeNoeud.add(type);
@@ -144,7 +144,7 @@ public class Map extends JPanel{
     
     /**
      * Retire un type de noeud à la liste de type de noeuds sélectionnés
-     * @param type 
+     * @param type le type de noeud à retirer
      */
     public void removeTypeNoeud(String type){
         Map.listeSelectedTypeNoeud.remove(type);
@@ -152,7 +152,7 @@ public class Map extends JPanel{
     
     /**
      * Ajoute un type de lien à la liste de type de liens sélectionnés{@link #listeSelectedTypeLien}
-     * @param type 
+     * @param type le type sélectionné de lien à ajouter
      */
     public void addTypeLien(String type) {
         Map.listeSelectedTypeLien.add(type);
@@ -160,7 +160,7 @@ public class Map extends JPanel{
     
     /**
      * Retire un type de liens à la liste de type de noeuds sélectionnés
-     * @param type 
+     * @param type le type sélectionné de lien à retirer
      */
     public void removeTypeLien(String type){
         Map.listeSelectedTypeLien.remove(type);
