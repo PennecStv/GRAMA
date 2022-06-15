@@ -4,12 +4,12 @@
  */
 package grama.interfaces;
 
-import grama.map.Map;
-
 /**
  * Cette interface n'est pas utilisé, elle avait pour but de contenir les méthodes de dessins de la map
  * @author Steve Pennec
+ * @deprecated 
  */
+@Deprecated
 public interface MapDesigner {
     
 //METHODES PUBLICS

@@ -10,16 +10,15 @@ import java.awt.CardLayout;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.FontUIResource;
 
 
 
@@ -41,7 +40,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
     /**
      * Il contiendra le chemin absolu du fichier utilisé
      */
-    private String fichier = "test.csv";
+    private String fichier = "Graphe.csv";
     
     
     
@@ -1680,7 +1679,21 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
      * @param evt 
      */
     private void rechercheLienMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheLienMenuItemActionPerformed
-        GraphLien[] noeud = new GraphLien[mapGraphe.getListeGraphLien().size()];  
+        GraphLien[] noeud = new GraphLien[mapGraphe.getListeGraphLien().size()];
+//        mapGraphe.getListeGraphNoeud().sort((GraphNoeud o1, GraphNoeud o2) -> {
+//            if(o1.getNomLieu().equals(o2.getNomLieu()))
+//                return 0;
+//            return (o1.getNomLieu().compareTo(o2.getNomLieu()));
+//        });
+//        Collections.sort(mapGraphe.getListeGraphNoeud(), new Comparator<GraphNoeud>(){
+//            @Override
+//            public int compare(GraphNoeud o1, GraphNoeud o2){
+//                if(o1.getNomLieu().equals(o2.getNomLieu()))
+//                    return 0;
+//                return (o1.getNomLieu().compareTo(o2.getNomLieu()));
+//                }
+//        });
+        
         mapGraphe.getListeGraphLien().toArray(noeud);
 
         JComboBox noeudComboBox = new JComboBox(noeud);
@@ -1688,6 +1701,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         
         rechercheOptionPane.showMessageDialog(null, noeudComboBox, "Recherche d'un noeud", JOptionPane.PLAIN_MESSAGE);
         GraphLien retour = (GraphLien) noeudComboBox.getSelectedItem();
+        mapGraphe.unselectAllLinks();
         retour.setSelected(true);
         mapPanel.repaint();
         lienSelectedLabel.setText(retour.getDonnees());
@@ -1708,6 +1722,7 @@ public class EcranPrincipal extends javax.swing.JFrame implements ecranListener{
         
         rechercheOptionPane.showMessageDialog(null, noeudComboBox, "Recherche d'un noeud", JOptionPane.PLAIN_MESSAGE);
         GraphNoeud retour = (GraphNoeud) noeudComboBox.getSelectedItem();
+        mapGraphe.unselectAllNodes();
         retour.setSelected(true);
         mapPanel.repaint();
         noeudAffiche(retour);
